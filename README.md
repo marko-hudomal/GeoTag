@@ -12,10 +12,13 @@ In progress...
 
 ## Authors
 
-Dejan Ćirić
-Marko Hudomal
-Miloš Matijašević
-Jakov Jezdić
+* Dejan Ćirić
+
+* Marko Hudomal
+
+* Miloš Matijašević
+
+* [Jakov Jezdić](https://github.com/jakovj)
 
 ## License
 
