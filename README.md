@@ -10,9 +10,6 @@ In progress...
 * PHP, Ajax
 * MySQL
 
-## Download
-
-
 ## Authors
 
 Dejan Ćirić
