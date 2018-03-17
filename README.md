@@ -7,7 +7,7 @@ Software Engineering Pirnciples course project
 In progress...
 
 ## Built With
-* HTML, CSS, Javascript
+* HTML, CSS, Javascript, Bootstrap
 * PHP, Ajax
 * MySQL
 
