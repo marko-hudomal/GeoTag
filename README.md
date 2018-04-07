@@ -13,7 +13,7 @@ In progress...
 
 ## Authors
 
-* Dejan Ćirić
+* [Dejan Ćirić](https://github.com/dejanciric)
 
 * Marko Hudomal
 
