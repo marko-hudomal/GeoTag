@@ -17,7 +17,7 @@ In progress...
 
 * Marko Hudomal
 
-* Miloš Matijašević
+* [Miloš Matijašević](https://github.com/arnold0p)
 
 * [Jakov Jezdić](https://github.com/jakovj)
 
