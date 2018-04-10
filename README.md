@@ -15,7 +15,7 @@ In progress...
 
 * [Dejan Ćirić](https://github.com/dejanciric)
 
-* Marko Hudomal
+* [Marko Hudomal](https://github.com/marko-hudomal)
 
 * [Miloš Matijašević](https://github.com/arnold0p)
 
