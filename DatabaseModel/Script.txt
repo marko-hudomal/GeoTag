@@ -1,0 +1,217 @@
+CREATE TABLE `bazapsi`.`image` (
+  
+`idImg` INT UNSIGNED NOT NULL,
+  
+`img` LONGBLOB NULL,
+  
+PRIMARY KEY (`idImg`));
+
+
+
+CREATE TABLE `bazapsi`.`destination` (
+  
+`idDest` INT NOT NULL,
+  
+`name` VARCHAR(45) NULL,
+  
+`longitude` INT NULL,
+  
+`latitude` INT NULL,
+  
+`pending` TINYINT NULL,
+  
+`country` VARCHAR(45) NULL,
+  
+PRIMARY KEY (`idDest`));
+
+
+
+
+CREATE TABLE `bazapsi`.`statistic` (
+  
+`date` DATE NOT NULL,
+  
+`userCount` INT NULL,
+  
+`reviewCount` INT NULL,
+  
+`destinationCount` INT NULL,
+  
+`positiveVoteCount` INT NULL,
+  
+`negativeVoteCount` INT NULL,
+  
+PRIMARY KEY (`date`));
+
+
+
+CREATE TABLE `bazapsi`.`user` (
+  
+`username` VARCHAR(20) NOT NULL,
+  
+`email` VARCHAR(45) NOT NULL,
+  
+`status` VARCHAR(45) NULL,
+  
+`password` VARCHAR(45) NULL,
+  
+`firstname` VARCHAR(45) NULL,
+  
+`lastname` VARCHAR(45) NULL,
+  
+`gender` VARCHAR(45) NULL,
+  
+`idImg` INT NULL,
+  
+PRIMARY KEY (`username`),
+  
+UNIQUE INDEX `email_UNIQUE` (`email` ASC),
+  
+CONSTRAINT `idImg`
+    
+FOREIGN KEY (`idImg`)
+    
+REFERENCES `bazapsi`.`image` (`idImg`)
+    
+ON DELETE CASCADE
+    
+ON UPDATE CASCADE);
+
+
+
+
+CREATE TABLE `bazapsi`.`review` (
+  
+`idRev` INT NOT NULL,
+  
+`content` VARCHAR(200) NULL,
+  
+`upCount` INT NULL,
+  
+`downCount` INT NULL,
+  
+`date` DATE NULL,
+  
+`username` VARCHAR(45) NULL,
+  
+`idImg` INT NULL,
+  
+`idDest` INT NULL,
+  
+INDEX `username_idx` 
+(`username` ASC),
+  
+INDEX `idDest_idx` (`idDest` ASC),
+  
+INDEX `idImg_idx` (`idImg` ASC),
+  
+PRIMARY KEY (`idRev`),
+  
+CONSTRAINT `username`
+    
+FOREIGN KEY (`username`)
+    
+REFERENCES `bazapsi`.`user` (`username`)
+    
+ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  
+CONSTRAINT `idDest`
+    
+FOREIGN KEY (`idDest`)
+    
+REFERENCES `bazapsi`.`destination` (`idDest`)
+    
+ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  
+CONSTRAINT `idImg1`
+    
+FOREIGN KEY (`idImg`)
+    
+REFERENCES `bazapsi`.`image` (`idImg`)
+    
+ON DELETE SET NULL
+    ON UPDATE CASCADE);
+
+
+
+
+CREATE TABLE `bazapsi`.`vote` (
+  
+`username` VARCHAR(45) NOT NULL,
+  
+`idRev` INT NOT NULL,
+  
+`type` TINYINT NULL,
+  
+INDEX `username1_idx` (`username` ASC),
+  
+INDEX `idRev_idx` (`idRev` ASC),
+  
+CONSTRAINT `username1`
+    
+FOREIGN KEY (`username`)
+    
+REFERENCES `bazapsi`.`user` (`username`)
+    
+ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  
+CONSTRAINT `idRev`
+    
+FOREIGN KEY (`idRev`)
+    
+REFERENCES `bazapsi`.`review` (`idRev`)
+    
+ON DELETE CASCADE
+    ON UPDATE CASCADE);
+
+
+CREATE TABLE `bazapsi`.`request` (
+  
+`idReq` INT NOT NULL,
+  
+`type` VARCHAR(45) NULL,
+  
+`username` VARCHAR(45) NULL,
+  
+`idRev` INT NULL,
+  
+`idDest` INT NOT NULL,
+  
+PRIMARY KEY (`idReq`),
+  
+INDEX `username2_idx` (`username` ASC),
+  
+INDEX `idRev1_idx` (`idRev` ASC),
+  
+INDEX `idDest2_idx` (`idDest` ASC),
+  
+CONSTRAINT `username2`
+    
+FOREIGN KEY (`username`)
+    
+REFERENCES `bazapsi`.`user` (`username`)
+    
+ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  
+CONSTRAINT `idRev1`
+    
+FOREIGN KEY (`idRev`)
+    
+REFERENCES `bazapsi`.`review` (`idRev`)
+    
+ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  
+CONSTRAINT `idDest2`
+    
+FOREIGN KEY (`idDest`)
+    
+REFERENCES `bazapsi`.`destination` (`idDest`)
+    
+ON DELETE CASCADE
+    ON UPDATE CASCADE);
+
