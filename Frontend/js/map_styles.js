@@ -1,3 +1,8 @@
+  var marker = null;
+  function getLatLng() {
+	
+	alert("Latitude: " + marker.getPosition().lat() + "\nLongitude: " + marker.getPosition().lng());
+  }
   function refresh()
   {
     myMap();
@@ -154,6 +159,14 @@ function initMap_Dessert(x,y) {
         //Associate the styled map with the MapTypeId and set it to display.
         map.mapTypes.set('styled_map', styledMapType);
         map.setMapTypeId('styled_map');
+		
+			marker = new google.maps.Marker({
+			position: {lat: x, lng: y},
+			map: map,
+			draggable: true
+		});
+		//var lat = homeMarker.getPosition().lat();
+		//var lng = homeMarker.getPosition().lng();
       }
 function initMap_Night(x,y) {
         // Styles a map in night mode.

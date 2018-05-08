@@ -4,7 +4,7 @@
 	<head>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 		<link rel="icon" href="./img/logo.png">
-		<title>Home</title>
+		<title>Add Destination</title>
 
 
 		<!-- Custom stlylesheet -->
@@ -29,26 +29,26 @@
 			<!-- likovi -->
 			<div class="collapse navbar-collapse" style="text-align:right" id="collapsibleNavbar">
 				<ul class="navbar-nav mx-auto">
+					<li class="nav-item">
+						<a class="nav-link" href="superuser-home.html">Home</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="superuser-statistics.html">View statistics</a>
+					</li>
 					<li class="nav-item active">
-						<a class="nav-link" href="guest-home.html">Home</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="guest-statistics.html">View statistics</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="index.html">Sign up</a>
+						<a class="nav-link" href="superuser-add-destination">Add destination</a>
 					</li> 
 					<li class="nav-item">
-						<a class="nav-link" href="guest-about.html">About</a>
+						<a class="nav-link" href="superuser-about.html">About</a>
 					</li> 
 					<li class="nav-item">
-						<a class="nav-link" href="guest-help.html">Help</a>
+						<a class="nav-link" href="superuser-help.html">Help</a>
 					</li> 
 				</ul>
 
-				<a href="home.html"><span id="username_korisnika" style="color:white">no_name</span></a>
+				<a href="home.html"><span id="username_korisnika" style="color:white">my_name</span></a>
 				&nbsp;
-				<span id="tip_korisnika" class="badge badge-warning">Guest</span>
+				<span id="tip_korisnika" class="badge badge-warning">SuperUser</span>
 
 				<img id="slika_korisnika" src="./img/avatar.png" style="width:50px; margin-left:20px;margin-right:10px">
 				<input type="button" class="btn btn-dark" value="logout" onClick="">
@@ -68,54 +68,20 @@
 
 					<div class="col-md-4">
 
-						<div class="jumbotron" style="height:500px; padding:10px;padding-left:20px;padding-right:20px;background-size:cover; background-image: url('./img/brown-gradient.png');">
-							<div class="search" style="margin-bottom:20px">
-								<form class="search-form">
-									<input type="text" placeholder="Search for destinations, people...">
-									<input type="submit" value="Search">
-								</form>
-							</div>
-							<h5>Latest comments:</h5>
-							<div id="random_comments">
-									<div class="card" style="margin-top:20px">
-										<div class="card-header">
-											<table width="100%">
-												<tr>
-													<td width="80%"><strong>Hudi, Zakintos </strong></td>
-													<td width="10%"><a onclick="" href="#"><img src="./img/plus-vote.png" width="20px"></a>&nbsp;10
-													<td width="10%"><a onclick="" href="#"><img src="./img/minus-vote.png" width="20px"></a>&nbsp;10
-												</tr>
-											</table>
-										</div>
-										<div class="card-body">
-											<i>Neki tekst</i>
-										</div>
-									</div>
-									<div class="card" style="margin-top:20px">
-										<div class="card-header">
-											<table width="100%">
-												<tr>
-													<td width="80%"><strong>Hudi, Zakintos </strong></td>
-													<td width="10%"><a onclick="" href="#"><img src="./img/plus-vote.png" width="20px"></a>&nbsp;10
-													<td width="10%"><a onclick="" href="#"><img src="./img/minus-vote.png" width="20px"></a>&nbsp;10
-												</tr>
-											</table>
-										</div>
-										<div class="card-body">
-											<i>Neki tekst</i>
-										</div>
-									</div>
+						<div class="jumbotron" style="height:300px; padding:10px;padding-left:20px;padding-right:20px;background-size:cover; background-image: url('./img/brown-gradient.png');">
+							<form>
+								<div class="form-group" style="width:60%">
+									<label for="destination">Destination:</label>
+										<input type="text" class="form-control" id="destination">
 								</div>
-						</div>
-						<div class="alert alert-info" style="height:150px;">
-								<h5>Biraj stil mape:[Test deo]</h5>
-								<hr>
-								<div class="radio">
-									<form name="map_style_form" id="map_style_form">
-										<input type="radio" name="r" value="desert" checked onClick="refresh()">Pustinja
-										<input type="radio" name="r" value="night" onClick="refresh()">Noc
-									</form>
+								<div class="form-group" style="width:60%">
+									<label for="country">Country:</label>
+									<input type="text" class="form-control" id="country">
 								</div>
+								<button type="submit" class="btn btn-dark" onClick="getLatLng();">Add Location</button>
+							</form>
+							<br>
+							<p>Drag marker until you reach to desired destination</p>
 						</div>
 						
 					</div>
