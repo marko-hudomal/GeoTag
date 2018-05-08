@@ -1,0 +1,129 @@
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+
+
+		<!-- Custom stlylesheet -->
+		<link type="text/css" rel="stylesheet" href="css/mystyle.css" />
+
+	</head>
+	
+	<body >
+		
+		<nav class="stroke navbar navbar-expand-md navbar-dark" style="background-image: url('./img/header.jpg'); margin:10px;margin-bottom:60px; border-radius: 3px">
+			<!-- Logo -->
+			<a class="navbar-brand" href="home0.html" style="height:50px; margin-left:50px">
+					<img src="img/logo.png" alt="logo" align=left style="width:130px;">
+			</a>
+			<!-- /Logo -->
+	
+			<!-- kada se smanji prozor da se pojavi collapse button -->
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			
+			<!-- likovi -->
+			<div class="collapse navbar-collapse" style="text-align:right" id="collapsibleNavbar">
+				<ul class="navbar-nav mx-auto">
+					<li class="nav-item active">
+						<a class="nav-link" href="home.html">Home</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="home.html">View statistics</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="home.html">Sign up</a>
+					</li> 
+					<li class="nav-item">
+						<a class="nav-link" href="home.html">About</a>
+					</li> 
+					<li class="nav-item">
+						<a class="nav-link" href="home.html">Help</a>
+					</li> 
+				</ul>
+
+				<a href="home.html"><span id="username_korisnika" style="color:white">-</span></a>
+				&nbsp;
+				<i style="color:white">(<span id="tip_korisnika">Guest</span>)</i>
+
+				<img id="slika_korisnika" src="./img/avatar.png" style="width:50px; margin-left:20px;margin-right:10px">
+				<input type="button" class="btn btn-dark" value="logout" onClick="">
+			</div> 
+		</nav>
+
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-sm-8">					
+					<div id="map" class="card" style="height:700px;">
+							<div id="map"></div>
+					</div>
+
+					<script src="js/map_styles.js"></script>
+					<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCGhsVpjnpP_alimoKSREfuSE8tJRA1v3U&callback=myMap"></script>
+				</div>
+
+					<div class="col-md-4">
+
+						<div class="jumbotron" style="height:500px; padding:10px;padding-left:20px;padding-right:20px;background-size:cover; background-image: url('./img/user_right_banner.png');">
+							<div class="search" style="margin-bottom:20px">
+								<form class="search-form">
+									<input type="text" placeholder="Trazi destinacije,ljude itd..">
+									<input type="submit" value="Search">
+								</form>
+							</div>
+							<h5>Latest comments:</h5>
+							<div id="random_comments">
+									<div class="card" style="margin-top:20px">
+										<div class="card-header">
+											<strong>
+												Hudi, Zakintos
+											</strong>
+												i1 - i2
+										</div>
+										<div class="card-body">
+											<i>Neki tekst</i>
+										</div>
+									</div>
+									<div class="card" style="margin-top:20px">
+										<div class="card-header">
+											<strong>
+												Hudi, Zakintos
+											</strong>
+												i1 - i2
+										</div>
+										<div class="card-body">
+											<i>Neki tekst</i>
+										</div>
+									</div>
+								</div>
+						</div>
+						<div class="alert alert-info" style="height:150px;">
+								<h5>Biraj stil mape:</h5>
+								<hr>
+								<div class="radio">
+									<form name="map_style_form" id="map_style_form">
+										<input type="radio" name="r" value="desert" checked onClick="refresh()">Pustinja
+										<input type="radio" name="r" value="night" onClick="refresh()">Noc
+										&nbsp;&nbsp;<input type="button" class="btn btn-dark" value="test poruka" onClick="">
+									</form>
+								</div>
+						</div>
+						
+					</div>
+	</div>
+		
+
+	
+	<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	
+	<!-- Popper JS -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+	
+	<!-- Latest compiled JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+</html>
