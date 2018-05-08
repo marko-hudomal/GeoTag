@@ -16,7 +16,7 @@
 		<nav class="stroke navbar navbar-expand-md navbar-dark" style="background-image: url('./img/header.jpg'); margin:10px;margin-bottom:60px; border-radius: 3px">
 			<!-- Logo -->
 			<a class="navbar-brand" href="home0.html" style="height:50px; margin-left:50px">
-					<img src="img/logo.png" alt="logo" align=left style="width:130px;">
+					<img src="img/logo.png" alt="logo" align=left style="width:110px;">
 			</a>
 			<!-- /Logo -->
 	
@@ -35,7 +35,7 @@
 						<a class="nav-link" href="home.html">View statistics</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="home.html">Sign up</a>
+						<a class="nav-link" href="login.html">Sign up</a>
 					</li> 
 					<li class="nav-item">
 						<a class="nav-link" href="home.html">About</a>
@@ -45,9 +45,9 @@
 					</li> 
 				</ul>
 
-				<a href="home.html"><span id="username_korisnika" style="color:white">-</span></a>
+				<a href="home.html"><span id="username_korisnika" style="color:white">no_name</span></a>
 				&nbsp;
-				<i style="color:white">(<span id="tip_korisnika">Guest</span>)</i>
+				<span id="tip_korisnika" class="badge badge-warning">Guest</span>
 
 				<img id="slika_korisnika" src="./img/avatar.png" style="width:50px; margin-left:20px;margin-right:10px">
 				<input type="button" class="btn btn-dark" value="logout" onClick="">
@@ -78,10 +78,13 @@
 							<div id="random_comments">
 									<div class="card" style="margin-top:20px">
 										<div class="card-header">
-											<strong>
-												Hudi, Zakintos
-											</strong>
-												i1 - i2
+											<table width="100%">
+												<tr>
+													<td width="80%"><strong>Hudi, Zakintos </strong></td>
+													<td width="10%"><img src="./img/plus-vote.png" width="20px">&nbsp;10
+													<td width="10%"><img src="./img/minus-vote.png" width="20px">&nbsp;10
+												</tr>
+											</table>
 										</div>
 										<div class="card-body">
 											<i>Neki tekst</i>
@@ -89,10 +92,13 @@
 									</div>
 									<div class="card" style="margin-top:20px">
 										<div class="card-header">
-											<strong>
-												Hudi, Zakintos
-											</strong>
-												i1 - i2
+											<table width="100%">
+												<tr>
+													<td width="80%"><strong>Hudi, Zakintos </strong></td>
+													<td width="10%"><img src="./img/plus-vote.png" width="20px">&nbsp;10
+													<td width="10%"><img src="./img/minus-vote.png" width="20px">&nbsp;10
+												</tr>
+											</table>
 										</div>
 										<div class="card-body">
 											<i>Neki tekst</i>
@@ -101,20 +107,37 @@
 								</div>
 						</div>
 						<div class="alert alert-info" style="height:150px;">
-								<h5>Biraj stil mape:</h5>
+								<h5>Biraj stil mape:[Test deo]</h5>
 								<hr>
 								<div class="radio">
 									<form name="map_style_form" id="map_style_form">
 										<input type="radio" name="r" value="desert" checked onClick="refresh()">Pustinja
 										<input type="radio" name="r" value="night" onClick="refresh()">Noc
-										&nbsp;&nbsp;<input type="button" class="btn btn-dark" value="test poruka" onClick="">
 									</form>
 								</div>
 						</div>
 						
 					</div>
-	</div>
-		
+				</div>
+
+
+				<hr>
+				<footer>
+						<table width="100%">
+								<tr>
+									<td align="left">
+										<i>Software engineering, Faculty of Electrical engineering, University of Belgrade</i>
+									</td>
+									<td align="right">
+										<i>&copy; Copyright 2018.</i>
+									</td>
+								</tr>
+
+						</table>
+						<br>
+				</footer>
+				</div>
+			
 
 	
 	<!-- jQuery library -->

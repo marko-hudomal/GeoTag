@@ -8,7 +8,7 @@
 
 		<!-- Custom stlylesheet -->
 		<link type="text/css" rel="stylesheet" href="css/mystyle.css" />
-
+		<script src="js/myjs.js"></script>
 	</head>
 	
 	<body>
@@ -20,32 +20,75 @@
 		<div class="container-fluid">
 			<div class="row">
 					<div class="col-md-12">
-						<div class="jumbotron"  style="height:700px;padding:0px;border-radius:3px; background-size:cover; background-image: url('./img/welcome-backgorund.png');">
+						<div class="jumbotron"  style="height:800px;padding:0px;border-radius:3px; background-size:cover; background-image: url('./img/welcome-back1.png');">
 							<div class="container-fluid">
 								<div class="row">
 									<div class="col-md-4">
 									</div>
 									<div class="col-md-4" align="center">
-										<img src="./img/logo.png" width="300px">
+										<img src="./img/logo.png" width="270px" style="margin-top:30px;margin-bottom:20px">
 										<br>
-										<input type="text" value=" username">
-										<br><br>
-										<input type="text" value=" password">
-										<br><br>
-										<input type="button" class="btn btn-dark" value="Log in" onClick="">
+											<form action="./login.html">
+											  <div class="form-group" style="width:60%">
+											    <label for="email">Email address:</label>
+											    <input type="email" class="form-control" id="email">
+											  </div>
+											  <div class="form-group" style="width:60%">
+											    <label for="pwd_signin">Password:</label>
+											    <input type="password" class="form-control" id="pwd_signin">
+											  </div>
+											  <div class="form-group form-check">
+											    <label class="form-check-label">
+											      <input class="form-check-input" type="checkbox"> Remember me
+											    </label>
+											  </div>
+											  <button type="submit" class="btn btn-dark">Sign in</button>
+											</form>
 									</div>
-									<div class="col-md-4">
-										<div class="card" style="margin-top:20px;text-align:center">
-										<div class="card-header">
-											<strong>
-												Sing up
-											</strong>
-									
+									<div class="col-md-4" style="padding:10px;">
+										<div class="card" style="width:60%;padding:10px;margin:20px; margin-right:30px;text-align:center;float: right;border-width: 5px">
+											<div class="card-header" style="background-image: url('./img/pattern2.jpg');">
+													<h4>
+														<strong>
+														Sing up	
+														</strong>
+														<img src="./img/man.png" width="20px" id="signup_icon">
+													</h4>
+											</div>
+											<div class="card-body" align="center" style="background-image: url('./img/pattern1.jpg');" >
+												<form action="./login.html">
+												  <div class="form-group" style="width:90%">
+												    <input type="text" class="form-control" id="first_name" placeholder="First name">
+												  </div>
+												  <div class="form-group" align="left" style="width:90%">
+												    <input type="text" class="form-control" id="last_name" placeholder="Last name">
+												  </div>
+												  <div class="form-group" align="left" style="width:90%">
+												    <input type="text" class="form-control" id="username" placeholder="Username">
+												  </div>
+												  <div class="form-group" align="left" style="width:90%">
+												    <input type="password" class="form-control" id="pwd_signup" placeholder="Password">
+												  </div>
+												  <div class="form-group" style="width:90%">
+												    <input type="email" class="form-control" id="email" placeholder="Email">
+											  	  </div>
+											  	  <div class="form-group" style="width:90%">
+												    <select class="form-control" id="gender" onchange="setGenderIcon()">
+												      <option value="0">Gender
+												      </option>
+												      <option value="m">Male</option>
+												      <option value="f">Female</option>
+												    </select>
+												  </div>
+												  <hr width="60%">
+												  <button type="submit" class="btn btn-dark">Sign up</button>
+												  <br>
+												  <br>
+												  <a href="guest-home.html" class="btn btn-info">Enter as guest &nbsp;<img src="./img/in-guest.png" width="15px" style="opacity:0.5"></a>
+												  
+												</form>
+											</div>
 										</div>
-										<div class="card-body">
-											<i>Neki tekst</i>
-										</div>
-									</div>
 									</div>
 								</div>
 
@@ -54,10 +97,26 @@
 						</div>
 					</div>
 			</div>
+
+			<hr>
+			<footer>
+					<table width="100%">
+							<tr>
+								<td align="left">
+									<i>Software engineering, Faculty of Electrical engineering, University of Belgrade</i>
+								</td>
+								<td align="right">
+									<i>&copy; Copyright 2018.</i>
+								</td>
+							</tr>
+
+					</table>
+					<br>
+			</footer>
 		</div>
 		
 
-	
+
 	<!-- jQuery library -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	
