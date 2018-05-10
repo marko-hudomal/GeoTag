@@ -4,7 +4,7 @@
 	<head>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 		<link rel="icon" href="./img/logo.png">
-		<title>View statistics</title>
+		<title>User profile</title>
 
 
 		<!-- Custom stlylesheet -->
@@ -14,8 +14,8 @@
 	
 	<body >
 		
-		<nav class="stroke navbar navbar-expand-md navbar-dark" style="background-image: url('./img/header.jpg'); margin:10px;margin-bottom:30px; border-radius: 3px">
-
+		<nav class="stroke navbar navbar-expand-md navbar-dark" style="background-image: url('./img/header.jpg'); margin:10px;margin-bottom:60px; border-radius: 3px">
+			
 	
 			<!-- kada se smanji prozor da se pojavi collapse button -->
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -26,27 +26,28 @@
 			<div class="collapse navbar-collapse" style="text-align:right" id="collapsibleNavbar">
 				<ul class="navbar-nav mx-auto">
 					<li class="nav-item">
-						<a class="nav-link" href="superuser-home.html">Home</a>
+						<a class="nav-link" href="admin-home.html">Home</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link active" href="superuser-statistics.html">View statistics</a>
+						<a class="nav-link" href="admin-statistics.html">View statistics</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="superuser-add-destination.html">Add Destination</a>
+						<a class="nav-link" href="admin-add-destination.html">Add Destination</a>
 					</li> 
 					<li class="nav-item">
-						<a class="nav-link" href="superuser-about.html">About</a>
+						<a class="nav-link" href="admin-about.html">About</a>
 					</li> 
 					<li class="nav-item">
-						<a class="nav-link" href="superuser-help.html">Help</a>
+						<a class="nav-link" href="admin-help.html">Help</a>
 					</li> 
 				</ul>
 
-				<a href="home.html"><span id="username_korisnika" style="color:white">my_name</span></a>
+				<a href="home.html"><span id="username_korisnika" style="color:white">i_am_admin</span></a>
 				&nbsp;
-				<span id="tip_korisnika" class="badge badge-warning">SuperUser</span>
+				<span id="tip_korisnika" class="badge badge-warning">Admin</span>
+				
 
-				<a href="superuser-profile.html"><img id="slika_korisnika" src="./img/avatar.png" style="width:50px; margin-left:20px;margin-right:10px"></a>
+				<a href="superuser-profile.html"><img id="slika_korisnika" src="./img/avatar2.png" style="width:50px; margin-left:20px;margin-right:10px"></a>
 				<input type="button" class="btn btn-dark" value="logout" onClick="">
 			</div> 
 		</nav>
@@ -56,38 +57,28 @@
 
 					<div class="col-md-12">
 
-						<div class="jumbotron" style="height:700px;background-size:cover; background-image: url('./img/brown-gradient.png');">					
+						<div class="jumbotron" style="background-size:cover; background-image: url('./img/brown-gradient.png');">					
 							<div class="media">
-								<img src="./img/statistics-icon.png" width="120px" style="margin-right:20px">
+								<img src="./img/avatar.png" width="120px" style="margin-right:20px">
 								<br>
 								<div class="media-body">
-									 <h2 class="mt-2"><strong>GeoTag weekly page statistics</strong></h2>
+									 <h2 class="mt-2"><strong>Joe Johnson</strong></h2>
 										<hr>
-										<h6>New users:								 <span id="new_users_stat">1</span> </h6> 
-										<h6>Number of reviews:						 <span id="num_reviews_stat">1</span> </h6>
-										<h6>Number of positive reviews in last week: <span id="num_pos_reviews_stat">1</span> </h6>	
-										<h6>Added places:							 <span id="num_added_places_stat">1</span> </h6>	
+										<h6>Username:								 <span id="username_info">joej</span> </h6>
+										<h6>Type:								 <span id="username_info">SuperUser</span> </h6>
+										<h6>Gender:								 <span id="gender_info">Male</span> </h6>
+										<h6>Number of reviews:						 <span id="num_reviews_info">10</span> </h6>	
+										<h6>Added places:							 <span id="num_added_places_info">2</span> </h6>
+										<h6>Upvote/Downvote rate:							 <span id="up_down_info">+96</span> </h6>
+										<hr>
 								</div>
+								
 							</div>
-
-
-							<br>
-
-								<div class="alert alert-dark" style="margin-top:70px">
-									<div class="media">
-										<img src="./img/achievement-icon.png" width="50px" style="margin-right:20px">
-										<br>
-										<div class="media-body">
-											 <h4 class="mt-2 mb-3">Achievements</h4>
-											<p>Achievement 1
-											<p>Achievement 2
-											<p>Achievement 3
-										</div>
-									</div>
-
-							</div>
+							<br><br>
+							<div style="padding-left:90%"><input type="button" value="Delete User" class="btn btn-danger"></div>
 						</div>
 					</div>
+					
 			</div>
 
 
