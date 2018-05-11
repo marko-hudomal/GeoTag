@@ -4,7 +4,7 @@
 	<head>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 		<link rel="icon" href="./img/logo.png">
-		<title>Add Destination</title>
+		<title>User profile</title>
 
 
 		<!-- Custom stlylesheet -->
@@ -26,62 +26,60 @@
 			<div class="collapse navbar-collapse" style="text-align:right" id="collapsibleNavbar">
 				<ul class="navbar-nav mx-auto">
 					<li class="nav-item">
-						<a class="nav-link" href="superuser-home.html">Home</a>
+						<a class="nav-link" href="admin-home.html">Home</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="superuser-statistics.html">View statistics</a>
+						<a class="nav-link" href="admin-statistics.html">View statistics</a>
 					</li>
-					<li class="nav-item active">
-						<a class="nav-link" href="superuser-add-destination">Add destination</a>
+					<li class="nav-item">
+						<a class="nav-link" href="admin-add-destination.html">Add Destination</a>
 					</li> 
 					<li class="nav-item">
-						<a class="nav-link" href="superuser-about.html">About</a>
+						<a class="nav-link" href="admin-about.html">About</a>
 					</li> 
 					<li class="nav-item">
-						<a class="nav-link" href="superuser-help.html">Help</a>
+						<a class="nav-link" href="admin-help.html">Help</a>
 					</li> 
 				</ul>
 
-				<a href="home.html"><span id="username_korisnika" style="color:white">my_name</span></a>
+				<a href="home.html"><span id="username_korisnika" style="color:white">i_am_admin</span></a>
 				&nbsp;
-				<span id="tip_korisnika" class="badge badge-info">SuperUser</span>
+				<span id="tip_korisnika" class="badge badge-warning">Admin</span>
+				
 
-				<a href="superuser-profile.html"><img id="slika_korisnika" src="./img/avatar.png" style="width:50px; margin-left:20px;margin-right:10px"></a>
+				<a href="superuser-profile.html"><img id="slika_korisnika" src="./img/avatar2.png" style="width:50px; margin-left:20px;margin-right:10px"></a>
 				<input type="button" class="btn btn-dark" value="logout" onClick="">
 			</div> 
 		</nav>
 
 		<div class="container-fluid">
 			<div class="row">
-				<div class="col-sm-8">					
-					<div id="map" class="card" style="height:700px;">
-							<div id="map"></div>
-					</div>
 
-					<script src="js/map_styles.js"></script>
-					<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCGhsVpjnpP_alimoKSREfuSE8tJRA1v3U&callback=myMap"></script>
-				</div>
+					<div class="col-md-12">
 
-					<div class="col-md-4">
-
-						<div class="jumbotron" style="height:300px; padding:10px;padding-left:20px;padding-right:20px;background-size:cover; background-image: url('./img/brown-gradient.png');">
-							<form>
-								<div class="form-group" style="width:60%">
-									<label for="destination">Destination:</label>
-										<input type="text" class="form-control" id="destination">
+						<div class="jumbotron" style="background-size:cover; background-image: url('./img/brown-gradient.png');">					
+							<div class="media">
+								<img src="./img/avatar.png" width="120px" style="margin-right:20px">
+								<br>
+								<div class="media-body">
+									 <h2 class="mt-2"><strong>Joe Johnson</strong></h2>
+										<hr>
+										<h6>Username:								 <span id="username_info">joej</span> </h6>
+										<h6>Type:								 <span id="username_info">SuperUser</span> </h6>
+										<h6>Gender:								 <span id="gender_info">Male</span> </h6>
+										<h6>Number of reviews:						 <span id="num_reviews_info">10</span> </h6>	
+										<h6>Added places:							 <span id="num_added_places_info">2</span> </h6>
+										<h6>Upvote/Downvote rate:							 <span id="up_down_info">+96</span> </h6>
+										<hr>
 								</div>
-								<div class="form-group" style="width:60%">
-									<label for="country">Country:</label>
-									<input type="text" class="form-control" id="country">
-								</div>
-								<button type="submit" class="btn btn-dark" onClick="getLatLng();">Add Location</button>
-							</form>
-							<br>
-							<p>Drag marker until you reach to desired destination</p>
+								
+							</div>
+							<br><br>
+							<div style="padding-left:90%"><input type="button" value="Delete User" class="btn btn-danger"></div>
 						</div>
-						
 					</div>
-				</div>
+					
+			</div>
 
 
 				<hr>
@@ -99,7 +97,7 @@
 						</table>
 						<br>
 				</footer>
-				</div>
+		</div>
 			
 
 	

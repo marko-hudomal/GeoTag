@@ -1,0 +1,188 @@
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+		<link rel="icon" href="./img/logo.png">
+		<title>Destination</title>
+
+
+		<!-- Custom stlylesheet -->
+		<link type="text/css" rel="stylesheet" href="css/mystyle.css" />
+		<script src="js/myjs.js"></script>
+	</head>
+	
+	<body >
+		
+		<nav class="stroke navbar navbar-expand-md navbar-dark" style="background-image: url('./img/header.jpg'); margin:10px;margin-bottom:60px; border-radius: 3px">
+			
+	
+			<!-- kada se smanji prozor da se pojavi collapse button -->
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			
+			<!-- likovi -->
+			<div class="collapse navbar-collapse" style="text-align:right" id="collapsibleNavbar">
+				<ul class="navbar-nav mx-auto">
+					<li class="nav-item">
+						<a class="nav-link" href="admin-home.html">Home</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="admin-statistics.html">View statistics</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="admin-add-destination.html">Add Destination</a>
+					</li> 
+					<li class="nav-item">
+						<a class="nav-link" href="admin-about.html">About</a>
+					</li> 
+					<li class="nav-item">
+						<a class="nav-link" href="admin-help.html">Help</a>
+					</li> 
+				</ul>
+
+				<a href="home.html"><span id="username_korisnika" style="color:white">i_am_admin</span></a>
+				&nbsp;
+				<span id="tip_korisnika" class="badge badge-warning">Admin</span>
+				
+
+				<a href="superuser-profile.html"><img id="slika_korisnika" src="./img/avatar2.png" style="width:50px; margin-left:20px;margin-right:10px"></a>
+				<input type="button" class="btn btn-dark" value="logout" onClick="">
+			</div> 
+		</nav>
+
+		<div class="container-fluid">
+			<div class="row">
+
+					<div class="col-8">
+
+						<div class="jumbotron" style="background-size:cover; background-image: url('./img/brown-gradient.png'); height:85%;">					
+							<div class="media">
+								<img src="./img/achievement-icon.png" width="120px" style="margin-right:20px">
+								<br>
+								<div class="media-body">
+									<h2 class="mt-2"><strong>Nendaz, Switzerland</strong></h2>
+									<hr>
+									
+									<div class="scrollable">
+										<table style="width:100%">
+											<tr>
+												<td>
+													<div class="card">
+														<div class="card-header" style="padding:1%">
+															<div class="card-title">
+																<strong>jakovj</strong>
+																<input type="button" value="Delete Review" class="float-right btn btn-outline-danger">
+																<a onclick="" href="#"><img src="./img/plus-vote.png"  class="float-right destination-vote"></a>
+																<a onclick="" href="#"><img src="./img/minus-vote.png"  class="float-right destination-vote"></a>
+															</div>
+														</div>
+														<div class="card-body">
+															<i><p>
+																"Great place!"
+															</i></p>
+														</div>
+													</div>
+												</td>
+											</tr>
+											<tr>
+												<td>
+													<div class="card">
+														<div class="card-header" style="padding:1%">
+															<div class="card-title">
+																<strong>jakovj</strong>
+																<input type="button" value="Delete Review" class="float-right btn btn-outline-danger">
+																<a onclick="" href="#"><img src="./img/plus-vote.png" width="30px" class="float-right destination-vote"></a>
+																<a onclick="" href="#"><img src="./img/minus-vote.png" width="30px" class="float-right destination-vote"></a>
+															</div>
+														</div>
+														<div class="card-body">
+															<i><p>
+																"Great place!"
+															</i></p>
+														</div>
+													</div>
+												</td>
+											</tr>
+											<tr>
+												<td>
+													<div class="card">
+														<div class="card-header" style="padding:1%">
+															<div class="card-title">
+																<strong>jakovj</strong>
+																<input type="button" value="Delete Review" class="float-right btn btn-outline-danger">
+																<a onclick="" href="#"><img src="./img/plus-vote.png" width="30px" class="float-right destination-vote"></a>
+																<a onclick="" href="#"><img src="./img/minus-vote.png" width="30px" class="float-right destination-vote"></a>
+															</div>
+														</div>
+														<div class="card-body">
+															<i><p>
+																"Great place!"
+															</i></p>
+														</div>
+													</div>
+												</td>
+											</tr>
+										</table>
+										
+									</div>
+									
+								</div>
+								
+							</div>
+							<br><br>
+							
+						</div>
+					</div>
+					
+					<div class="col-4">
+						<div class="jumbotron" style="background-size:cover; background-image: url('./img/brown-gradient.png'); height:85%;">
+							
+								<div class="form-group">
+									<label for="comment"><h5><strong>Write your review</strong></h5></label>
+									<center><textarea class="form-control" rows="10" id="comment" cols="40"></textarea></center>
+									<div style="padding-top:2%">
+										<input type="button" value="Browse picture" class="btn btn-light">
+									</div>
+									<hr>
+									
+									<input type="button" value="Add review" class="btn btn-warning">
+									
+								</div>
+								
+						</div>
+					</div>
+					
+			</div>
+
+
+				<hr>
+				<footer>
+						<table width="100%">
+								<tr>
+									<td align="left">
+										<i>Software engineering, Faculty of Electrical engineering, University of Belgrade</i>
+									</td>
+									<td align="right">
+										<i>&copy; Copyright 2018.</i>
+									</td>
+								</tr>
+
+						</table>
+						<br>
+				</footer>
+		</div>
+			
+
+	
+	<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	
+	<!-- Popper JS -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+	
+	<!-- Latest compiled JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+</html>
