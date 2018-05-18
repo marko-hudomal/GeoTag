@@ -8,7 +8,7 @@
 
 
 		<!-- Custom stlylesheet -->
-		<link type="text/css" rel="stylesheet" href="css/mystyle.css" />
+		<link type="text/css" rel="stylesheet" href="<?php echo base_url()?>css/mystyle.css" />
 		<script src="<?php echo base_url()?>js/myjs.js"></script>
 	</head>
 	
