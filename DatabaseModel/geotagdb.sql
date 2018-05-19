@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: May 15, 2018 at 06:15 PM
+-- Generation Time: May 19, 2018 at 05:20 PM
 -- Server version: 5.7.21
 -- PHP Version: 5.6.35
 
@@ -48,9 +48,9 @@ CREATE TABLE IF NOT EXISTS `destination` (
 DROP TABLE IF EXISTS `image`;
 CREATE TABLE IF NOT EXISTS `image` (
   `idImg` int(11) NOT NULL AUTO_INCREMENT,
-  `img` longblob NOT NULL,
+  `img` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`idImg`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
