@@ -16,7 +16,7 @@
 		
 		<nav class="stroke navbar navbar-expand-md navbar-dark" style="background-image: url('<?php echo base_url()?>img/header.jpg'); margin:10px;margin-bottom:60px; border-radius: 3px">
 			<!-- Logo -->
-			<a class="navbar-brand" href="<?php echo base_url()?>index.php/super_user/load/guest_home" style="height:50px; margin-left:50px">
+			<a class="navbar-brand" href="<?php echo base_url()?>index.php/admin/load/guest_home" style="height:50px; margin-left:50px">
 					<img src="<?php echo base_url()?>img/logo.png" alt="logo" align=left style="width:110px;">
 			</a>
 			<!-- /Logo -->
@@ -30,27 +30,27 @@
 			<div class="collapse navbar-collapse" style="text-align:right" id="collapsibleNavbar">
 				<ul class="navbar-nav mx-auto">
 					<li class="nav-item active">
-						<a class="nav-link" href="<?php echo base_url()?>index.php/super_user/load/guest_home">Home</a>
+						<a class="nav-link" href="<?php echo base_url()?>index.php/admin/load/guest_home">Home</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="<?php echo base_url()?>index.php/super_user/load/guest_statistics">View statistics</a>
+						<a class="nav-link" href="<?php echo base_url()?>index.php/admin/load/guest_statistics">View statistics</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="<?php echo base_url()?>index.php/super_user/load/super_user_add_destination">Add destination</a>
+						<a class="nav-link" href="<?php echo base_url()?>index.php/admin/load/super_user_add_destination">Add destination</a>
 					</li> 
 					<li class="nav-item">
-						<a class="nav-link" href="<?php echo base_url()?>index.php/super_user/load/guest_about">About</a>
+						<a class="nav-link" href="<?php echo base_url()?>index.php/admin/load/guest_about">About</a>
 					</li> 
 					<li class="nav-item">
-						<a class="nav-link" href="<?php echo base_url()?>index.php/super_user/load/guest_help">Help</a>
+						<a class="nav-link" href="<?php echo base_url()?>index.php/admin/load/guest_help">Help</a>
 					</li> 
 				</ul>
 
-				<a href="<?php echo base_url()?>index.php/super_user/load/profile"><span id="username_korisnika" style="color:white"><?php echo $this->session->userdata('user')->firstname." ".$this->session->userdata('user')->lastname ?></span></a>
+				<a href="<?php echo base_url()?>index.php/admin/load/profile"><span id="username_korisnika" style="color:white"><?php echo $this->session->userdata('user')->firstname." ".$this->session->userdata('user')->lastname ?></span></a>
 				&nbsp;
-				<span id="tip_korisnika" class="badge badge-info">SuperUser</span>
+				<span id="tip_korisnika" class="badge badge-info">Admin</span>
 
-				<a href="<?php echo base_url()?>index.php/super_user/load/profile"><img class="rounded" id="slika_korisnika" src="<?php echo $profile_pic;?>" style="width:50px; margin-left:20px;margin-right:10px"></a>
+				<a href="<?php echo base_url()?>index.php/admin/load/profile"><img class="rounded" id="slika_korisnika" src="<?php echo $profile_pic;?>" style="width:50px; margin-left:20px;margin-right:10px"></a>
 				<a href="<?php echo base_url()?>index.php/user/logout" class="btn btn-dark">logout</a>
 			</div> 
 		</nav>

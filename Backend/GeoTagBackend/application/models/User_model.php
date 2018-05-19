@@ -44,11 +44,67 @@ class User_model extends CI_Model {
     // return bool is password valid or not
     // @param string $password
     // @return boolean
-    public function check_password($password) {
-        if ($this->user->password == $password) {
+    public function check_password($password, $username) {
+        $this->db->where('username', $username);
+        $row = $this->db->get('user')->row();
+        if ($row->password == $password) {
             return TRUE;
         } else {
             return FALSE;
+        }
+    }
+
+    // change username in table and in current session
+    // @param string $new_username
+    // @return void
+    public function change_username($new_username) {
+
+        $this->db->set('username', $new_username);
+        $this->db->where('username', $this->session->userdata('user')->username);
+        $this->db->update('user');
+        $this->session->userdata('user')->username = $new_username;
+    }
+
+    // change password in table and in current session
+    // @param string $new_password
+    // @return void
+    public function change_password($new_password) {
+
+        $this->db->set('password', $new_password);
+        $this->db->where('username', $this->session->userdata('user')->username);
+        $this->db->update('user');
+        $this->session->userdata('user')->password = $new_password;
+    }
+
+    // change profile picture in table and in current session
+    // @param string $name
+    // @return void
+    public function change_photo($name) {
+
+        $data = array(
+            'idImg' => '',
+            'img' => $name
+        );
+
+        $this->db->insert('image', $data);
+        $insert_id = $this->db->insert_id();
+        $this->db->set('idImg', $this->db->insert_id('image'));
+        $this->db->where('username', $this->session->userdata('user')->username);
+        $this->db->update('user');
+        $this->session->userdata('user')->idImg = $insert_id;
+    }
+
+    // get img name by its id if null return default avatar
+    // @param string $id
+    // @return string
+    public function get_img_name($id) {
+        $this->db->where('idImg', $id);
+        $row = $this->db->get('image')->row();
+
+        if ($row != null)
+            return $row->img;
+        else {
+            return "avatar.png";
         }
     }
 

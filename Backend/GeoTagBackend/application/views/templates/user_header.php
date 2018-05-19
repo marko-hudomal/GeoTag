@@ -44,11 +44,11 @@
 					</li> 
 				</ul>
 
-				<a href="<?php echo base_url()?>index.php/user/load/profile"><span id="username_korisnika" style="color:white">no_name</span></a>
+				<a href="<?php echo base_url()?>index.php/user/load/profile"><span id="username_korisnika" style="color:white"><?php echo $this->session->userdata('user')->firstname." ".$this->session->userdata('user')->lastname ?></span></a>
 				&nbsp;
-				<span id="tip_korisnika" class="badge badge-warning">Guest</span>
+				<span id="tip_korisnika" class="badge badge-warning">User</span>
 
-				<img id="slika_korisnika" src="<?php echo base_url()?>img/avatar.png" style="width:50px; margin-left:20px;margin-right:10px">
+				<img id="slika_korisnika" class="rounded" src="<?php echo $profile_pic;?>" style="width:50px; height:60px; margin-left:20px;margin-right:10px">
 				<a href="<?php echo base_url()?>index.php/user/logout" class="btn btn-dark">logout</a>
 
 			</div> 

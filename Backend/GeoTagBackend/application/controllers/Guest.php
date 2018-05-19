@@ -15,7 +15,7 @@ class Guest extends CI_Controller {
         $this->load->model("User_model");
         // check if user is already logged in, or if unauthorized access through the link
         if (($this->session->userdata('user_type')) != NULL) {
-            switch ($this->session->userdata('autor')->status) {
+            switch ($this->session->userdata('user')->status) {
                 case "user":
                     redirect("User");
                     break;
@@ -74,7 +74,7 @@ class Guest extends CI_Controller {
                 $this->index();
         }
     }
-    
+
     // form validation check, and forwarding to corresponding model to check if user exist 
     // and redirecting when login based on status field of user
     // @return void
@@ -84,7 +84,7 @@ class Guest extends CI_Controller {
         if ($this->form_validation->run()) {
             if (!$this->User_model->getUser($this->input->post('usernameSignin'))) {
                 $this->index("Wrong username");
-            } else if (!$this->User_model->check_password($this->input->post('pwd_signin'))) {
+            } else if (!$this->User_model->check_password($this->input->post('pwd_signin'), $this->input->post('usernameSignin'))) {
                 $this->index("Wrong password");
             } else {
                 $user = $this->User_model->user;
@@ -107,7 +107,7 @@ class Guest extends CI_Controller {
             $this->index();
         }
     }
-    
+
     // logout function, breaks session
     // @return void
     public function load($page) {
