@@ -110,10 +110,32 @@ class Guest extends CI_Controller {
 
     // logout function, breaks session
     // @return void
-    public function load($page) {
+    public function load($page,$data=null) {
+  
         $this->load->view("templates/guest_header.php");
-        $this->load->view($page . ".php");
+        $this->load->view($page . ".php",$data);
         $this->load->view("templates/footer.php");
+    }
+    
+    public function getStatistics(){
+        
+        
+        $statistics['userCount']=0;
+        $statistics['reviewCount']=0;
+        $statistics['destinationCount']=0;
+        $statistics['positiveVoteCount']=0;
+        $statistics['negativeVoteCount']=0;
+        
+        $statistics=$this->User_model->getStatistics();
+        
+        
+        $data['date']=$statistics->date;;
+        $data['userCount']=$statistics->userCount;;
+        $data['reviewCount']=$statistics->reviewCount;
+        $data['destinationCount']=$statistics->destinationCount;
+        $data['positiveVoteCount']=$statistics->positiveVoteCount;
+        $data['posReviews']=$statistics->posReviews;
+        $this->load("guest_statistics",$data);
     }
 
 }
