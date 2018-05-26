@@ -28,7 +28,14 @@
                     <div class="col-sm-8">
                         <div class="collapse multi-collapse" id="changeUsername">
                             <div class="card card-body">
-                                <form action="<?php echo base_url() ?>index.php/user/change_username" method="POST">
+                                <?php
+                        if (($this->session->userdata('user')) != NULL) {
+                        $user1 = $this->session->userdata('user')->status;
+                        }
+                        else
+                            $user1 ="guest";
+                        ?>
+                                <form action="<?php echo base_url() ?>index.php/<?php echo $user1;?>/change_username" method="POST">
                                     <div class="form-group" style="width:60%">
                                         <label for="usernameChange">New username:</label>
                                         <input type="text" class="form-control" name="usernameChange">
@@ -49,9 +56,15 @@
                     <div class="col-sm-8">
                         <div class="collapse multi-collapse" id="changePicture">
                             <div class="card card-body">
+<?php
+                        if (($this->session->userdata('user')) != NULL) {
+                        $user1 = $this->session->userdata('user')->status;
+                        }
+                        else
+                            $user1 ="guest";
+                        ?>
 
-
-                                <form action="<?php echo base_url() ?>index.php/user/do_upload" method="POST" enctype="multipart/form-data">
+                                <form action="<?php echo base_url() ?>index.php/<?php echo $user1;?>/do_upload" method="POST" enctype="multipart/form-data">
                                     <div class="form-group">
 
                                         <input type="file" class="form-control-file m-3" name="pic" id="pic">
@@ -67,7 +80,14 @@
                     <div class="col-sm-8">
                         <div class="collapse multi-collapse" id="changePassword">
                             <div class="card card-body">
-                                <form action="<?php echo base_url() ?>index.php/user/change_password" method="POST">
+                                <?php
+                        if (($this->session->userdata('user')) != NULL) {
+                        $user1 = $this->session->userdata('user')->status;
+                        }
+                        else
+                            $user1 ="guest";
+                        ?>
+                                <form action="<?php echo base_url() ?>index.php/<?php echo $user1;?>/change_password" method="POST">
 
                                     <div class="form-group" style="width:60%">
                                         <label for="oldPass">Old password:</label>

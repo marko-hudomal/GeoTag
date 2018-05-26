@@ -50,7 +50,7 @@
 				&nbsp;
 				<span id="tip_korisnika" class="badge badge-info">Admin</span>
 
-				<a href="<?php echo base_url()?>index.php/admin/load/profile"><img class="rounded" id="slika_korisnika" src="<?php echo $profile_pic;?>" style="width:50px; margin-left:20px;margin-right:10px"></a>
+				<img id="slika_korisnika" class="rounded" src="<?php echo $profile_pic;?>" style="width:50px; height:60px; margin-left:20px;margin-right:10px">
 				<a href="<?php echo base_url()?>index.php/admin/logout" class="btn btn-dark">logout</a>
 			</div> 
 		</nav>

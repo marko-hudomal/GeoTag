@@ -18,14 +18,13 @@ class User extends CI_Controller {
         // check if user is already logged in, or if unauthorized access through the link
         if (($this->session->userdata('user')) != NULL) {
             switch ($this->session->userdata('user')->status) {
-                case "user":
-                    redirect("User");
-                    break;
-                case "superuser":
-                    redirect("SuperUser");
+              
+               
+                case "super_user":
+                    redirect("super_user");
                     break;
                 case "admin":
-                    redirect("Admin");
+                    redirect("admin");
                     break;
             }
         }
@@ -52,10 +51,16 @@ class User extends CI_Controller {
     // @return void
     public function load($page, $message = null,$data=null) {
 
-        $data['profile_pic'] = $this->get_img_name();
-        if ($message)
-            $data['message'] = $message;
-        $this->load->view("templates/user_header.php", $data);
+        $info['profile_pic'] = $this->get_img_name();
+        if ($message){
+            $info['message'] = $message;
+            if ($data!=null)
+            $data = $data + $info;
+        }
+            
+        
+        //print_r($data);
+        $this->load->view("templates/user_header.php", $info);
         $this->load->view($page . ".php", $data);
         $this->load->view("templates/footer.php");
     }
@@ -91,7 +96,7 @@ class User extends CI_Controller {
         if ($this->form_validation->run()) {
             $new_password = $this->input->post('newPass1');
 
-            if (!$this->User_model->check_password($this->input->post('oldPass'))) {
+            if (!$this->User_model->check_password($this->input->post('oldPass'),$this->session->userdata('user')->username)) {
                 $this->load("profile", "Wrong old password");
             } else {
                 $this->User_model->change_password($new_password);
@@ -149,13 +154,13 @@ class User extends CI_Controller {
         $statistics=$this->statistic_model->getStatistics();
         
         
-        $data['date']=$statistics->date;;
-        $data['userCount']=$statistics->userCount;;
+        $data['date']=$statistics->date;
+        $data['userCount']=$statistics->userCount;
         $data['reviewCount']=$statistics->reviewCount;
         $data['destinationCount']=$statistics->destinationCount;
         $data['positiveVoteCount']=$statistics->positiveVoteCount;
         $data['posReviews']=$statistics->posReviews;
-        $this->load("guest_statistics",$data);
+        $this->load("guest_statistics",null,$data);
 }
     public function search(){
        $output = '';

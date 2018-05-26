@@ -19,13 +19,13 @@ class Guest extends CI_Controller {
         if (($this->session->userdata('user')) != NULL) {
             switch ($this->session->userdata('user')->status) {
                 case "user":
-                    redirect("User");
+                    redirect("user");
                     break;
-                case "superuser":
-                    redirect("SuperUser");
+                case "super_user":
+                    redirect("super_user");
                     break;
                 case "admin":
-                    redirect("Admin");
+                    redirect("admin");
                     break;
             }
         }
@@ -101,7 +101,7 @@ class Guest extends CI_Controller {
                     case "user":
                         redirect("User");
                         break;
-                    case "superuser":
+                    case "super_user":
                         redirect("Super_user");
                         break;
                     case "admin":
