@@ -13,6 +13,8 @@ class Guest extends CI_Controller {
     function __construct() {
         parent::__construct();
         $this->load->model("User_model");
+        $this->load->model("destination_model");
+        $this->load->model("statistic_model");
         // check if user is already logged in, or if unauthorized access through the link
         if (($this->session->userdata('user_type')) != NULL) {
             switch ($this->session->userdata('user')->status) {
@@ -113,7 +115,7 @@ class Guest extends CI_Controller {
     public function load($page,$data=null) {
   
         $this->load->view("templates/guest_header.php");
-        $this->load->view($page . ".php",$data);
+        $this->load->view($page.".php",$data);
         $this->load->view("templates/footer.php");
     }
     
@@ -126,7 +128,7 @@ class Guest extends CI_Controller {
         $statistics['positiveVoteCount']=0;
         $statistics['negativeVoteCount']=0;
         
-        $statistics=$this->User_model->getStatistics();
+        $statistics=$this->statistic_model->getStatistics();
         
         
         $data['date']=$statistics->date;;
@@ -136,6 +138,47 @@ class Guest extends CI_Controller {
         $data['positiveVoteCount']=$statistics->positiveVoteCount;
         $data['posReviews']=$statistics->posReviews;
         $this->load("guest_statistics",$data);
+}
+    public function search(){
+       $output = '';
+		$query = '';
+		
+		if($this->input->post('query'))
+		{
+			$query = $this->input->post('query');
+		}
+		$data = $this->destination_model->search_data($query);
+		$output .= '
+		<div class="table-responsive">
+					<table class="table bg-light">
+
+		';
+		if($data->num_rows() > 0)
+		{
+			foreach($data->result() as $row)
+			{
+				$output .= '
+						<tr>
+							<td><a href="'.base_url().'index.php/guest/load_dest/'.$row->idDest.'">'.$row->name.'</a></td>
+                                                        <td>'.$row->country.'</td>    
+						</tr>
+				';
+			}
+		}
+		else
+		{
+			$output .= '<tr>
+							
+						</tr>';
+		}
+		$output .= '</table>';
+		echo $output;
+    }
+    
+    public function load_dest($id){
+       $data = $this->destination_model->get_info($id);
+      
+       $this->load("destination",$data);
     }
 
 }

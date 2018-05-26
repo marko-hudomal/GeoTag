@@ -1,8 +1,5 @@
   var marker = null;
-  function getLatLng() {
-	
-	alert("Latitude: " + marker.getPosition().lat() + "\nLongitude: " + marker.getPosition().lng());
-  }
+
   function refresh()
   {
     myMap();
@@ -255,3 +252,9 @@ function initMap_Night(x,y) {
           ]
         });
       }
+	 function showCoordinate(){
+		 document.getElementById("longitude").innerHTML= "Longitude: " + marker.getPosition().lng();
+		 document.getElementById("latitude").innerHTML= "Latitude: " + marker.getPosition().lat();
+		 document.getElementById("longitudeH").value= "Longitude: " + marker.getPosition().lng();
+		 document.getElementById("latitudeH").value= "Latitude: " + marker.getPosition().lat();
+	 }

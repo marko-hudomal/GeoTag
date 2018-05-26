@@ -12,6 +12,7 @@ class Admin extends CI_Controller {
     function __construct() {
         parent::__construct();
         $this->load->model("User_model");
+        $this->load->model("statistic_model");
     }
 
     // default function, load default views

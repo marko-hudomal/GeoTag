@@ -13,6 +13,7 @@ class User extends CI_Controller {
     function __construct() {
         parent::__construct();
         $this->load->model("User_model");
+        $this->load->model("statistic_model");
         // check if user is already logged in, or if unauthorized access through the link
         if (($this->session->userdata('user_type')) != NULL) {
             switch ($this->session->userdata('user')->status) {

@@ -1,27 +1,37 @@
-		<div class="container-fluid">
+		<div class="container-fluid" >
 			<div class="row">
 				<div class="col-sm-8">					
-					<div id="map" class="card" style="height:700px;">
+					<div onmouseover="showCoordinate()" id="map" class="card" style="height:700px;">
 							<div id="map"></div>
 					</div>
-
+                                        
 					<script src="<?php echo base_url()?>js/map_styles.js"></script>
 					<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCGhsVpjnpP_alimoKSREfuSE8tJRA1v3U&callback=myMap"></script>
 				</div>
 
 					<div class="col-md-4">
 
-						<div class="jumbotron" style="height:300px; padding:10px;padding-left:20px;padding-right:20px;background-size:cover; background-image: url('<?php echo base_url()?>img/brown-gradient.png');">
-							<form>
+						<div class="jumbotron" style="height:400px; padding:10px;padding-left:20px;padding-right:20px;background-size:cover; background-image: url('<?php echo base_url()?>img/brown-gradient.png');">
+							<form action="<?php echo base_url() ?>index.php/super_user/add_destination" method="POST">
 								<div class="form-group" style="width:60%">
 									<label for="destination">Destination:</label>
-										<input type="text" class="form-control" id="destination">
+										<input type="text" class="form-control" name="destination">
+                                                                                <span><font color = "red"><?php echo form_error("destination", "<font color='red'>", "</font>"); ?></font></span>
 								</div>
 								<div class="form-group" style="width:60%">
 									<label for="country">Country:</label>
-									<input type="text" class="form-control" id="country">
+									<input type="text" class="form-control" name="country">
+                                                                        <span><font color = "red"><?php echo form_error("country", "<font color='red'>", "</font>"); ?></font></span>
 								</div>
-								<button type="submit" class="btn btn-dark" onClick="getLatLng();">Add Location</button>
+                                                                <div class="form-group" style="width:60%">
+                                                                    <input type="hidden" name="longitudeH" id="longitudeH" value="">
+                                                                    <input type="hidden" name="latitudeH"  id="latitudeH" value="">
+                                                                        <label id="longitude" name ="longitude"></label><br>
+									<label id="latitude" name = "latitude"></label>
+								</div>
+                                                            
+								<button type="submit" class="btn btn-dark" onClick="getLatLng();">Add Location</button><br>
+                                                                <span><font color = "green"><?php if (isset($message)) echo $message; ?></font></span>
 							</form>
 							<br>
 							<p>Drag marker until you reach to desired destination</p>
