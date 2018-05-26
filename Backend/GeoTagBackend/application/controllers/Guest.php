@@ -16,7 +16,7 @@ class Guest extends CI_Controller {
         $this->load->model("destination_model");
         $this->load->model("statistic_model");
         // check if user is already logged in, or if unauthorized access through the link
-        if (($this->session->userdata('user_type')) != NULL) {
+        if (($this->session->userdata('user')) != NULL) {
             switch ($this->session->userdata('user')->status) {
                 case "user":
                     redirect("User");
@@ -29,6 +29,12 @@ class Guest extends CI_Controller {
                     break;
             }
         }
+        $phpArray = $this->get_all_destinations();
+        ?>
+<script type="text/javascript">var jArray =<?php echo json_encode($phpArray); ?>;</script>
+<?php
+        
+
     }
 
     // default function, load default view and can pass different messages to the view
@@ -110,10 +116,10 @@ class Guest extends CI_Controller {
         }
     }
 
-    // logout function, breaks session
+
     // @return void
     public function load($page,$data=null) {
-  
+
         $this->load->view("templates/guest_header.php");
         $this->load->view($page.".php",$data);
         $this->load->view("templates/footer.php");
@@ -180,5 +186,10 @@ class Guest extends CI_Controller {
       
        $this->load("destination",$data);
     }
+    
+    public function get_all_destinations(){
+        return $this->destination_model->get_all_destinations();
+    }
 
 }
+

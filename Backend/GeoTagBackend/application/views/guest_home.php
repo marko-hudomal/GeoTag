@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container-fluid" >
 <div class="row">
    <div class="col-sm-8">
       <div id="map" class="card" style="height:700px;">
@@ -12,9 +12,9 @@
    </div>
    <div class="col-md-4">
       <div class="jumbotron" style="height:500px; padding:10px;padding-left:20px;padding-right:20px;background-size:cover; background-image: url('<?php echo base_url()?>img/brown-gradient.png');">
-         <div class="search" style="margin-bottom:20px">
-               <input name="search_text" id="search_text" type="text" placeholder="Search for destinations, people...">
-         </div>
+        
+               <input class="form-control" name="search_text" id="search_text" type="text" placeholder="Search for destinations, people...">
+         
           <div id="result"></div>
          <h5>Latest comments:</h5>
          <div id="random_comments">
@@ -68,7 +68,14 @@ $("#search_text").focus(function(){
 	function load_data(query)
 	{
 		$.ajax({
-			url:"<?php echo base_url(); ?>index.php/guest/search",
+                        <?php
+                        if (($this->session->userdata('user')) != NULL) {
+                        $user1 = $this->session->userdata('user')->status;
+                        }
+                        else
+                            $user1 ="guest";
+                        ?>
+			url:"<?php echo base_url(); ?>index.php/<?php echo $user1;?>/search",
 			method:"POST",
 			data:{query:query},
 			success:function(data){
@@ -89,4 +96,5 @@ $("#search_text").focus(function(){
 		}
 	});
 });
+
 </script>

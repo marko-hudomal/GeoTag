@@ -1,4 +1,4 @@
-  var marker = null;
+  var mark = null;
 
   function refresh()
   {
@@ -141,7 +141,7 @@ function initMap_Dessert(x,y) {
               }
             ],
             {name: 'Styled Map'});
-
+var bounds = new google.maps.LatLngBounds();
         // Create a map object, and include the MapTypeId to add
         // to the map type control.
         var map = new google.maps.Map(document.getElementById('map'), {
@@ -157,13 +157,55 @@ function initMap_Dessert(x,y) {
         map.mapTypes.set('styled_map', styledMapType);
         map.setMapTypeId('styled_map');
 		
-			marker = new google.maps.Marker({
+			mark = new google.maps.Marker({
 			position: {lat: x, lng: y},
 			map: map,
-			draggable: true
+			draggable: true,
+			icon: 'http://maps.google.com/mapfiles/ms/icons/green-dot.png'
+    
 		});
 		//var lat = homeMarker.getPosition().lat();
 		//var lng = homeMarker.getPosition().lng();
+    // Multiple Markers
+	markers =[];
+	var infoWindowContent = [];
+	for(var i=0;i<jArray.length;i++){
+        markers.push([jArray[i]['name']+", "+jArray[i]['country'],parseFloat(jArray[i]['latitude']),parseFloat(jArray[i]['longitude'])]);
+		infoWindowContent.push(['<div class="info_content">' +
+        '<h3>'+jArray[i]['idDest']+". "+jArray[i]['name']+", "+jArray[i]['country']+'</h3>' +
+           '</div>']);	
+    }
+	
+                        
+        
+    // Display multiple markers on a map
+    var infoWindow = new google.maps.InfoWindow(), marker, i;
+    
+    // Loop through our array of markers & place each one on the map  
+    for( i = 0; i < markers.length; i++ ) {
+        var position = new google.maps.LatLng(markers[i][1], markers[i][2]);
+        bounds.extend(position);
+        marker = new google.maps.Marker({
+            position: position,
+            map: map,
+            title: markers[i][0]
+        });
+        
+        // Allow each marker to have an info window    
+        google.maps.event.addListener(marker, 'click', (function(marker, i) {
+            return function() {
+                infoWindow.setContent(infoWindowContent[i][0]);
+                infoWindow.open(map, marker);
+            }
+        })(marker, i));
+
+        // Automatically center the map fitting all markers on the screen
+        map.fitBounds(bounds);
+    }
+	
+	
+    
+	
       }
 function initMap_Night(x,y) {
         // Styles a map in night mode.
@@ -253,8 +295,8 @@ function initMap_Night(x,y) {
         });
       }
 	 function showCoordinate(){
-		 document.getElementById("longitude").innerHTML= "Longitude: " + marker.getPosition().lng();
-		 document.getElementById("latitude").innerHTML= "Latitude: " + marker.getPosition().lat();
-		 document.getElementById("longitudeH").value= "Longitude: " + marker.getPosition().lng();
-		 document.getElementById("latitudeH").value= "Latitude: " + marker.getPosition().lat();
+		 document.getElementById("longitude").innerHTML= "Longitude: " + mark.getPosition().lng();
+		 document.getElementById("latitude").innerHTML= "Latitude: " + mark.getPosition().lat();
+		 document.getElementById("longitudeH").value= "Longitude: " + mark.getPosition().lng();
+		 document.getElementById("latitudeH").value= "Latitude: " + mark.getPosition().lat();
 	 }

@@ -33,7 +33,7 @@
 						<a class="nav-link" href="<?php echo base_url()?>index.php/user/load/guest_home">Home</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="<?php echo base_url()?>index.php/user/load/guest_statistics">View statistics</a>
+						<a class="nav-link" href="<?php echo base_url()?>index.php/user/getStatistics">View statistics</a>
 					</li>
 				
 					<li class="nav-item">

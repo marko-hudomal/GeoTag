@@ -13,9 +13,10 @@ class User extends CI_Controller {
     function __construct() {
         parent::__construct();
         $this->load->model("User_model");
+       $this->load->model("destination_model");
         $this->load->model("statistic_model");
         // check if user is already logged in, or if unauthorized access through the link
-        if (($this->session->userdata('user_type')) != NULL) {
+        if (($this->session->userdata('user')) != NULL) {
             switch ($this->session->userdata('user')->status) {
                 case "user":
                     redirect("User");
@@ -28,6 +29,10 @@ class User extends CI_Controller {
                     break;
             }
         }
+        $phpArray = $this->get_all_destinations();
+        ?>
+<script type="text/javascript">var jArray =<?php echo json_encode($phpArray); ?>;</script>
+<?php
     }
 
     // default function, load default views
@@ -45,7 +50,7 @@ class User extends CI_Controller {
     // and add all information reading from database on load here
     // @param string $page, string $message
     // @return void
-    public function load($page, $message = null) {
+    public function load($page, $message = null,$data=null) {
 
         $data['profile_pic'] = $this->get_img_name();
         if ($message)
@@ -132,4 +137,68 @@ class User extends CI_Controller {
         }
     }
 
+        public function getStatistics(){
+        
+        
+        $statistics['userCount']=0;
+        $statistics['reviewCount']=0;
+        $statistics['destinationCount']=0;
+        $statistics['positiveVoteCount']=0;
+        $statistics['negativeVoteCount']=0;
+        
+        $statistics=$this->statistic_model->getStatistics();
+        
+        
+        $data['date']=$statistics->date;;
+        $data['userCount']=$statistics->userCount;;
+        $data['reviewCount']=$statistics->reviewCount;
+        $data['destinationCount']=$statistics->destinationCount;
+        $data['positiveVoteCount']=$statistics->positiveVoteCount;
+        $data['posReviews']=$statistics->posReviews;
+        $this->load("guest_statistics",$data);
+}
+    public function search(){
+       $output = '';
+		$query = '';
+		
+		if($this->input->post('query'))
+		{
+			$query = $this->input->post('query');
+		}
+		$data = $this->destination_model->search_data($query);
+		$output .= '
+		<div class="table-responsive">
+					<table class="table bg-light">
+
+		';
+		if($data->num_rows() > 0)
+		{
+			foreach($data->result() as $row)
+			{
+				$output .= '
+						<tr>
+							<td><a href="'.base_url().'index.php/user/load_dest/'.$row->idDest.'">'.$row->name.'</a></td>
+                                                        <td>'.$row->country.'</td>    
+						</tr>
+				';
+			}
+		}
+		else
+		{
+			$output .= '<tr>
+							
+						</tr>';
+		}
+		$output .= '</table>';
+		echo $output;
+    }
+     public function load_dest($id){
+       $data = $this->destination_model->get_info($id);
+      
+       $this->load("destination",null,$data);
+    }
+    
+    public function get_all_destinations(){
+        return $this->destination_model->get_all_destinations();
+    }
 }

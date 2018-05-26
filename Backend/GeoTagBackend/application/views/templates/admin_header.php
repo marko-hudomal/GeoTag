@@ -33,7 +33,7 @@
 						<a class="nav-link" href="<?php echo base_url()?>index.php/admin/load/guest_home">Home</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="<?php echo base_url()?>index.php/admin/load/guest_statistics">View statistics</a>
+						<a class="nav-link" href="<?php echo base_url()?>index.php/admin/getStatistics">View statistics</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="<?php echo base_url()?>index.php/admin/load/super_user_add_destination">Add destination</a>
@@ -51,6 +51,6 @@
 				<span id="tip_korisnika" class="badge badge-info">Admin</span>
 
 				<a href="<?php echo base_url()?>index.php/admin/load/profile"><img class="rounded" id="slika_korisnika" src="<?php echo $profile_pic;?>" style="width:50px; margin-left:20px;margin-right:10px"></a>
-				<a href="<?php echo base_url()?>index.php/user/logout" class="btn btn-dark">logout</a>
+				<a href="<?php echo base_url()?>index.php/admin/logout" class="btn btn-dark">logout</a>
 			</div> 
 		</nav>
