@@ -27,10 +27,9 @@
 										<img src="<?php echo base_url()?>img/achievement-icon.png" width="50px" style="margin-right:20px">
 										<br>
 										<div class="media-body">
-											 <h4 class="mt-2 mb-3">Achievements</h4>
-											<p>Achievement 1
-											<p>Achievement 2
-											<p>Achievement 3
+											<h4 class="mt-2 mb-3">News</h4>
+                                             <p>[30.5.2018] Today we added <strong>SuperUser</strong>! See more info in <a href="<?php echo base_url()?>index.php/user/load/guest_help">Help</a> tab.</p>
+                                             <p>[3.6.2018] We hit <strong>100</strong> users!</p>
 										</div>
 									</div>
 

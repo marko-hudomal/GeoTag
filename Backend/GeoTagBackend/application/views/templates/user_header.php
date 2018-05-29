@@ -29,7 +29,7 @@
 			<!-- likovi -->
 			<div class="collapse navbar-collapse" style="text-align:right" id="collapsibleNavbar">
 				<ul class="navbar-nav mx-auto">
-                                        <li class="nav-item active">
+                        <li class="nav-item">
 						<a class="nav-link" href="<?php echo base_url()?>index.php/user/load/guest_home">Home</a>
 					</li>
 					<li class="nav-item">
