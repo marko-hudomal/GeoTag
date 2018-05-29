@@ -3,7 +3,7 @@
 <html lang="en">
 	<head>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-		<link rel="icon" href="./img/logo.png">
+		<link rel="icon" href="<?php echo base_url()?>img/logo.png">
 		<title>Home</title>
 
 
@@ -50,7 +50,7 @@
 				&nbsp;
 				<span id="tip_korisnika" class="badge badge-info">SuperUser</span>
 
-				<img id="slika_korisnika" class="rounded" src="<?php echo $profile_pic;?>" style="width:50px; height:60px; margin-left:20px;margin-right:10px">
+				<img id="slika_korisnika" class="rounded" src="<?php echo $profile_pic;?>" style="width:50px; margin-left:20px;margin-right:10px">
 				<a href="<?php echo base_url()?>index.php/super_user/logout" class="btn btn-dark">logout</a>
 			</div> 
 		</nav>

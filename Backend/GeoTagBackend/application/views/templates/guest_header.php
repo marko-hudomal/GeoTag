@@ -50,7 +50,7 @@
 				&nbsp;
 				<span id="tip_korisnika" class="badge badge-warning">Guest</span>
 
-				<img id="slika_korisnika" src="<?php echo base_url()?>img/avatar.png" style="width:50px; margin-left:20px;margin-right:10px">
+				<img id="slika_korisnika"  src="<?php echo base_url()?>img/avatar.png" style="width:50px; margin-left:20px;margin-right:10px">
 
 			</div> 
 		</nav>

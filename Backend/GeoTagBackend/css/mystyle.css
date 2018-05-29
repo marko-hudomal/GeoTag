@@ -39,6 +39,14 @@ footer {
   opacity: 0.6;
 }
 /*NAVBAR------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+.collapse.navbar-collapse{
+  font-weight: 600 !important;
+}
+.collapse.navbar-collapse :hover{
+  /*color:#d1a27b !important;*/
+  text-decoration: none;
+}
+
 .center {
   text-align: center;
 }
@@ -65,7 +73,7 @@ nav ul li a  {
   padding: 15px;
   text-decoration: none;
   color: white;
-  font-weight: 500 !important; 
+  /*font-weight: 500 !important;*/ 
   font-size:12pt;
   margin: 0 10px;
 }
