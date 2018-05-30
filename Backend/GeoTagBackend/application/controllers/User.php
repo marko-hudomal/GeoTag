@@ -7,14 +7,15 @@
  * and for more privileged users if they use the same actions
  */
 class User extends CI_Controller {
-
+    
     // Creating new instance
     // @return void 
     function __construct() {
         parent::__construct();
         $this->load->model("User_model");
-       $this->load->model("destination_model");
+        $this->load->model("destination_model");
         $this->load->model("statistic_model");
+        $this->load->model("review_model");
         // check if user is already logged in, or if unauthorized access through the link
         if (($this->session->userdata('user')) != NULL) {
             switch ($this->session->userdata('user')->status) {
@@ -40,6 +41,8 @@ class User extends CI_Controller {
     public function index() {
 
         $data['profile_pic'] = $this->get_img_name();
+        $data['last_reviews_html'] = $this->review_model->get_html_last_n_reviews();
+        
         $this->load->view("templates/user_header.php", $data);
         $this->load->view("guest_home.php", $data);
         $this->load->view("templates/footer.php");
@@ -50,8 +53,9 @@ class User extends CI_Controller {
     // @param string $page, string $message
     // @return void
     public function load($page, $message = null,$data=null) {
-
         $info['profile_pic'] = $this->get_img_name();
+        $data['last_reviews_html'] = $this->review_model->get_html_last_n_reviews();
+        
         if ($message){
             $info['message'] = $message;
             if ($data!=null)
@@ -198,12 +202,16 @@ class User extends CI_Controller {
 		echo $output;
     }
      public function load_dest($id){
-       $data = $this->destination_model->get_info($id);
-      
+       $data['dest_name'] = $this->destination_model->get_name($id);
+       $data['dest_country'] = $this->destination_model->get_country($id);
+       $data['all_reviews_current_destination_html'] = $this->review_model->get_html_all_reviews($id);
+       
        $this->load("destination",null,$data);
     }
     
     public function get_all_destinations(){
         return $this->destination_model->get_all_destinations();
     }
+    
+  
 }

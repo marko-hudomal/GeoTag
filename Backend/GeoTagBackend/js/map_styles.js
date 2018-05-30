@@ -146,7 +146,7 @@ var bounds = new google.maps.LatLngBounds();
         // to the map type control.
         var map = new google.maps.Map(document.getElementById('map'), {
           center: {lat: x, lng: y},
-          zoom: 17,
+          zoom: 10,
           mapTypeControlOptions: {
             mapTypeIds: ['roadmap', 'satellite', 'hybrid', 'terrain',
                     'styled_map']
@@ -156,13 +156,17 @@ var bounds = new google.maps.LatLngBounds();
         //Associate the styled map with the MapTypeId and set it to display.
         map.mapTypes.set('styled_map', styledMapType);
         map.setMapTypeId('styled_map');
-		
+                       icon = {
+                                    //url: "https://image.flaticon.com/icons/svg/189/189097.svg",
+                                    //url:"https://image.flaticon.com/icons/svg/727/727570.svg",
+                                    url:"https://image.flaticon.com/icons/svg/526/526744.svg",
+                                    scaledSize: new google.maps.Size(50,65), // scaled size
+                        };
 			mark = new google.maps.Marker({
 			position: {lat: x, lng: y},
 			map: map,
 			draggable: true,
-			icon: 'http://maps.google.com/mapfiles/ms/icons/green-dot.png'
-    
+                        icon
 		});
 		//var lat = homeMarker.getPosition().lat();
 		//var lng = homeMarker.getPosition().lng();

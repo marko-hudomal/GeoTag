@@ -14,6 +14,7 @@ class Admin extends CI_Controller {
         $this->load->model("User_model");
         $this->load->model("destination_model");
         $this->load->model("statistic_model");
+        $this->load->model("review_model");
         // check if user is already logged in, or if unauthorized access through the link
         if (($this->session->userdata('user')) != NULL) {
             switch ($this->session->userdata('user')->status) {
@@ -38,8 +39,10 @@ class Admin extends CI_Controller {
     // @return void
     function index() {
         $data['profile_pic'] = $this->get_img_name();
+        $data['last_pendings_html'] ="<p>Ovde idu requestovi za adina</p>";
+        
         $this->load->view("templates/admin_header.php", $data);
-        $this->load->view("guest_home.php");
+        $this->load->view("admin_home.php");
         $this->load->view("templates/footer.php");
     }
 
@@ -49,6 +52,8 @@ class Admin extends CI_Controller {
     // @return void
     public function load($page, $data=null) {
         $info['profile_pic'] = $this->get_img_name();
+        $data['last_pendings_html'] ="<p>Ovde idu requestovi za admina</p>";
+        
         $this->load->view("templates/admin_header.php", $info);
         $this->load->view($page . ".php", $data);
         $this->load->view("templates/footer.php");
@@ -138,8 +143,10 @@ public function get_all_destinations(){
     }
     
      public function load_dest($id){
-       $data = $this->destination_model->get_info($id);
-      
+       $data['dest_name'] = $this->destination_model->get_name($id);
+       $data['dest_country'] = $this->destination_model->get_country($id);
+       $data['all_reviews_current_destination_html'] = $this->review_model->get_html_all_reviews_admin($id);
+       
        $this->load("destination",$data);
     }
     

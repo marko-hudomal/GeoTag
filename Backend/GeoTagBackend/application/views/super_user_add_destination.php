@@ -12,14 +12,14 @@
 					<div class="col-md-4">
 
 						<div class="jumbotron" style="height:400px; padding:10px;padding-left:20px;padding-right:20px;background-size:cover; background-image: url('<?php echo base_url()?>img/brown-gradient.png');">
-							 <?php
-                        if (($this->session->userdata('user')) != NULL) {
-                        $user1 = $this->session->userdata('user')->status;
-                        }
-                        else
-                            $user1 ="guest";
-                        ?>
-                                                    <form action="<?php echo base_url() ?>index.php/<?php echo $user1;?>/add_destination" method="POST">
+                                                            <?php
+                                                            if (($this->session->userdata('user')) != NULL) {
+                                                            $user1 = $this->session->userdata('user')->status;
+                                                            }
+                                                            else
+                                                                $user1 ="guest";
+                                                            ?>
+                                                        <form action="<?php echo base_url() ?>index.php/<?php echo $user1;?>/add_destination" method="POST">
 								<div class="form-group" style="width:60%">
 									<label for="destination">Destination:</label>
 										<input type="text" class="form-control" name="destination">

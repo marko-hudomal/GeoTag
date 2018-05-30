@@ -4,7 +4,7 @@
 	<head>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 		<link rel="icon" href="<?php echo base_url()?>img/logo.png">
-		<title>Home</title>
+		<title>GeoTag</title>
 
 
 		<!-- Custom stlylesheet -->
@@ -50,7 +50,7 @@
 				&nbsp;
 				<span id="tip_korisnika" class="badge badge-info">Guest</span>
 
-				<img id="slika_korisnika"  src="<?php echo base_url()?>img/avatar.png" style="width:50px; margin-left:20px;margin-right:10px">
+				<img id="slika_korisnika" class="rounded_circle"  src="<?php echo base_url()?>img/avatar.png" style="width:50px; margin-left:20px;margin-right:10px">
 
 			</div> 
 		</nav>

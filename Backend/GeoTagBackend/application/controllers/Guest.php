@@ -15,6 +15,8 @@ class Guest extends CI_Controller {
         $this->load->model("User_model");
         $this->load->model("destination_model");
         $this->load->model("statistic_model");
+        $this->load->model("review_model");
+        
         // check if user is already logged in, or if unauthorized access through the link
         if (($this->session->userdata('user')) != NULL) {
             switch ($this->session->userdata('user')->status) {
@@ -41,7 +43,6 @@ class Guest extends CI_Controller {
     // @param string $message
     // @return void
     function index($message = null) {
-
         $data = [];
         if ($message)
             $data['message'] = $message;
@@ -119,7 +120,8 @@ class Guest extends CI_Controller {
 
     // @return void
     public function load($page,$data=null) {
-
+        $data['last_reviews_html'] = $this->review_model->get_html_last_n_reviews();
+        
         $this->load->view("templates/guest_header.php");
         $this->load->view($page.".php",$data);
         $this->load->view("templates/footer.php");
@@ -182,9 +184,11 @@ class Guest extends CI_Controller {
     }
     
     public function load_dest($id){
-       $data = $this->destination_model->get_info($id);
-      
-       $this->load("destination",$data);
+       $data['dest_name'] = $this->destination_model->get_name($id);
+       $data['dest_country'] = $this->destination_model->get_country($id);
+       $data['all_reviews_current_destination_html'] = $this->review_model->get_html_all_reviews($id);
+       
+       $this->load("destination_guest",$data);
     }
     
     public function get_all_destinations(){

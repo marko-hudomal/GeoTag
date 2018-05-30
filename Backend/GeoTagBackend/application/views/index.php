@@ -3,7 +3,7 @@
 <html lang="en">
     <head>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-        <link rel="icon" href="img/logo.png">
+        <link rel="icon" href="<?php echo base_url()?>img/logo.png">
         <title>GeoTag</title>
 
         <!-- Custom stlylesheet -->

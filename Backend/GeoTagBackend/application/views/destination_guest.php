@@ -1,6 +1,6 @@
 <div class="container-fluid">
 <div class="row">
-   <div class="col-8">
+   <div class="col-12">
        
       <div class="jumbotron" style="background-size:cover; background-image: url('<?php echo base_url(); ?>img/brown-gradient.png'); height:85%;">
          <div class="media">
@@ -38,30 +38,6 @@
             </div>
          </div>
          <br><br>
-      </div>
-   </div>
-   <div class="col-4">
-      <div class="jumbotron" style="background-size:cover; background-image: url('<?php echo base_url(); ?>img/brown-gradient.png'); height:85%;">
-         <?php
-            if (($this->session->userdata('user')) != NULL) {
-            $user1 = $this->session->userdata('user')->status;
-            }
-            else
-                $user1 ="guest";
-         ?>
-         <form action="<?php echo base_url() ?>index.php/<?php echo $user1;?>/add_review" method="POST">
-            <div class="form-group">
-               <label for="comment">
-                  <h5><strong>Write your review</strong></h5>
-               </label>
-               <center><textarea class="form-control" rows="10" id="comment" cols="40"></textarea></center>
-               <div style="padding-top:2%">
-                  <input type="button" value="Browse picture" class="btn btn-light">
-               </div>
-               <hr>
-               <input type="button" value="Add review" class="btn btn-warning">
-            </div>
-         </form>
       </div>
    </div>
 </div>

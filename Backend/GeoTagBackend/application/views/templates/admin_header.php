@@ -4,7 +4,7 @@
 	<head>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 		<link rel="icon" href="<?php echo base_url()?>img/logo.png">
-		<title>Home</title>
+		<title>GeoTag</title>
 
 
 		<!-- Custom stlylesheet -->
@@ -30,7 +30,7 @@
 			<div class="collapse navbar-collapse" style="text-align:right" id="collapsibleNavbar">
 				<ul class="navbar-nav mx-auto">
 					<li class="nav-item">
-						<a class="nav-link" href="<?php echo base_url()?>index.php/admin/load/guest_home">Home</a>
+						<a class="nav-link" href="<?php echo base_url()?>index.php/admin/load/admin_home">Home</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="<?php echo base_url()?>index.php/admin/getStatistics">View statistics</a>
@@ -50,7 +50,7 @@
 				&nbsp;
 				<span id="tip_korisnika" class="badge badge-danger">Admin</span>
 
-				<img id="slika_korisnika" class="rounded" src="<?php echo $profile_pic;?>" style="width:50px; margin-left:20px;margin-right:10px">
+				<img id="slika_korisnika" class="rounded_circle" src="<?php echo $profile_pic;?>" style="width:50px; margin-left:20px;margin-right:10px">
 				<a href="<?php echo base_url()?>index.php/admin/logout" class="btn btn-dark">logout</a>
 			</div> 
 		</nav>

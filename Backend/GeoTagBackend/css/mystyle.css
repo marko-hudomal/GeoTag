@@ -46,7 +46,9 @@ footer {
   /*color:#d1a27b !important;*/
   text-decoration: none;
 }
-
+.rounded_circle{
+    border-radius: 50%;
+}
 .center {
   text-align: center;
 }

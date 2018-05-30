@@ -17,9 +17,19 @@
          
           <div id="result"></div>
           <hr>
-         <h5>Latest comments:</h5>
+         <h5>Pending requests:</h5>
          <div id="last_reviews" style="overflow-y: scroll; height:450px; padding:10px">            
-            <?php echo $last_reviews_html; ?>          
+            <?php echo $last_pendings_html; ?>          
+         </div>
+      </div>
+      <div class="alert alert-info" style="height:100px;">
+         <h5>Biraj stil mape:[Test deo]</h5>
+         <hr>
+         <div class="radio">
+            <form name="map_style_form" id="map_style_form">
+               <input type="radio" name="r" value="desert" checked onClick="refresh()">Pustinja
+               <input type="radio" name="r" value="night" onClick="refresh()">Noc
+            </form>
          </div>
       </div>
    </div>
