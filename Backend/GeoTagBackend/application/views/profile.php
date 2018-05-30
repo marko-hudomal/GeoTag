@@ -6,16 +6,16 @@
 
             <div class="jumbotron" style="background-size:cover; background-image: url('<?php echo base_url() ?>img/brown-gradient.png');">					
                 <div class="media">
-                    <img src="<?php echo base_url() ?>img/avatar.png" width="120px" style="margin-right:20px">
+                    <img src="<?php echo $profile_pic;?>" class="rounded_circle" width="120px" style="margin-right:20px">
                     <br>
                     <div class="media-body">
-                        <h2 class="mt-2"><strong>Joe Johnson</strong></h2>
+                        <h2 class="mt-2"><strong><?php echo $this->session->userdata('user')->firstname." ".$this->session->userdata('user')->lastname ?></strong></h2>
                         <hr>
-                        <h6>Username:								 <span id="username_info">joej</span> </h6>
-                        <h6>Gender:								 <span id="gender_info">Male</span> </h6>
-                        <h6>Number of reviews:						 <span id="num_reviews_info">10</span> </h6>	
-                        <h6>Added places:							 <span id="num_added_places_info">2</span> </h6>
-                        <h6>Upvote/Downvote rate:							 <span id="up_down_info">+96</span> </h6>										
+                        <h6>Username:								<span id="username_info"><?php echo $this->session->userdata('user')->username?></span> </h6>
+                        <h6>Gender:								 	<span id="gender_info"><?php echo $this->session->userdata('user')->gender?></span> </h6>
+                        <h6>Number of reviews:						<span id="num_reviews_info">X</span> </h6>	
+                        <h6>Added places:							<span id="num_added_places_info">X</span> </h6>
+                        <h6>Upvote/Downvote rate:					<span id="up_down_info">X</span> </h6>										
                     </div>
                 </div>
                 <br><br>

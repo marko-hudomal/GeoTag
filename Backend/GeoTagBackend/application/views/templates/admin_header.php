@@ -48,7 +48,7 @@
 
 				<a href="<?php echo base_url()?>index.php/admin/load/profile"><span id="username_korisnika" style="color:white"><?php echo $this->session->userdata('user')->firstname." ".$this->session->userdata('user')->lastname ?></span></a>
 				&nbsp;
-				<span id="tip_korisnika" class="badge badge-info">Admin</span>
+				<span id="tip_korisnika" class="badge badge-danger">Admin</span>
 
 				<img id="slika_korisnika" class="rounded" src="<?php echo $profile_pic;?>" style="width:50px; margin-left:20px;margin-right:10px">
 				<a href="<?php echo base_url()?>index.php/admin/logout" class="btn btn-dark">logout</a>

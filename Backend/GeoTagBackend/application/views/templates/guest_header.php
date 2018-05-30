@@ -46,9 +46,9 @@
 					</li> 
 				</ul>
 
-				<a href="#"><span id="username_korisnika" style="color:white">no_name</span></a>
+				<a href="#"><span id="username_korisnika" style="color:white"> </span></a>
 				&nbsp;
-				<span id="tip_korisnika" class="badge badge-warning">Guest</span>
+				<span id="tip_korisnika" class="badge badge-info">Guest</span>
 
 				<img id="slika_korisnika"  src="<?php echo base_url()?>img/avatar.png" style="width:50px; margin-left:20px;margin-right:10px">
 
