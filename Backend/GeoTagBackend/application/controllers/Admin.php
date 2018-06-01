@@ -15,6 +15,7 @@ class Admin extends CI_Controller {
         $this->load->model("destination_model");
         $this->load->model("statistic_model");
         $this->load->model("review_model");
+        $this->load->model("request_model");
         // check if user is already logged in, or if unauthorized access through the link
         if (($this->session->userdata('user')) != NULL) {
             switch ($this->session->userdata('user')->status) {
@@ -39,7 +40,7 @@ class Admin extends CI_Controller {
     // @return void
     function index() {
         $data['profile_pic'] = $this->get_img_name();
-        $data['last_pendings_html'] ="<p>Ovde idu requestovi za adina</p>";
+        $data['last_pendings_html'] =$this->request_model->get_html_all_requests();
         
         $this->load->view("templates/admin_header.php", $data);
         $this->load->view("admin_home.php");
@@ -51,15 +52,33 @@ class Admin extends CI_Controller {
     // @param string $page
     // @return void
     public function load($page, $data=null) {
-        $info['profile_pic'] = $this->get_img_name();
-        
-        $data['last_pendings_html'] ="<p>Ovde idu requestovi za admina</p>";
+        $info['profile_pic'] = $this->get_img_name();       
+        if ($page=="admin_home") $data['last_pendings_html'] =$this->request_model->get_html_all_requests();
         
         $this->load->view("templates/admin_header.php", $info);
         $this->load->view($page . ".php", $data);
         $this->load->view("templates/footer.php");
     }
 
+    
+    
+    public function approve_request($request_id){
+        //Proveri se tim requesta i u zavinosti od toga izvrsi funkcija, i obrise request
+        $this->load("admin_home");
+    }
+    public function dismiss_request($request_id){
+        //Brisanje requesta
+        $this->request_model->delete($request_id);
+        $this->load("admin_home");
+    }
+    public function delete_review($destination_id, $review_id){
+        //Brisanje reviewa
+        $this->review_model->delete($review_id);
+        $this->load_dest($destination_id);
+    }
+    
+    
+    
     // get img name by its id if null return default avatar
     // @param string $id
     // @return string
@@ -152,7 +171,7 @@ public function get_all_destinations(){
        
        $this->load("destination",$data);
     }
-    
+
          // add new pending destination if it is requested from superuser
         // or just enter new destination if it is requested from admin
         // @return void

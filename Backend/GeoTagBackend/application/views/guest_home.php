@@ -18,7 +18,7 @@
           <div id="result"></div>
           <hr>
          <h5>Latest comments:</h5>
-         <div id="last_reviews" style="overflow-y: scroll; height:450px; padding:10px">            
+         <div id="last_reviews" style="overflow-y: scroll; height:450px; padding:10px;">            
             <?php echo $last_reviews_html; ?>          
          </div>
       </div>

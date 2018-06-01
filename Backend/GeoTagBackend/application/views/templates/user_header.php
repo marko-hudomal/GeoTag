@@ -49,6 +49,7 @@
 				<span id="tip_korisnika" class="badge badge-success">User</span>
 
 				<img id="slika_korisnika" class="rounded_circle" src="<?php echo $profile_pic;?>" style="width:50px; margin-left:20px;margin-right:10px">
+                                
 				<a href="<?php echo base_url()?>index.php/user/logout" class="btn btn-dark">logout</a>
 
 			</div> 

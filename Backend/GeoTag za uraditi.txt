@@ -1,0 +1,16 @@
+-> About, napisati text o GeoTagu i DiningPhilosophers. [Front]
+
+->Kada se doda destination od strane superusera, treba i request da se napravi i ubaci u bazu
+  [inace, request->typovi svmi moguci su "destination added"/"negative review"/"user ready for promotion"]
+
+->Destination.php, kod SuperUsera/Admina da se doda dugme za promenu slike destinacije (Recimo odmah ispod default slike da bude dugme Change destination image)[Front + Back]
+
+->My Profile, (profile.php) Statistika i upiti za poslednje 3 stvari sa X vrednostima [Back]
+
+->Kod admina, odobravanje requesta [Back] (To je funkcija "approve_request" u Admin.php kontroleru koju sam ispovezivao, samo je potrebna implementacija jos)
+
+->+/- Vote na review [Back]
+
+->Nova strana o profilu druge osobe (za sada imamo samo za sebe) [znaci kako jedan korisnik vidi drugog]
+  Samim tim i link ka tom drugom profilu te osobe
+

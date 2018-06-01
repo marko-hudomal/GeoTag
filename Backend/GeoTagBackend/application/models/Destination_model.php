@@ -53,7 +53,19 @@ class Destination_model extends CI_Model{
             $query = $this->db->query("select * from destination where idDest=".$id);
             return $query->result()[0]->country;
         }
+        public function get_longitude($id){
+            $query = $this->db->query("select * from destination where idDest=".$id);
+            return $query->result()[0]->longitude;
+        }
+        public function get_latitude($id){
+            $query = $this->db->query("select * from destination where idDest=".$id);
+            return $query->result()[0]->latitude;
+        }
 
+        public function get_destination($id){
+            $query = $this->db->query("select * from destination where idDest=".$id);
+            return $query->result()[0];
+        }
         public function get_all_destinations(){
            $query = $this->db->query("select name, country, longitude, latitude, idDest from destination where pending=0");
            return $query->result_array();  
