@@ -99,5 +99,24 @@ class Review_model  extends CI_Model{
         
         return $ret;
     }
+    
+    public function insert_review($data){
+        
+        $this->db->insert('review', $data);
+    }  
+    
+    
+    //dodaje novu sliku i vraca njen id
+    public function add_photo($name){
+        $data = array(
+            'idImg' => '',
+            'img' => $name
+        );
+
+        $this->db->insert('image', $data);
+        $insert_id = $this->db->insert_id();
+        return $insert_id;
+    }
+    
 
 }

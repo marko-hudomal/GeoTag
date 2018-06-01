@@ -49,17 +49,21 @@
             else
                 $user1 ="guest";
          ?>
-         <form action="<?php echo base_url() ?>index.php/<?php echo $user1;?>/add_review" method="POST">
+         <form action="<?php echo base_url() ?>index.php/<?php echo $user1;?>/add_review/<?php echo $dest_id;?>" method="POST"enctype="multipart/form-data">
+             <input type="hidden"  id="dest_id" name="dest_id" value="<?php echo $dest_id;?>">
             <div class="form-group">
                <label for="comment">
                   <h5><strong>Write your review</strong></h5>
                </label>
-               <center><textarea class="form-control" rows="10" id="comment" cols="40"></textarea></center>
+               <center><textarea class="form-control" rows="10" id="comment" name="comment" cols="40"></textarea></center>
+               <span><font color = "red"><?php echo form_error("comment", "<font color='red'>", "</font>"); ?></font></span>
                <div style="padding-top:2%">
-                  <input type="button" value="Browse picture" class="btn btn-light">
+                   <label for="pic" class="btn btn-light">Browse image</label>
+                   <input type="file" id="pic" name="pic" style="display: none;" class="form-control-file">
+                   <?php if ($message!=null) echo "<font color='red'>".$message. "</font>";?>
                </div>
                <hr>
-               <input type="button" value="Add review" class="btn btn-warning">
+               <input type="submit" value="Add review" class="btn btn-warning">
             </div>
          </form>
       </div>

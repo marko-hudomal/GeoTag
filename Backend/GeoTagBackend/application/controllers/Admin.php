@@ -52,6 +52,7 @@ class Admin extends CI_Controller {
     // @return void
     public function load($page, $data=null) {
         $info['profile_pic'] = $this->get_img_name();
+        
         $data['last_pendings_html'] ="<p>Ovde idu requestovi za admina</p>";
         
         $this->load->view("templates/admin_header.php", $info);
@@ -142,10 +143,12 @@ public function get_all_destinations(){
 		echo $output;
     }
     
-     public function load_dest($id){
+     public function load_dest($id,$message=null){
        $data['dest_name'] = $this->destination_model->get_name($id);
        $data['dest_country'] = $this->destination_model->get_country($id);
        $data['all_reviews_current_destination_html'] = $this->review_model->get_html_all_reviews_admin($id);
+       $data['dest_id']=$id;
+       $data['message']=$message;
        
        $this->load("destination",$data);
     }
@@ -222,10 +225,65 @@ public function get_all_destinations(){
 
         if (!$this->upload->do_upload('pic')) {
             $message = $this->upload->display_errors();
-            $this->load("profile", $message);
+            $this->load("profile", Array("message"=>$message));
         } else {
             $this->User_model->change_photo($this->upload->data()['file_name']);
-            $this->load("profile", "Successfully changed username");
+            $this->load("profile", Array("message"=>"Successfully changed username"));
         }
+    }
+    
+    
+    public function add_review($id){
+        $this->form_validation->set_rules("comment", "Comment", "trim|required|min_length[2]|max_length[255]");
+        
+        $data['content']="";
+        if ($this->form_validation->run()) {
+            $data['content'] = $this->input->post('comment');  
+            
+            $data['upCount']=0;
+            $data['downCount']=0;
+
+            date_default_timezone_set("Europe/Belgrade");
+            $now = new DateTime();
+            $date=$now->format('Y-m-d');
+
+            $data['date']=$date;
+            $data['username']=$this->session->userdata('user')->username;
+            $data['idImg']=null;
+            $data['idDest']=$id;
+            
+            
+            
+            if (isset($_FILES['pic']) && $_FILES['pic']['error'] != UPLOAD_ERR_NO_FILE) {
+                
+            
+                $config['upload_path'] = './uploads/';
+                $config['allowed_types'] = 'gif|jpg|png';
+                $config['max_size'] = 1000;
+                $config['max_width'] = 2048;
+                $config['max_height'] = 1024;
+
+                $this->load->library('upload', $config);
+
+                if (!$this->upload->do_upload('pic')) {
+                    $message = (string)$this->upload->display_errors();
+                   
+                    $this->load_dest($id,$message);
+                    return;
+                } else {
+                    $data['idImg']=$this->review_model->add_photo($this->upload->data()['file_name']);
+                }
+            
+            }
+            
+        
+
+            $this->review_model->insert_review($data);
+             
+            $this->load_dest($id);
+        } else {
+            $this->load_dest($id);
+        }
+        
     }
 }
