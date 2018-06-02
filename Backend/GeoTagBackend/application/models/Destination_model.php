@@ -15,10 +15,11 @@ class Destination_model extends CI_Model{
     
     // insert new destination (new row) in table destination
     // @param array $data (represents one row in table destination)
-    // @return void
+    // @return int
     public function insert_destination($data){
         
         $this->db->insert('destination', $data);
+        return $insert_id = $this->db->insert_id();
     }  
     
     

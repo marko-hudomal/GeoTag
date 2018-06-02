@@ -14,6 +14,7 @@ class Super_user extends CI_Controller {
         parent::__construct();
         $this->load->model("User_model");
         $this->load->model("destination_model");
+        $this->load->model("request_model");
         $this->load->model("statistic_model");
         $this->load->model("review_model");
         
@@ -94,7 +95,8 @@ class Super_user extends CI_Controller {
                 $data['pending'] = 1;
                 $data['country'] = $this->input->post('country');
                 
-                $this->destination_model->insert_destination($data);
+                $idDest = $this->destination_model->insert_destination($data);
+                $this->request_model->insert("destination added", $idDest);
 
                 $this->load("super_user_add_destination","Successfully added destination");
                 } else {
@@ -189,7 +191,7 @@ class Super_user extends CI_Controller {
             $new_username = $this->input->post('usernameChange');
 
             $this->User_model->change_username($new_username);
-            $this->load("profile", "Successfully changed username");
+            $this->preview_profile("Successfully changed username");
         } else {
             $this->load("profile");
         }
@@ -205,13 +207,13 @@ class Super_user extends CI_Controller {
             $new_password = $this->input->post('newPass1');
 
             if (!$this->User_model->check_password($this->input->post('oldPass'),$this->session->userdata('user')->username)) {
-                $this->load("profile", "Wrong old password");
+                $this->preview_profile("Wrong old password");
             } else {
                 $this->User_model->change_password($new_password);
-                $this->load("profile", "Successfully changed password");
+                $this->preview_profile("Successfully changed password");
             }
         } else {
-            $this->load("profile");
+            $this->preview_profile();
         }
     }
 
@@ -229,10 +231,10 @@ class Super_user extends CI_Controller {
 
         if (!$this->upload->do_upload('pic')) {
             $message = $this->upload->display_errors();
-            $this->load("profile", $message,Array());
+            $this->preview_profile($message);
         } else {
             $this->User_model->change_photo($this->upload->data()['file_name']);
-            $this->load("profile", "Successfully changed username",Array());
+            $this->preview_profile("Successfully changed username");
         }
     }
     

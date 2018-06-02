@@ -18,6 +18,25 @@ class Request_model extends CI_Model{
         $this->load->model("review_model");
     }
     
+    public function insert($type, $id)
+    {
+        $sql = "";
+        switch($type){
+            case "destination added":
+                $sql = "insert into request (type, idDest)
+                values ('".$type."',".$id.")";
+                break;
+            case "negative review":
+                $sql = "insert into request (type, idRev)
+                values ('".$type+"',".$id.")";  
+                break;
+            case "user promotion":
+                $sql = "insert into request (type, username )
+                values ('".$type."',".$id.")";
+                break;
+        }
+        $this->db->query($sql);
+    }
     
     public function delete($request_id)
     {
@@ -48,7 +67,7 @@ class Request_model extends CI_Model{
                 $req_content="<strong>Destination: </strong>".$dest->name.", ".$dest->country."<hr>"."<Strong>Up/Down vote: </strong>".$rev->upCount."/".$rev->downCount."<hr><strong>Text: </strong><br>".$rev->content;
                 $button_func="<i>Delete review?</i>";
                 break;
-            case "user ready for promotion":
+            case "user promotion":
                 $req_content="3"; 
                 $button_function="";
                 break;

@@ -205,9 +205,9 @@ public function get_all_destinations(){
             $new_username = $this->input->post('usernameChange');
 
             $this->User_model->change_username($new_username);
-            $this->load("profile", Array("message"=>"Successfully changed username"));
+            $this->preview_profile("Successfully changed username");
         } else {
-            $this->load("profile");
+            $this->preview_profile();
         }
     }
 
@@ -221,13 +221,13 @@ public function get_all_destinations(){
             $new_password = $this->input->post('newPass1');
 
             if (!$this->User_model->check_password($this->input->post('oldPass'),$this->session->userdata('user')->username)) {
-                $this->load("profile", Array("message"=>"Wrong old password"));
+                $this->preview_profile("Wrong old password");
             } else {
                 $this->User_model->change_password($new_password);
-                $this->load("profile", Array("message"=>"Successfully changed username"));
+                $this->preview_profile("Successfully changed password");
             }
         } else {
-            $this->load("profile");
+            $this->preview_profile();
         }
     }
 
@@ -245,10 +245,10 @@ public function get_all_destinations(){
 
         if (!$this->upload->do_upload('pic')) {
             $message = $this->upload->display_errors();
-            $this->load("profile", Array("message"=>$message));
+            $this->preview_profile($message);
         } else {
             $this->User_model->change_photo($this->upload->data()['file_name']);
-            $this->load("profile", Array("message"=>"Successfully changed username"));
+            $this->preview_profile("Successfully changed username");
         }
     }
     
@@ -308,7 +308,7 @@ public function get_all_destinations(){
     }
     
     // loads profile view with needed data
-    public function preview_profile() {
+    public function preview_profile($message = "") {
         
         $data['review_count'] = $this->User_model->get_user_review_count($this->session->userdata('user')->username);
         $data['places_count'] = $this->User_model->get_user_added_places_count($this->session->userdata('user')->username);
@@ -317,6 +317,7 @@ public function get_all_destinations(){
         $up_down_count = $this->User_model->up_down_count($this->session->userdata('user')->username);
         $data['up_count'] = $up_down_count['upCount'];
         $data['down_count'] = $up_down_count['downCount'];
+        $data['message'] = $message;
         
         $this->load('profile', $data);
     }

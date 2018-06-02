@@ -86,9 +86,10 @@ class User extends CI_Controller {
             $new_username = $this->input->post('usernameChange');
 
             $this->User_model->change_username($new_username);
-            $this->load("profile", "Successfully changed username");
+            
+            $this->preview_profile("Successfully changed username");
         } else {
-            $this->load("profile");
+            $this->preview_profile();
         }
     }
 
@@ -102,13 +103,13 @@ class User extends CI_Controller {
             $new_password = $this->input->post('newPass1');
 
             if (!$this->User_model->check_password($this->input->post('oldPass'),$this->session->userdata('user')->username)) {
-                $this->load("profile", "Wrong old password");
+                $this->preview_profile("Wrong old password");
             } else {
                 $this->User_model->change_password($new_password);
-                $this->load("profile", "Successfully changed password");
+                $this->preview_profile("Successfully changed password");
             }
         } else {
-            $this->load("profile");
+            $this->preview_profile();
         }
     }
 
@@ -126,10 +127,11 @@ class User extends CI_Controller {
 
         if (!$this->upload->do_upload('pic')) {
             $message = $this->upload->display_errors();
-            $this->load("profile", $message,Array());
+            
+            $this->preview_profile($message);
         } else {
             $this->User_model->change_photo($this->upload->data()['file_name']);
-            $this->load("profile", "Successfully changed username",Array());
+            $this->preview_profile("Successfully changed username");
         }
     }
 
@@ -273,7 +275,7 @@ class User extends CI_Controller {
     }
     
     // loads profile view with needed data
-    public function preview_profile() {
+    public function preview_profile($message = "") {
         
         $data['review_count'] = $this->User_model->get_user_review_count($this->session->userdata('user')->username);
         $data['places_count'] = $this->User_model->get_user_added_places_count($this->session->userdata('user')->username);
@@ -283,7 +285,7 @@ class User extends CI_Controller {
         $data['up_count'] = $up_down_count['upCount'];
         $data['down_count'] = $up_down_count['downCount'];
         
-        $this->load('profile', null, $data);
+        $this->load('profile', $message, $data);
     }
     
     // previews profile_other if user is trying to view someone elses profile
