@@ -162,12 +162,17 @@ var bounds = new google.maps.LatLngBounds();
                                     url:"https://image.flaticon.com/icons/svg/526/526744.svg",
                                     scaledSize: new google.maps.Size(50,65), // scaled size
                         };
-			mark = new google.maps.Marker({
-			position: {lat: x, lng: y},
-			map: map,
-			draggable: true,
-                        icon
-		});
+        var path = window.location.pathname;
+        var page = path.split("/").pop();
+        if (page == 'super_user_add_destination'){
+            mark = new google.maps.Marker({
+                position: {lat: x, lng: y},
+                map: map,
+                draggable: true,
+                icon
+            });
+        }
+	
 		//var lat = homeMarker.getPosition().lat();
 		//var lng = homeMarker.getPosition().lng();
         // Multiple Markers
