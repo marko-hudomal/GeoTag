@@ -35,7 +35,13 @@ class Review_model  extends CI_Model{
         $N=10;
         $ret = "";  
         $query = $this->db->query("SELECT * from review ORDER BY idRev DESC LIMIT ".$N);
-
+        //User validation
+            if (($this->session->userdata('user')) != NULL) {
+            $user1 = $this->session->userdata('user')->status;
+            }
+            else
+                $user1 = "guest";
+            
         foreach ($query->result() as $row)
         {
             $dest_name=$this->destination_model->get_name($row->idDest);
@@ -45,11 +51,25 @@ class Review_model  extends CI_Model{
                 $ret=$ret."<div class=\"card\" style=\"margin-top:20px\">
                <div class=\"card-header\">
                   <table width=\"100%\">
-                     <tr>
-                        <td width=\"74%\"><strong>".$row->username.", ".$dest_name." </strong></td>
-                        <td width=\"13%\" align=\"center\"><a href=\"#\"><img src=\"".base_url()."img/plus-vote.png\" width=\"20px\"></a>&nbsp;".$row->upCount."
-                        <td width=\"13%\" align=\"center\"><a href=\"#\"><img src=\"".base_url()."img/minus-vote.png\" width=\"20px\"></a>&nbsp;".$row->downCount."
-                     </tr>
+                    <tr>
+                        <td width=\"70%\"><strong>".$row->username.", ".$dest_name." </strong></td>
+                        <td width=\"10%\" align=\"center\" style=\"text-align: right;\"  >
+
+                                <input disabled type=\"image\" name=\"submit\" src=\"".base_url()."img/plus-vote-dis.png\" width=\"30px\" border=\"0\" alt=\"Submit\" style=\"\" />
+
+                        </td>
+                        <td width=\"5%\" align=\"center\" style=\"padding-bottom: 0px;\">
+                             ".$row->upCount."
+                        </td>
+                        <td width=\"10%\" align=\"center\" style=\"text-align: right\" >
+
+                                <input disabled type=\"image\" name=\"submit\" src=\"".base_url()."img/minus-vote-dis.png\" width=\"30px\" border=\"0\" alt=\"Submit\" style=\"\" />
+
+                        </td>
+                        <td width=\"5%\" align=\"center\" style=\"padding-bottom: 0px;\">
+                            ".$row->downCount."
+                        </td>
+                    </tr>
                   </table>
                </div>
                <div class=\"card-body\">
@@ -64,9 +84,23 @@ class Review_model  extends CI_Model{
                    <div class=\"card-header\">
                       <table width=\"100%\">
                          <tr>
-                            <td width=\"74%\"><strong><a href='".base_url()."index.php/".$this->session->userdata('user')->status."/preview_other_user/".$row->username."'>".$row->username."</a>, ".$dest_name." </strong></td>
-                            <td width=\"13%\" align=\"center\"><a href=\"#\"><img src=\"".base_url()."img/plus-vote.png\" width=\"20px\"></a>&nbsp;".$row->upCount."
-                            <td width=\"13%\" align=\"center\"><a href=\"#\"><img src=\"".base_url()."img/minus-vote.png\" width=\"20px\"></a>&nbsp;".$row->downCount."
+                            <td width=\"70%\"><strong><a href='".base_url()."index.php/".$this->session->userdata('user')->status."/preview_other_user/".$row->username."'>".$row->username."</a>, ".$dest_name." </strong></td>
+                            <td width=\"10%\" align=\"center\" style=\"text-align: right;\"  >
+                                <form action=\"".base_url()."index.php/".$user1."/vote_up/".$row->idRev."\" method=\"PUT\" style=\"padding-top: 0px;\">
+                                    <input type=\"image\" name=\"submit\" src=\"".base_url()."img/plus-vote.png\" width=\"30px\" border=\"0\" alt=\"Submit\" style=\"\" />
+                                </form>
+                            </td>
+                            <td width=\"5%\" align=\"center\" style=\"padding-bottom: 15px;\">
+                                 ".$row->upCount."
+                            </td>
+                            <td width=\"10%\" align=\"center\" style=\"text-align: right\" >
+                                <form action=\"".base_url()."index.php/".$user1."/vote_down/".$row->idRev."\" method=\"PUT\" style=\"padding-top: 0px;\">
+                                    <input type=\"image\" name=\"submit\" src=\"".base_url()."img/minus-vote.png\" width=\"30px\" border=\"0\" alt=\"Submit\" style=\"\" />
+                                </form>  
+                            </td>
+                            <td width=\"5%\" align=\"center\" style=\"padding-bottom: 15px;\">
+                                ".$row->downCount."
+                            </td>
                          </tr>
                       </table>
                    </div>
@@ -82,6 +116,13 @@ class Review_model  extends CI_Model{
     public function get_html_all_reviews($destination_id){
         $ret = "";  
         $query = $this->db->query("SELECT * from review where idDest=".$destination_id." ORDER BY idRev DESC");
+        //User validation
+        if (($this->session->userdata('user')) != NULL) {
+        $user1 = $this->session->userdata('user')->status;
+        }
+        else
+            $user1 = "guest";
+            
         foreach ($query->result() as $row)
         {       
             $image_src=$this->get_img_name($row->idImg);
@@ -93,13 +134,27 @@ class Review_model  extends CI_Model{
                 $rew_img="";
             }
             if ($this->session->userdata('user') == NULL) {
-                $ret=$ret." <div class=\"card\" style=\"margin-top:20px;\">
+                $ret=$ret." <div class=\"card\" style=\"margin-top:20px;overflow:auto;\">
                             <div class=\"card-header\">
                                <table width=\"100%\">
                                   <tr>
-                                     <td width=\"74%\"><strong>$row->username</a> </strong></td>
-                                     <td width=\"12%\"><a href=\"#\"><img src=\"".base_url()."img/plus-vote.png\" width=\"30px\"></a>&nbsp;".$row->upCount."
-                                     <td width=\"12%\"><a href=\"#\"><img src=\"".base_url()."img/minus-vote.png\" width=\"30px\"></a>&nbsp;".$row->downCount."
+                                    <td width=\"70%\"><strong>$row->username</a> </strong></td>
+                                    <td width=\"10%\" align=\"center\" style=\"text-align: center;\"  >
+                                         
+                                            <input disabled  type=\"image\" name=\"submit\" src=\"".base_url()."img/plus-vote-dis.png\" width=\"40px\" border=\"0\" alt=\"Submit\" style=\"\" />
+                                         
+                                    </td>
+                                    <td width=\"5%\" align=\"center\" style=\"padding-bottom: 0px; text-align:left\">
+                                         ".$row->upCount."
+                                    </td>
+                                    <td width=\"10%\" align=\"center\" style=\"text-align: center\" >
+                                         
+                                            <input disabled  type=\"image\" name=\"submit\" src=\"".base_url()."img/minus-vote-dis.png\" width=\"40px\" border=\"0\" alt=\"Submit\" style=\"\" />
+                                          
+                                    </td>
+                                    <td width=\"5%\" align=\"center\" style=\"padding-bottom: 0px; text-align:left\">
+                                        ".$row->downCount."
+                                    </td>
                                   </tr>
                                </table>
                             </div>
@@ -114,13 +169,27 @@ class Review_model  extends CI_Model{
                         </div>";
             }
             else{
-            $ret=$ret." <div class=\"card\" style=\"margin-top:20px;\">
+            $ret=$ret." <div class=\"card\" style=\"margin-top:20px;overflow:auto;\">
                             <div class=\"card-header\">
                                <table width=\"100%\">
                                   <tr>
-                                     <td width=\"74%\"><strong><a href='".base_url()."index.php/".$this->session->userdata('user')->status."/preview_other_user/".$row->username."'>".$row->username."</a> </strong></td>
-                                     <td width=\"12%\"><a href=\"#\"><img src=\"".base_url()."img/plus-vote.png\" width=\"30px\"></a>&nbsp;".$row->upCount."
-                                     <td width=\"12%\"><a href=\"#\"><img src=\"".base_url()."img/minus-vote.png\" width=\"30px\"></a>&nbsp;".$row->downCount."
+                                    <td width=\"70%\"><strong><a href='".base_url()."index.php/".$this->session->userdata('user')->status."/preview_other_user/".$row->username."'>".$row->username."</a> </strong></td>
+                                    <td width=\"10%\" align=\"center\" style=\"text-align: center;\"  >
+                                        <form action=\"".base_url()."index.php/".$user1."/vote_up/".$row->idRev."/".$destination_id."\" method=\"PUT\" style=\"padding-top: 0px;\">
+                                            <input type=\"image\" name=\"submit\" src=\"".base_url()."img/plus-vote.png\" width=\"40px\" border=\"0\" alt=\"Submit\" style=\"\" />
+                                        </form>
+                                    </td>
+                                    <td width=\"5%\" align=\"center\" style=\"padding-bottom: 15px; text-align:left\">
+                                         ".$row->upCount."
+                                    </td>
+                                    <td width=\"10%\" align=\"center\" style=\"text-align: center\" >
+                                        <form action=\"".base_url()."index.php/".$user1."/vote_down/".$row->idRev."/".$destination_id."\" method=\"PUT\" style=\"padding-top: 0px;\">
+                                            <input type=\"image\" name=\"submit\" src=\"".base_url()."img/minus-vote.png\" width=\"40px\" border=\"0\" alt=\"Submit\" style=\"\" />
+                                        </form>  
+                                    </td>
+                                    <td width=\"5%\" align=\"center\" style=\"padding-bottom: 15px; text-align:left\">
+                                        ".$row->downCount."
+                                    </td>
                                   </tr>
                                </table>
                             </div>
@@ -161,13 +230,27 @@ class Review_model  extends CI_Model{
                 $user1 = "guest";
             
             $ret=$ret." <div class=\"card\" style=\"margin-top:20px\">
-                            <div class=\"card-header\">
+                            <div class=\"card-header\" style=\"overflow:auto\">
                                <table width=\"100%\">
                                   <tr>
-                                     <td width=\"70%\"><strong><a href='".base_url()."index.php/".$this->session->userdata('user')->status."/preview_other_user/".$row->username."'>".$row->username."</a> </strong></td>
-                                     <td width=\"10%\"><a href=\"#\"><img src=\"".base_url()."img/plus-vote.png\" width=\"30px\"></a>&nbsp;".$row->upCount."</td>
-                                     <td width=\"10%\"><a href=\"#\"><img src=\"".base_url()."img/minus-vote.png\" width=\"30px\"></a>&nbsp;".$row->downCount."</td>
-                                     <td width=\"10\">
+                                    <td width=\"60%\"><strong><a href='".base_url()."index.php/".$this->session->userdata('user')->status."/preview_other_user/".$row->username."'>".$row->username."</a> </strong></td>
+                                    <td width=\"10%\" align=\"center\" style=\"text-align: right;\"  >
+                                        <form action=\"".base_url()."index.php/".$user1."/vote_up/".$row->idRev."\" method=\"PUT\" style=\"padding-top: 0px;\">
+                                            <input type=\"image\" name=\"submit\" src=\"".base_url()."img/plus-vote.png\" width=\"30px\" border=\"0\" alt=\"Submit\" style=\"\" />
+                                        </form>
+                                    </td>
+                                    <td width=\"5%\" align=\"center\" style=\"padding-bottom: 15px;\">
+                                         ".$row->upCount."
+                                    </td>
+                                    <td width=\"10%\" align=\"center\" style=\"text-align: right\" >
+                                        <form action=\"".base_url()."index.php/".$user1."/vote_down/".$row->idRev."\" method=\"PUT\" style=\"padding-top: 0px;\">
+                                            <input type=\"image\" name=\"submit\" src=\"".base_url()."img/minus-vote.png\" width=\"30px\" border=\"0\" alt=\"Submit\" style=\"\" />
+                                        </form>  
+                                    </td>
+                                    <td width=\"5%\" align=\"center\" style=\"padding-bottom: 15px;\">
+                                        ".$row->downCount."
+                                    </td>
+                                     <td width=\"10\" style=\"padding-bottom: 15px;\">
                                         <form action=\"".base_url()."index.php/".$user1."/delete_review/".$destination_id."/".$row->idRev."\" method=\"PUT\" >
                                             <input type=\"submit\" value=\"Delete Review\" class=\"float-right btn btn-outline-danger\">
                                         </form>

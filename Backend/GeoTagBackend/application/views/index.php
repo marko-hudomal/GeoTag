@@ -149,13 +149,13 @@
                // alert (g);
 		if (g=="male"){
                      
-                    document.getElementById("signup_icon").src="http://localhost/GeoTagBackend/img/man.png";
+                    document.getElementById("signup_icon").src="<?php echo base_url() ?>img/man.png";
                 }
 			
 		else
 			if (g=="female"){
                            
-                            document.getElementById("signup_icon").src="http://localhost/GeoTagBackend/img/women.png";
+                            document.getElementById("signup_icon").src="<?php echo base_url() ?>img/women.png";
 
                         }
 				
