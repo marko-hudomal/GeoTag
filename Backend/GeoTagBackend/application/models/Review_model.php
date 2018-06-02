@@ -92,6 +92,28 @@ class Review_model  extends CI_Model{
             {
                 $rew_img="";
             }
+            if ($this->session->userdata('user') == NULL) {
+                $ret=$ret." <div class=\"card\" style=\"margin-top:20px;\">
+                            <div class=\"card-header\">
+                               <table width=\"100%\">
+                                  <tr>
+                                     <td width=\"74%\"><strong>$row->username</a> </strong></td>
+                                     <td width=\"12%\"><a href=\"#\"><img src=\"".base_url()."img/plus-vote.png\" width=\"30px\"></a>&nbsp;".$row->upCount."
+                                     <td width=\"12%\"><a href=\"#\"><img src=\"".base_url()."img/minus-vote.png\" width=\"30px\"></a>&nbsp;".$row->downCount."
+                                  </tr>
+                               </table>
+                            </div>
+                            <div class=\"card-body\" >
+                                <div class=\"media\" >
+                                    ".$rew_img."
+                                    <div class=\"media-body\" style=\"overflow:auto;\">
+                                      <i>".$row->content."</i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>";
+            }
+            else{
             $ret=$ret." <div class=\"card\" style=\"margin-top:20px;\">
                             <div class=\"card-header\">
                                <table width=\"100%\">
@@ -111,6 +133,7 @@ class Review_model  extends CI_Model{
                                 </div>
                             </div>
                         </div>";
+            }
         }
         
         return $ret;
