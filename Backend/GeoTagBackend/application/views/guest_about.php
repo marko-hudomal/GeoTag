@@ -5,7 +5,7 @@
 
 					<div class="col-md-12">
 
-						<div class="jumbotron" style="height:700px; padding:10px;padding-left:20px;padding-right:20px;background-size:cover; background-image: url('./img/brown-gradient.png');">
+						<div class="jumbotron" style="height:700px; padding:10px;padding-left:20px;padding-right:20px;background-size:cover; background-image: url('<?php echo base_url()?>img/brown-gradient.png');">
 						<br>
 						<div class="media" style="margin:10px">
 							<img src="<?php echo base_url()?>img/logo.png" width="150px">

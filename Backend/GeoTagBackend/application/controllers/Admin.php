@@ -65,16 +65,55 @@ class Admin extends CI_Controller {
     
     public function approve_request($request_id){
         //Proveri se tim requesta i u zavinosti od toga izvrsi funkcija, i obrise request
+        $request=$this->request_model->get_request($request_id);
+        
+        switch ($request->type) {
+            case "destination added":
+                //Brise destinaciju
+                $this->destination_model->approve_destination($request->idDest);
+                break;
+            case "negative review":         
+                $rev=$this->review_model->get_review($request->idRev);
+                $this->review_model->delete($rev->idDest);
+                break;
+            case "user promotion":
+                $this->user_model->promote_user($request->username);
+                break;
+            default:
+
+                break;
+            }
+        $this->request_model->delete($request_id);
         $this->load("admin_home");
     }
     public function dismiss_request($request_id){
         //Brisanje requesta
+        $request=$this->request_model->get_request($request_id);
+        
+        switch ($request->type) {
+            case "destination added":
+                //Brise destinaciju
+                $dest=$this->destination_model->get_destination($request->idDest);
+                $this->destination_model->delete($dest->idDest);
+                break;
+            case "negative review":         
+                //Nista
+                break;
+            case "user promotion":
+                //Nista
+                break;
+            default:
+                $req_content="Request type unknown..";
+                $button_func="";
+                break;
+            }
+            
         $this->request_model->delete($request_id);
         $this->load("admin_home");
     }
     public function delete_review($destination_id, $review_id){
         //Brisanje reviewa
-        $this->review_model->delete($review_id);
+        $this->review_model->delete($review_id);      
         $this->load_dest($destination_id);
     }
     
