@@ -358,4 +358,30 @@ public function get_all_destinations(){
         else
             $this->preview_profile();
     }
+    
+    public function vote_up($review_id, $destination_id=null)
+    {
+        
+        //kod
+        
+        //Za povratak na stranicu
+        if ($destination_id==null)
+        {
+            $this->index();
+        }else
+            $this->load_dest($destination_id);
+    }
+    public function vote_down($review_id, $destination_id=null)
+    {
+        
+        //kod
+        
+        
+        //Za povratak na stranicu
+        if ($destination_id==null)
+        {
+            $this->index();
+        }else
+            $this->load_dest($destination_id);
+    }
 }
