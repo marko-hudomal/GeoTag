@@ -339,6 +339,19 @@ public function get_all_destinations(){
             $data['lastname'] = $full_name['lastname'];
             $data['username'] = $other;
             
+            $gender = $this->User_model->get_gender($other);
+            $data['gender'] = $gender;
+            
+            $img_id = $this->User_model->get_img_id($other);
+            $img_name = $this->User_model->get_img_name($img_id);
+            
+            
+            if ($img_name == "avatar.png")
+                $profile_pic = base_url() . "img/avatar.png";
+            else {
+                $profile_pic =  base_url() . "uploads/" . $img_name;
+            }
+            $data['profile_pic'] = $profile_pic;
             
             $this->load("profile_other", $data);
         }

@@ -108,6 +108,15 @@ class User_model extends CI_Model {
         }
     }
     
+    public function get_img_id($username) {
+        $this->db->where('username', $username);
+        $this->db->select('idImg');
+        $this->db->from('user');
+        $result = $this->db->get()->row_array();
+        
+        return $result['idImg'];
+    }
+    
     
     // get number of reviews made by user, for user-profile page
     // @param string $username
@@ -158,5 +167,17 @@ class User_model extends CI_Model {
         $result = $this->db->get()->row_array();
         
         return $result;
+    }
+    
+    // get gender of a user, for other-user-profile page
+    // @param string $username
+    // @return array
+    public function get_gender($username) {
+        $this->db->where('username', $username);
+        $this->db->select('gender');
+        $this->db->from('user');
+        $result = $this->db->get()->row_array();
+        
+        return $result['gender'];
     }
 }

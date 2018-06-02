@@ -10,7 +10,7 @@ Matke:	unapredjivanje u superuser,
 
 Jakov:	apdejtovanje statistike za svako dodavanje destinacije rivjua itd...
 	pravljenje linkova preko pinova
-	azuriranje slike i pola za other profile
+	azuriranje slike i pola za other profile [done]
 
 Dejan:	pretraga korisnika
 	dodavanje destinaciju u request	
