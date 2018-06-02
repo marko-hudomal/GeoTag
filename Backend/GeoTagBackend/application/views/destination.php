@@ -28,7 +28,7 @@
                 </table>
          
                <hr>
-               <div class="scrollable" style="height:90%;width: 100%">
+               <div class="scrollable" style="height:75%;width: 100%;overflow:auto;">
                       
                      <?php echo $all_reviews_current_destination_html; ?>
                      
