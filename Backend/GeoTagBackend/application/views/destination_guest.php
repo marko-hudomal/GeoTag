@@ -2,12 +2,12 @@
 <div class="row">
    <div class="col-12">
        
-      <div class="jumbotron" style="background-size:cover; background-image: url('<?php echo base_url(); ?>img/brown-gradient.png'); height:85%;">
+      <div class="jumbotron" style="background-size:cover; background-image: url('<?php echo base_url(); ?>img/brown-gradient.png'); height:85%; overflow:auto;">
          <div class="media">
             <img src="<?php echo base_url(); ?>img/destination-icon.png" width="180px" style="margin-right:20px">
             
             <br>
-            <div class="media-body">
+            <div class="media-body" style="overflow:auto;">
                 <table>
                     <tr>
                         <td style="width: 100%">
@@ -30,7 +30,7 @@
                 </table>
          
                <hr>
-               <div class="scrollable" style="width: 100%;height:75%;overflow:auto;">
+               <div style="width: 100%;height:80%;overflow:auto;marign-bottom:10px;">
                       
                      <?php echo $all_reviews_current_destination_html; ?>
                      

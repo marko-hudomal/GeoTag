@@ -1,7 +1,7 @@
 <div class="container-fluid">
 <div class="row">
    <div class="col-8">      
-      <div class="jumbotron" style="width:100%;background-size:cover; background-image: url('<?php echo base_url(); ?>img/brown-gradient.png'); height:85%;">
+      <div class="jumbotron" style="width:100%;background-size:cover; background-image: url('<?php echo base_url(); ?>img/brown-gradient.png'); height:85%; overflow:auto;">
          <div class="media" style="width: 100%" >
             <img src="<?php echo base_url(); ?>img/destination-icon.png" width="180px" style="margin-right:20px">
             <br>
@@ -28,7 +28,7 @@
                 </table>
          
                <hr>
-               <div class="scrollable" style="height:75%;width: 100%;overflow:auto;">
+               <div style="height:80%;width: 100%;overflow:auto;marign-bottom:10px;">
                       
                      <?php echo $all_reviews_current_destination_html; ?>
                      
@@ -39,7 +39,7 @@
       </div>
    </div>
    <div class="col-4">
-      <div class="jumbotron" style="background-size:cover; background-image: url('<?php echo base_url(); ?>img/brown-gradient.png'); height:85%;">
+      <div class="jumbotron" style="background-size:cover; background-image: url('<?php echo base_url(); ?>img/brown-gradient.png'); height:85%; overflow:auto;">
          <?php
             if (($this->session->userdata('user')) != NULL) {
             $user1 = $this->session->userdata('user')->status;
