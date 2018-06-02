@@ -324,8 +324,23 @@ public function get_all_destinations(){
     // previews profile_other if user is trying to view someone elses profile
     public function preview_other_user($other) {
         
-        if ($other != $this->session->userdata('user')->username)
-            $this->load("profile_other", null, $other);
+        if ($other != $this->session->userdata('user')->username) {
+            $data['review_count'] = $this->User_model->get_user_review_count($other);
+            $data['places_count'] = $this->User_model->get_user_added_places_count($other);
+
+
+            $up_down_count = $this->User_model->up_down_count($other);
+            $data['up_count'] = $up_down_count['upCount'];
+            $data['down_count'] = $up_down_count['downCount'];
+            
+            $full_name = $this->User_model->get_full_name($other);
+            $data['firstname'] = $full_name['firstname'];
+            $data['lastname'] = $full_name['lastname'];
+            $data['username'] = $other;
+            
+            
+            $this->load("profile_other", $data);
+        }
         else
             $this->preview_profile();
     }
