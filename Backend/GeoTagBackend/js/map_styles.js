@@ -177,7 +177,7 @@ var bounds = new google.maps.LatLngBounds();
         markers.push([jArray[i]['name']+", "+jArray[i]['country'],parseFloat(jArray[i]['latitude']),parseFloat(jArray[i]['longitude'])]);
 		infoWindowContent.push(['<div class="info_content">' +
         '<h3>'+jArray[i]['idDest']+". "+jArray[i]['name']+", "+jArray[i]['country']+'</h3>' +
-           '</div>']);	
+           '</div>']);
     }
 	
                         
