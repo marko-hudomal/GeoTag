@@ -16,6 +16,7 @@ class Request_model extends CI_Model{
         parent::__construct();
         $this->load->model("destination_model");
         $this->load->model("review_model");
+        $this->load->model("user_model");
     }
     
     public function insert($type, $id)
@@ -44,6 +45,10 @@ class Request_model extends CI_Model{
         $this->db->delete('request');
     }
     
+    public function get_request($id){
+        $query = $this->db->query("select * from request where idReq=".$id);
+        return $query->result()[0];
+    }
     
     public function get_html_all_requests()
     {
@@ -68,8 +73,9 @@ class Request_model extends CI_Model{
                 $button_func="<i>Delete review?</i>";
                 break;
             case "user promotion":
-                $req_content="3"; 
-                $button_function="";
+                $status=$this->user_model->get_status($row->username);
+                $req_content="<strong>Username: </strong>".$row->username."<hr> <strong>Status: </strong>".$status; 
+                $button_func="<i>Promote to SuperUser?</i>";
                 break;
             default:
                 $req_content="Request type unknown..";

@@ -1,12 +1,12 @@
   var mark = null;
 
- 
   function refresh()
   {
     myMap();
     google.maps.event.trigger(map, 'resize');
   }
       function myMap() {
+
         // Create a new StyledMapType object, passing it an array of styles,
         // and the name to be displayed on the map type control.
           var type=0;
@@ -170,21 +170,15 @@ var bounds = new google.maps.LatLngBounds();
 		});
 		//var lat = homeMarker.getPosition().lat();
 		//var lng = homeMarker.getPosition().lng();
-        // Multiple Markers
+    // Multiple Markers
 	markers =[];
 	var infoWindowContent = [];
-        var controller = document.getElementById('pass_controller_type').innerHTML;
-        
-        
 	for(var i=0;i<jArray.length;i++){
-            var load_destination = controller + "/load_dest/" + jArray[i]['idDest'];
-            load_destination = load_destination.replace(/\s/g, '');
-            
-            markers.push([jArray[i]['name']+", "+jArray[i]['country'],parseFloat(jArray[i]['latitude']),parseFloat(jArray[i]['longitude'])]);
-	infoWindowContent.push(['<div class="info_content">' +
-        '<h3><a href="'+load_destination+'">'+jArray[i]['name']+"</a>, "+jArray[i]['country']+'</h3>' +
+        markers.push([jArray[i]['name']+", "+jArray[i]['country'],parseFloat(jArray[i]['latitude']),parseFloat(jArray[i]['longitude'])]);
+		infoWindowContent.push(['<div class="info_content">' +
+        '<h3>'+jArray[i]['idDest']+". "+jArray[i]['name']+", "+jArray[i]['country']+'</h3>' +
            '</div>']);
-        }
+    }
 	
                         
         
@@ -211,7 +205,6 @@ var bounds = new google.maps.LatLngBounds();
 
         // Automatically center the map fitting all markers on the screen
         map.fitBounds(bounds);
-        
     }
 	
 	

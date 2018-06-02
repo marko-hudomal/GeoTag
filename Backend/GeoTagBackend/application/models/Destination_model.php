@@ -22,7 +22,16 @@ class Destination_model extends CI_Model{
         return $insert_id = $this->db->insert_id();
     }  
     
-    
+    public function delete($destination_id)
+    {
+        $this->db->where('idDest', $destination_id);
+        $this->db->delete('destination');
+    }
+    public function approve_destination($destination_id){
+        $this->db->set('pending', 0);
+        $this->db->where('idDest', $destination_id);
+        $this->db->update('destination');
+    }
    function search_data($query)
 	{
 		$this->db->select("*");
