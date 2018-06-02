@@ -33,8 +33,8 @@ class Guest extends CI_Controller {
         }
         $phpArray = $this->get_all_destinations();
         ?>
-<script type="text/javascript">var jArray =<?php echo json_encode($phpArray); ?>;</script>
-<?php
+        <script type="text/javascript">var jArray =<?php echo json_encode($phpArray); ?>;</script>
+        <?php
         
 
     }

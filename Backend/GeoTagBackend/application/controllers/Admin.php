@@ -54,7 +54,7 @@ class Admin extends CI_Controller {
     // @return void
     public function load($page, $data=null) {
         $info['profile_pic'] = $this->get_img_name();       
-        if ($page=="admin_home") $data['last_pendings_html'] =$this->request_model->get_html_all_requests();
+        $data['last_pendings_html'] =$this->request_model->get_html_all_requests();
         
         $this->load->view("templates/admin_header.php", $info);
         $this->load->view($page . ".php", $data);
@@ -138,7 +138,7 @@ public function get_all_destinations(){
 		$data = $this->destination_model->search_data($query);
 		$output .= '
 		<div class="table-responsive">
-					<table class="table bg-light">
+		<table class="table bg-light">
 
 		';
 		if($data->num_rows() > 0)
@@ -190,7 +190,7 @@ public function get_all_destinations(){
                 
                 $this->destination_model->insert_destination($data);
 
-                $this->load("super_user_add_destination","Successfully added destination");
+                $this->load("super_user_add_destination", Array("message"=>"Successfully changed username"));
                 } else {
                     $this->load("super_user_add_destination");
                 }
@@ -205,7 +205,7 @@ public function get_all_destinations(){
             $new_username = $this->input->post('usernameChange');
 
             $this->User_model->change_username($new_username);
-            $this->load("profile", "Successfully changed username");
+            $this->load("profile", Array("message"=>"Successfully changed username"));
         } else {
             $this->load("profile");
         }
@@ -221,10 +221,10 @@ public function get_all_destinations(){
             $new_password = $this->input->post('newPass1');
 
             if (!$this->User_model->check_password($this->input->post('oldPass'),$this->session->userdata('user')->username)) {
-                $this->load("profile", "Wrong old password");
+                $this->load("profile", Array("message"=>"Wrong old password"));
             } else {
                 $this->User_model->change_password($new_password);
-                $this->load("profile", "Successfully changed password");
+                $this->load("profile", Array("message"=>"Successfully changed username"));
             }
         } else {
             $this->load("profile");
