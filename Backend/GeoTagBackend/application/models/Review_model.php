@@ -64,7 +64,7 @@ class Review_model  extends CI_Model{
                    <div class=\"card-header\">
                       <table width=\"100%\">
                          <tr>
-                            <td width=\"74%\"><strong><a href='http://localhost/GeoTagBackend/index.php/".$this->session->userdata('user')->status."/preview_other_user/".$row->username."'>".$row->username."</a>, ".$dest_name." </strong></td>
+                            <td width=\"74%\"><strong><a href='".base_url()."index.php/".$this->session->userdata('user')->status."/preview_other_user/".$row->username."'>".$row->username."</a>, ".$dest_name." </strong></td>
                             <td width=\"13%\" align=\"center\"><a href=\"#\"><img src=\"".base_url()."img/plus-vote.png\" width=\"20px\"></a>&nbsp;".$row->upCount."
                             <td width=\"13%\" align=\"center\"><a href=\"#\"><img src=\"".base_url()."img/minus-vote.png\" width=\"20px\"></a>&nbsp;".$row->downCount."
                          </tr>
@@ -96,7 +96,7 @@ class Review_model  extends CI_Model{
                             <div class=\"card-header\">
                                <table width=\"100%\">
                                   <tr>
-                                     <td width=\"76%\"><strong>".$row->username." </strong></td>
+                                     <td width=\"74%\"><strong><a href='".base_url()."index.php/".$this->session->userdata('user')->status."/preview_other_user/".$row->username."'>".$row->username."</a> </strong></td>
                                      <td width=\"12%\"><a href=\"#\"><img src=\"".base_url()."img/plus-vote.png\" width=\"30px\"></a>&nbsp;".$row->upCount."
                                      <td width=\"12%\"><a href=\"#\"><img src=\"".base_url()."img/minus-vote.png\" width=\"30px\"></a>&nbsp;".$row->downCount."
                                   </tr>
@@ -141,7 +141,7 @@ class Review_model  extends CI_Model{
                             <div class=\"card-header\">
                                <table width=\"100%\">
                                   <tr>
-                                     <td width=\"70%\"><strong>".$row->username." </strong></td>
+                                     <td width=\"70%\"><strong><a href='".base_url()."index.php/".$this->session->userdata('user')->status."/preview_other_user/".$row->username."'>".$row->username."</a> </strong></td>
                                      <td width=\"10%\"><a href=\"#\"><img src=\"".base_url()."img/plus-vote.png\" width=\"30px\"></a>&nbsp;".$row->upCount."</td>
                                      <td width=\"10%\"><a href=\"#\"><img src=\"".base_url()."img/minus-vote.png\" width=\"30px\"></a>&nbsp;".$row->downCount."</td>
                                      <td width=\"10\">

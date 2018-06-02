@@ -318,6 +318,7 @@ class Super_user extends CI_Controller {
             $full_name = $this->User_model->get_full_name($other);
             $data['firstname'] = $full_name['firstname'];
             $data['lastname'] = $full_name['lastname'];
+            $data['username'] = $other;
             
             $this->load("profile_other", null, $data);
         }
