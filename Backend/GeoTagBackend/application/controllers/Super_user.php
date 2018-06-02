@@ -65,11 +65,7 @@ class Super_user extends CI_Controller {
         $this->load->view($page.".php", $data);
         $this->load->view("templates/footer.php");
     }
-    public function delete_review($destination_id, $review_id){
-        //Brisanje reviewa
-        $this->review_model->delete($review_id);      
-        $this->load_dest($destination_id);
-    }
+    
     // get img name by its id if null return default avatar
     // @param string $id
     // @return string

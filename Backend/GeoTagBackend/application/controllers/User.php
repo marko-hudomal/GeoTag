@@ -53,11 +53,6 @@ class User extends CI_Controller {
     // and add all information reading from database on load here
     // @param string $page, string $message
     // @return void
-    public function delete_review($destination_id, $review_id){
-        //Brisanje reviewa
-        $this->review_model->delete($review_id);      
-        $this->load_dest($destination_id);
-    }
     public function load($page, $message = null,$data=null) {
         $info['profile_pic'] = $this->get_img_name();
         $data['last_reviews_html'] = $this->review_model->get_html_last_n_reviews();

@@ -24,15 +24,7 @@ class User_model extends CI_Model {
     public function insert_user($data) {
         $this->db->insert('user', $data);
     }
-    public function promote_user($username)
-    {   
-        //Ako nije status = user, odbacuje se
-        if ($this->get_status($username)!="user") {return;}
-        
-        $this->db->set('status', "super_user");
-        $this->db->where('username', $username);
-        $this->db->update('user');
-    }
+
     // get user acording to his username and store it in variable $user
     // return bool is user with that username found or not
     // @param string $username
@@ -47,7 +39,7 @@ class User_model extends CI_Model {
             return FALSE;
         }
     }
-    
+
     // check if password is valid for current user 
     // return bool is password valid or not
     // @param string $password
@@ -187,13 +179,5 @@ class User_model extends CI_Model {
         $result = $this->db->get()->row_array();
         
         return $result['gender'];
-    }
-    public function get_status($username){
-        $this->db->where('username', $username);
-        $this->db->select('status');
-        $this->db->from('user');
-        $result = $this->db->get()->row_array();
-        
-        return $result['status'];
     }
 }
