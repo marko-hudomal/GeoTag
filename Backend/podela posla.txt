@@ -1,9 +1,7 @@
-Hudi:	doda dugme za brisanje korisnika i unapredjenje korisnika kada ga gleda admin
-	pripremis teren za matketove votove, 
-	odobravanje rikvestova
-	dodaj dugme za sliku destinacije
-	korisnik moze da obrise svoj rivju
-	
+Hudi:	pripremis teren za matketove votove,[done]
+	odobravanje rikvestova[done]
+	korisnik moze da obrise svoj rivju[done] + zabrana glasanja za samog sebe[done]
+
 Matke:	unapredjivanje u superuser,
 	votovi,
 	brisanje korisnika
@@ -11,6 +9,12 @@ Matke:	unapredjivanje u superuser,
 Jakov:	apdejtovanje statistike za svako dodavanje destinacije rivjua itd...
 	pravljenje linkova preko pinova
 	azuriranje slike i pola za other profile [done]
+	doda dugme za brisanje korisnika i unapredjenje korisnika kada ga gleda admin[od Hudija] i dugme za promenu slike destinacije kada gleda superuser/admin [od Hudija] (Ili ako ne mozes rasporedi se sa cirom)
 
 Dejan:	pretraga korisnika
 	dodavanje destinaciju u request	
+
+
+Dodatak: Cira nek podesi u pretrazi destinacije da ne izlaze one sa pending=1 atributom
+
+Trebace verovatno u requestu da se stavi link ka korisniku na koga se odnosi taj request
