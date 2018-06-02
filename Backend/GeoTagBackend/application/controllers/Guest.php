@@ -76,6 +76,7 @@ class Guest extends CI_Controller {
                 $this->User_model->insert_user($data);
 
             $this->index("Successfully registred, you can login");
+            $this->statistic_model->updateStatistics('userCount');
         } else {
             if ($data['gender'] == "0")
                 $this->index("Please select gender");

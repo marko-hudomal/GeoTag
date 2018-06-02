@@ -285,7 +285,7 @@ class Super_user extends CI_Controller {
             
             }
             
-        
+            $this->statistic_model->updateStatistics('reviewCount');
 
             $this->review_model->insert_review($data);
              

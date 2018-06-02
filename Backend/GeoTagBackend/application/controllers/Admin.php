@@ -71,6 +71,7 @@ class Admin extends CI_Controller {
             case "destination added":
                 //Brise destinaciju
                 $this->destination_model->approve_destination($request->idDest);
+                $this->statistic_model->updateStatistics('destinationCount');
                 break;
             case "negative review":         
                 $rev=$this->review_model->get_review($request->idRev);
@@ -113,7 +114,8 @@ class Admin extends CI_Controller {
     }
     public function delete_review($destination_id, $review_id){
         //Brisanje reviewa
-        $this->review_model->delete($review_id);      
+        $this->review_model->delete($review_id);
+        $this->statistic_model->updateStatistics('reviewCount', '-1');
         $this->load_dest($destination_id);
     }
     
@@ -336,7 +338,7 @@ public function get_all_destinations(){
             }
             
         
-
+            $this->statistic_model->updateStatistics('reviewCount');
             $this->review_model->insert_review($data);
              
             $this->load_dest($id);
