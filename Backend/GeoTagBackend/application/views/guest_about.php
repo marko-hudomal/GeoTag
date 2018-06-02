@@ -11,8 +11,11 @@
 							<img src="<?php echo base_url()?>img/logo.png" width="150px">
 							<div class="media-body">
 								<div class="card" style="margin:10px;padding:40px; border-width: 4px">
-								<h5><strong>GeoTag</strong> is cool webpage...</h5>
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>									
+                                                                    <h5><strong>GeoTag</strong></h5>
+                                                                <p>is application made for purposes of faculty course Principles of Software Engineering.<br>
+                                                                It allows all travel enthusiasts to share their journeys with rest of the world end
+                                                                explore new destinations from their living room.</p>
+                                                                <a href="https://github.com/jakovj/GeoTag">More ...</a>
 								</div>
 							</div>
 						</div>
@@ -21,8 +24,17 @@
 							<img src="<?php echo base_url()?>img/DP-team.png" width="150px">
 							<div class="media-body">
 								<div class="card" style="margin:10px;padding:40px; border-width: 4px">
-								<h5><strong>DiningPhilosophers</strong> is cool team...</h5>
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>									
+								<h5><strong>DiningPhilosophers</strong></h5><br>
+                                                                <p>
+                                                                    Jakov Jezdić <i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-"As far as the laws of mathematics refer to reality, they are not certain; 
+                                                                        and as far as they are certain, they do not refer to reality."</i><br><br>
+                                                                    Marko Hudomal <i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-"As far as the laws of mathematics refer to reality, they are not certain; 
+                                                                        and as far as they are certain, they do not refer to reality."</i><br><br>
+                                                                    Miloš Matijašević <i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-"As far as the laws of mathematics refer to reality, they are not certain; 
+                                                                        and as far as they are certain, they do not refer to reality."</i><br><br>
+                                                                    Dejan Ćirić <i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-"As far as the laws of mathematics refer to reality, they are not certain; 
+                                                                        and as far as they are certain, they do not refer to reality."</i>
+                                                                </p>									
 								</div>
 							</div>
 						</div>

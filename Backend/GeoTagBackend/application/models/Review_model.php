@@ -39,7 +39,10 @@ class Review_model  extends CI_Model{
         foreach ($query->result() as $row)
         {
             $dest_name=$this->destination_model->get_name($row->idDest);
-            $ret=$ret."<div class=\"card\" style=\"margin-top:20px\">
+            
+            // u slucaju kada je guest
+            if ($this->session->userdata('user') == NULL) {
+                $ret=$ret."<div class=\"card\" style=\"margin-top:20px\">
                <div class=\"card-header\">
                   <table width=\"100%\">
                      <tr>
@@ -53,6 +56,25 @@ class Review_model  extends CI_Model{
                   <i>".$row->content."</i>
                </div>
             </div>";
+            }
+            
+            else {
+            
+                $ret=$ret."<div class=\"card\" style=\"margin-top:20px\">
+                   <div class=\"card-header\">
+                      <table width=\"100%\">
+                         <tr>
+                            <td width=\"74%\"><strong><a href='http://localhost/GeoTagBackend/index.php/".$this->session->userdata('user')->status."/preview_other_user/".$row->username."'>".$row->username."</a>, ".$dest_name." </strong></td>
+                            <td width=\"13%\" align=\"center\"><a href=\"#\"><img src=\"".base_url()."img/plus-vote.png\" width=\"20px\"></a>&nbsp;".$row->upCount."
+                            <td width=\"13%\" align=\"center\"><a href=\"#\"><img src=\"".base_url()."img/minus-vote.png\" width=\"20px\"></a>&nbsp;".$row->downCount."
+                         </tr>
+                      </table>
+                   </div>
+                   <div class=\"card-body\">
+                      <i>".$row->content."</i>
+                   </div>
+                </div>";
+            }
         }
         
         return $ret;

@@ -2,7 +2,7 @@
 
 /**
  * @author Dejan Ciric 570/15
- * 
+ * @author Jakov Jezdic 570/15
  * User_model - class that handle all requests for User table
  */
 class User_model extends CI_Model {
@@ -108,5 +108,55 @@ class User_model extends CI_Model {
         }
     }
     
-   
+    
+    // get number of reviews made by user, for user-profile page
+    // @param string $username
+    // @return int
+    public function get_user_review_count($username) {
+        $this->db->where('username', $username);
+        $this->db->from('review');
+        return $this->db->count_all_results();
+    }
+    
+    // get number of places added (and approved) by user, for user-profile page
+    // @param string $username
+    // @return int
+    public function get_user_added_places_count($username) {
+        $this->db->where('username', $username);
+        $this->db->where('type', 'destination added');
+        $this->db->from('request');
+        return $this->db->count_all_results();
+    }
+    
+    // get sum of all up/down votes on all of the users reviews, for user-profile page
+    // @param string $username
+    // @return array
+    public function up_down_count($username) {
+        $this->db->where('username', $username);
+        $this->db->select_sum('upCount');
+        $this->db->select_sum('downCount');
+        $this->db->from('review');
+        $result = $this->db->get()->row_array();
+        if ($result['upCount'] == NULL) {
+            $result['upCount'] = 0;
+        }
+        if ($result['downCount'] == NULL) {
+            $result['downCount'] = 0;
+        }
+                
+        return $result;
+    }
+    
+    // get first and last name of a user, for other-user-profile page
+    // @param string $username
+    // @return array
+    public function get_full_name($username) {
+        
+        $this->db->where('username', $username);
+        $this->db->select('firstname, lastname');
+        $this->db->from('user');
+        $result = $this->db->get()->row_array();
+        
+        return $result;
+    }
 }

@@ -13,9 +13,9 @@
                         <hr>
                         <h6>Username:								<span id="username_info"><?php echo $this->session->userdata('user')->username?></span> </h6>
                         <h6>Gender:								 	<span id="gender_info"><?php echo $this->session->userdata('user')->gender?></span> </h6>
-                        <h6>Number of reviews:						<span id="num_reviews_info">X</span> </h6>	
-                        <h6>Added places:							<span id="num_added_places_info">X</span> </h6>
-                        <h6>Upvote/Downvote rate:					<span id="up_down_info">X</span> </h6>										
+                        <h6>Number of reviews:						<span id="num_reviews_info"><?php  echo $review_count ?></span> </h6>	
+                        <h6>Added places:							<span id="num_added_places_info"><?php echo $places_count ?></span> </h6>
+                        <h6>Upvote/Downvote rate:					<span id="up_down_info"><?php echo $up_count.'/'.$down_count ?></span> </h6>										
                     </div>
                 </div>
                 <br><br>

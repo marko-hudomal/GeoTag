@@ -46,7 +46,7 @@
 					</li> 
 				</ul>
 
-				<a href="<?php echo base_url()?>index.php/admin/load/profile"><span id="username_korisnika" style="color:white"><?php echo $this->session->userdata('user')->firstname." ".$this->session->userdata('user')->lastname ?></span></a>
+				<a href="<?php echo base_url()?>index.php/admin/preview_profile"><span id="username_korisnika" style="color:white"><?php echo $this->session->userdata('user')->firstname." ".$this->session->userdata('user')->lastname ?></span></a>
 				&nbsp;
 				<span id="tip_korisnika" class="badge badge-danger">Admin</span>
 

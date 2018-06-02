@@ -2,7 +2,7 @@
 
 /**
  * @author Dejan Ciric 570/15
- * 
+ * @author Jakov Jezdic 0043/15
  * Super_user - class that handle all requests for super user 
  * and for more privileged users if they use the same actions
  */
@@ -288,5 +288,40 @@ class Super_user extends CI_Controller {
             $this->load_dest($id);
         }
         
+    }
+    
+    // loads profile view with needed data
+    public function preview_profile() {
+        
+        $data['review_count'] = $this->User_model->get_user_review_count($this->session->userdata('user')->username);
+        $data['places_count'] = $this->User_model->get_user_added_places_count($this->session->userdata('user')->username);
+        
+        
+        $up_down_count = $this->User_model->up_down_count($this->session->userdata('user')->username);
+        $data['up_count'] = $up_down_count['upCount'];
+        $data['down_count'] = $up_down_count['downCount'];
+        
+        $this->load('profile', null, $data);
+    }
+    
+    // previews profile_other if user is trying to view someone elses profile
+    public function preview_other_user($other) {
+        if (strcmp($other,$this->session->userdata('user')->username) != 0){
+            $data['review_count'] = $this->User_model->get_user_review_count($other);
+            $data['places_count'] = $this->User_model->get_user_added_places_count($other);
+
+
+            $up_down_count = $this->User_model->up_down_count($other);
+            $data['up_count'] = $up_down_count['upCount'];
+            $data['down_count'] = $up_down_count['downCount'];
+            
+            $full_name = $this->User_model->get_full_name($other);
+            $data['firstname'] = $full_name['firstname'];
+            $data['lastname'] = $full_name['lastname'];
+            
+            $this->load("profile_other", null, $data);
+        }
+        else
+            $this->preview_profile();
     }
 }

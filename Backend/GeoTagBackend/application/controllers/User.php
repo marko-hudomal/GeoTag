@@ -2,6 +2,7 @@
 
 /**
  * @author Dejan Ciric 570/15
+ * @author Jakov Jezdic 0043/15
  * 
  * User - class that handle all requests for classic registered user 
  * and for more privileged users if they use the same actions
@@ -271,5 +272,27 @@ class User extends CI_Controller {
         
     }
     
+    // loads profile view with needed data
+    public function preview_profile() {
+        
+        $data['review_count'] = $this->User_model->get_user_review_count($this->session->userdata('user')->username);
+        $data['places_count'] = $this->User_model->get_user_added_places_count($this->session->userdata('user')->username);
+        
+        
+        $up_down_count = $this->User_model->up_down_count($this->session->userdata('user')->username);
+        $data['up_count'] = $up_down_count['upCount'];
+        $data['down_count'] = $up_down_count['downCount'];
+        
+        $this->load('profile', null, $data);
+    }
+    
+    // previews profile_other if user is trying to view someone elses profile
+    public function preview_other_user($other) {
+        
+        if ($other != $this->session->userdata('user')->username)
+            $this->load("profile_other", null, $other);
+        else
+            $this->preview_profile();
+    }
   
 }

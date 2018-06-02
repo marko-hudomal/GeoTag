@@ -13,7 +13,6 @@
 	</head>
 	
 	<body >
-		
 		<nav class="stroke navbar navbar-expand-md navbar-dark" style="background-image: url('<?php echo base_url()?>img/header.jpg'); margin:10px;margin-bottom:60px; border-radius: 3px">
 			<!-- Logo -->
 			<a class="navbar-brand" href="<?php echo base_url()?>index.php/user/load/guest_home" style="height:50px; margin-left:50px">
@@ -44,7 +43,7 @@
 					</li> 
 				</ul>
 
-				<a href="<?php echo base_url()?>index.php/user/load/profile"><span id="username_korisnika" style="color:white"><?php echo $this->session->userdata('user')->firstname." ".$this->session->userdata('user')->lastname ?></span></a>
+				<a href="<?php echo base_url()?>index.php/user/preview_profile"><span id="username_korisnika" style="color:white"><?php echo $this->session->userdata('user')->firstname." ".$this->session->userdata('user')->lastname ?></span></a>
 				&nbsp;
 				<span id="tip_korisnika" class="badge badge-success">User</span>
 
