@@ -83,7 +83,7 @@
 
                                                 </div>
                                                 <div class="form-group" style="width:90%">
-                                                    <select class="form-control" name="gender" onchange="setGenderIcon()">
+                                                    <select class="form-control" name="gender" id ="gender" onchange="setGenderIcon()">
                                                         <option value="0" selected>Gender 
                                                         </option>
                                                         <option value="male">Male</option>
@@ -139,5 +139,28 @@
 
         <!-- Latest compiled JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+        <script>
+            function setGenderIcon()
+{
+	//alert("test");
+	if (document.getElementById("signup_icon"))
+	{
+		var g=document.getElementById("gender").value;
+               // alert (g);
+		if (g=="male"){
+                     
+                    document.getElementById("signup_icon").src="http://localhost/GeoTagBackend/img/man.png";
+                }
+			
+		else
+			if (g=="female"){
+                           
+                            document.getElementById("signup_icon").src="http://localhost/GeoTagBackend/img/women.png";
+
+                        }
+				
+	}
+}
+        </script>
     </body>
 </html>
