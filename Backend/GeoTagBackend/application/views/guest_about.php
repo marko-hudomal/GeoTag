@@ -28,9 +28,12 @@
                                                                 <p>
                                                                     Jakov Jezdić <i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-"As far as the laws of mathematics refer to reality, they are not certain; 
                                                                         and as far as they are certain, they do not refer to reality."</i><br><br>
-                                                                    Marko Hudomal <i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-"Goals transform a random walk into a chase."</i><br><br>
-                                                                    Miloš Matijašević <i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-"Together we can change the world, just one random act of kindness at a time."</i><br><br>
-                                                                    Dejan Ćirić <i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-"Computers themselves, and software yet to be developed, will revolutionize the way we learn."</i>
+                                                                    Marko Hudomal <i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-"As far as the laws of mathematics refer to reality, they are not certain; 
+                                                                        and as far as they are certain, they do not refer to reality."</i><br><br>
+                                                                    Miloš Matijašević <i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-"As far as the laws of mathematics refer to reality, they are not certain; 
+                                                                        and as far as they are certain, they do not refer to reality."</i><br><br>
+                                                                    Dejan Ćirić <i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-"As far as the laws of mathematics refer to reality, they are not certain; 
+                                                                        and as far as they are certain, they do not refer to reality."</i>
                                                                 </p>									
 								</div>
 							</div>
