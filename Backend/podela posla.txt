@@ -12,10 +12,10 @@ Jakov:	apdejtovanje statistike za svako dodavanje destinacije rivjua itd... [don
 	vote-ovi
 	
 
-Dejan:	pretraga korisnika
-	dodavanje destinaciju u request	
+Dejan:	pretraga korisnika [done]
+	dodavanje destinaciju u request	[done]
 
 
-Dodatak: Cira nek podesi u pretrazi destinacije da ne izlaze one sa pending=1 atributom
+Dodatak: Cira nek podesi u pretrazi destinacije da ne izlaze one sa pending=1 atributom [done]
 
 Trebace verovatno u requestu da se stavi link ka korisniku na koga se odnosi taj request

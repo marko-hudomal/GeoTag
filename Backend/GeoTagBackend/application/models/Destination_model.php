@@ -38,13 +38,15 @@ class Destination_model extends CI_Model{
 		$this->db->from("destination");
 		if($query != '')
 		{
+                         $this->db->where('pending', false);
 			$this->db->like('name', $query);
 			$this->db->or_like('country', $query);
+                       $this->db->where('pending', false);
                         return $this->db->get();
 
 		}
                 
-			$this->db->or_like('country', 123);
+			$this->db->like('country', 123);
                         return $this->db->get();
 	}
         
