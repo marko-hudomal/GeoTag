@@ -19,10 +19,10 @@
 								<div class="media-body">
 									 <h2 class="mt-2"><strong>GeoTag weekly page statistics</strong></h2>
 										<hr>
-										<h6>New users:								 <span id="new_users_stat"><?php echo $userCount;?></span> </h6> 
-										<h6>Number of reviews:						 <span id="num_reviews_stat"><?php echo $reviewCount;?></span> </h6>
-										<h6>Number of positive reviews in last week: <span id="num_pos_reviews_stat"><?php echo $posReviews;?></span> </h6>	
-										<h6>Added places:							 <span id="num_added_places_stat"><?php echo $destinationCount;?></span> </h6>	
+										<h6>New users:							<span id="new_users_stat"><?php echo $userCount;?></span> </h6> 
+										<h6>Number of reviews:						<span id="num_reviews_stat"><?php echo $reviewCount;?></span> </h6>
+										<h6>Number of positive reviews in last week:                    <span id="num_pos_reviews_stat"><?php echo $posReviews;?></span> </h6>	
+										<h6>Added places:						<span id="num_added_places_stat"><?php echo $destinationCount;?></span> </h6>	
 								</div>
 							</div>
 
