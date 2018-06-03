@@ -9,22 +9,95 @@
       function myMap() {
         // Create a new StyledMapType object, passing it an array of styles,
         // and the name to be displayed on the map type control.
-          var type=0;
-          if(document.getElementById("map_style_form") && document.map_style_form.r.value=="night")
+          
+          var temp_time = new Date();
+          var HH = temp_time.getHours();
+          
+          if (HH > 6 && HH < 19)
           {
-            type=1
+            styledMapType = initMap_Dessert(44.80565688, 20.47632003);
           }
-
-          if (type==0)
-          {
-            initMap_Dessert(44.80565688, 20.47632003);
+          else {
+            styledMapType = initMap_Night(44.80565688, 20.47632003);
           }
-          else if(type==1)
-          {
-            initMap_Night(44.80565688, 20.47632003);
-          }
+          init_markers(styledMapType, 44.80565688, 20.47632003);
       }
+function init_markers(styledMapType, x, y) {
+    
+    var bounds = new google.maps.LatLngBounds();
+    // Create a map object, and include the MapTypeId to add
+    // to the map type control.
+    var map = new google.maps.Map(document.getElementById('map'), {
+        center: {lat: x, lng: y},
+        zoom: 7,
+        mapTypeControlOptions: {
+            mapTypeIds: ['roadmap', 'satellite', 'hybrid', 'terrain', 'styled_map']
+        }
+    });
 
+    //Associate the styled map with the MapTypeId and set it to display.
+    map.mapTypes.set('styled_map', styledMapType);
+    map.setMapTypeId('styled_map');
+        icon = {
+            //url: "https://image.flaticon.com/icons/svg/189/189097.svg",
+            //url:"https://image.flaticon.com/icons/svg/727/727570.svg",
+            url:"https://image.flaticon.com/icons/svg/526/526744.svg",
+            scaledSize: new google.maps.Size(50,65), // scaled size
+         };
+    var path = window.location.pathname;
+    var page = path.split("/").pop();
+    if (page == 'super_user_add_destination'){
+        mark = new google.maps.Marker({
+            position: {lat: x, lng: y},
+            map: map,
+            draggable: true,
+            icon
+        });
+    }
+	
+    //var lat = homeMarker.getPosition().lat();
+    //var lng = homeMarker.getPosition().lng();
+    // Multiple Markers
+    markers =[];
+    var infoWindowContent = [];
+    var controller = document.getElementById('pass_controller_type').innerHTML;
+
+
+    for(var i=0;i<jArray.length;i++){
+        var load_destination = controller + "/load_dest/" + jArray[i]['idDest'];
+        load_destination = load_destination.replace(/\s/g, '');
+
+        markers.push([jArray[i]['name']+", "+jArray[i]['country'],parseFloat(jArray[i]['latitude']),parseFloat(jArray[i]['longitude'])]);
+        infoWindowContent.push(['<div class="info_content">' + '<h3><a href="'+load_destination+'">'+jArray[i]['name']+"</a>, "+jArray[i]['country']+'</h3>' + '</div>']);
+    }
+	
+                       
+    // Display multiple markers on a map
+    var infoWindow = new google.maps.InfoWindow(), marker, i;
+    
+    // Loop through our array of markers & place each one on the map  
+    for( i = 0; i < markers.length; i++ ) {
+        var position = new google.maps.LatLng(markers[i][1], markers[i][2]);
+        bounds.extend(position);
+        marker = new google.maps.Marker({
+            position: position,
+            map: map,
+            title: markers[i][0]
+        });
+        
+    // Allow each marker to have an info window    
+    google.maps.event.addListener(marker, 'click', (function(marker, i) {
+        return function() {
+            infoWindow.setContent(infoWindowContent[i][0]);
+            infoWindow.open(map, marker);
+        }
+    })(marker, i));
+
+    // Automatically center the map fitting all markers on the screen
+    map.fitBounds(bounds);
+        
+    }
+}
 function initMap_Dessert(x,y) {
 
         // Create a new StyledMapType object, passing it an array of styles,
@@ -141,172 +214,323 @@ function initMap_Dessert(x,y) {
               }
             ],
             {name: 'Styled Map'});
-var bounds = new google.maps.LatLngBounds();
-        // Create a map object, and include the MapTypeId to add
-        // to the map type control.
-        var map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: x, lng: y},
-          zoom: 7,
-          mapTypeControlOptions: {
-            mapTypeIds: ['roadmap', 'satellite', 'hybrid', 'terrain',
-                    'styled_map']
-          }
-        });
-
-        //Associate the styled map with the MapTypeId and set it to display.
-        map.mapTypes.set('styled_map', styledMapType);
-        map.setMapTypeId('styled_map');
-                       icon = {
-                                    //url: "https://image.flaticon.com/icons/svg/189/189097.svg",
-                                    //url:"https://image.flaticon.com/icons/svg/727/727570.svg",
-                                    url:"https://image.flaticon.com/icons/svg/526/526744.svg",
-                                    scaledSize: new google.maps.Size(50,65), // scaled size
-                        };
-        var path = window.location.pathname;
-        var page = path.split("/").pop();
-        if (page == 'super_user_add_destination'){
-            mark = new google.maps.Marker({
-                position: {lat: x, lng: y},
-                map: map,
-                draggable: true,
-                icon
-            });
-        }
-	
-		//var lat = homeMarker.getPosition().lat();
-		//var lng = homeMarker.getPosition().lng();
-        // Multiple Markers
-	markers =[];
-	var infoWindowContent = [];
-        var controller = document.getElementById('pass_controller_type').innerHTML;
-        
-        
-	for(var i=0;i<jArray.length;i++){
-            var load_destination = controller + "/load_dest/" + jArray[i]['idDest'];
-            load_destination = load_destination.replace(/\s/g, '');
-            
-            markers.push([jArray[i]['name']+", "+jArray[i]['country'],parseFloat(jArray[i]['latitude']),parseFloat(jArray[i]['longitude'])]);
-	infoWindowContent.push(['<div class="info_content">' +
-        '<h3><a href="'+load_destination+'">'+jArray[i]['name']+"</a>, "+jArray[i]['country']+'</h3>' +
-           '</div>']);
-        }
-	
-                        
-        
-    // Display multiple markers on a map
-    var infoWindow = new google.maps.InfoWindow(), marker, i;
-    
-    // Loop through our array of markers & place each one on the map  
-    for( i = 0; i < markers.length; i++ ) {
-        var position = new google.maps.LatLng(markers[i][1], markers[i][2]);
-        bounds.extend(position);
-        marker = new google.maps.Marker({
-            position: position,
-            map: map,
-            title: markers[i][0]
-        });
-        
-        // Allow each marker to have an info window    
-        google.maps.event.addListener(marker, 'click', (function(marker, i) {
-            return function() {
-                infoWindow.setContent(infoWindowContent[i][0]);
-                infoWindow.open(map, marker);
-            }
-        })(marker, i));
-
-        // Automatically center the map fitting all markers on the screen
-        map.fitBounds(bounds);
-        
-    }
-	
-	
-    
-	
+            return styledMapType;
       }
 function initMap_Night(x,y) {
-        // Styles a map in night mode.
-        var map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: x, lng: y},
-          zoom: 7,
-          styles: [
-    {
-        "featureType": "landscape.natural",
-        "elementType": "geometry.fill",
-        "stylers": [
-            {
-                "visibility": "on"
-            },
-            {
-                "color": "#dfd2ae"
-            }
-        ]
-    },
-    {
-                featureType: 'road',
-                elementType: 'geometry',
-                stylers: [{color: '#f5f1e6'}]
-    },
-    {
-        "featureType": "poi",
-        "elementType": "geometry.fill",
-        "stylers": [
-            {
-                "visibility": "on"
-            },
-            {
-                "hue": "#1900ff"
-            },
-            {
-                "color": "#c0e8e8"
-            }
-        ]
-    },
-    {
-        "featureType": "road",
+    var styledMapType = new google.maps.StyledMapType(
+            [
+      {
         "elementType": "geometry",
         "stylers": [
-            {
-                "lightness": 100
-            },
-            {
-                "visibility": "simplified"
-            }
+          {
+            "color": "#1d2c4d"
+          }
         ]
-    },
-    {
-        "featureType": "road",
+      },
+      {
+        "elementType": "labels.text.fill",
+        "stylers": [
+          {
+            "color": "#8ec3b9"
+          }
+        ]
+      },
+      {
+        "elementType": "labels.text.stroke",
+        "stylers": [
+          {
+            "color": "#1a3646"
+          }
+        ]
+      },
+      {
+        "featureType": "administrative.country",
+        "elementType": "geometry.stroke",
+        "stylers": [
+          {
+            "color": "#4b6878"
+          }
+        ]
+      },
+      {
+        "featureType": "administrative.land_parcel",
         "elementType": "labels",
         "stylers": [
-            {
-                "visibility": "off"
-            }
+          {
+            "visibility": "off"
+          }
         ]
-    },
-    {
-        "featureType": "transit.line",
+      },
+      {
+        "featureType": "administrative.land_parcel",
+        "elementType": "labels.text.fill",
+        "stylers": [
+          {
+            "color": "#64779e"
+          }
+        ]
+      },
+      {
+        "featureType": "administrative.province",
+        "elementType": "geometry.stroke",
+        "stylers": [
+          {
+            "color": "#4b6878"
+          }
+        ]
+      },
+      {
+        "featureType": "landscape.man_made",
+        "elementType": "geometry.stroke",
+        "stylers": [
+          {
+            "color": "#334e87"
+          }
+        ]
+      },
+      {
+        "featureType": "landscape.natural",
         "elementType": "geometry",
         "stylers": [
-            {
-                "visibility": "on"
-            },
-            {
-                "lightness": 700
-            }
+          {
+            "color": "#023e58"
+          }
         ]
-    },
-    {
-        "featureType": "water",
-        "elementType": "all",
+      },
+      {
+        "featureType": "poi",
+        "elementType": "geometry",
         "stylers": [
-            {
-                "color": "#b9d3c2"
-            }
+          {
+            "color": "#283d6a"
+          }
         ]
-    }
-]
-        });
+      },
+      {
+        "featureType": "poi",
+        "elementType": "labels.text",
+        "stylers": [
+          {
+            "visibility": "off"
+          }
+        ]
+      },
+      {
+        "featureType": "poi",
+        "elementType": "labels.text.fill",
+        "stylers": [
+          {
+            "color": "#6f9ba5"
+          }
+        ]
+      },
+      {
+        "featureType": "poi",
+        "elementType": "labels.text.stroke",
+        "stylers": [
+          {
+            "color": "#1d2c4d"
+          }
+        ]
+      },
+      {
+        "featureType": "poi.business",
+        "stylers": [
+          {
+            "visibility": "off"
+          }
+        ]
+      },
+      {
+        "featureType": "poi.park",
+        "elementType": "geometry.fill",
+        "stylers": [
+          {
+            "color": "#023e58"
+          }
+        ]
+      },
+      {
+        "featureType": "poi.park",
+        "elementType": "labels.text.fill",
+        "stylers": [
+          {
+            "color": "#3C7680"
+          }
+        ]
+      },
+      {
+        "featureType": "road",
+        "elementType": "geometry",
+        "stylers": [
+          {
+            "color": "#304a7d"
+          }
+        ]
+      },
+      {
+        "featureType": "road",
+        "elementType": "labels.icon",
+        "stylers": [
+          {
+            "visibility": "off"
+          }
+        ]
+      },
+      {
+        "featureType": "road",
+        "elementType": "labels.text.fill",
+        "stylers": [
+          {
+            "color": "#98a5be"
+          }
+        ]
+      },
+      {
+        "featureType": "road",
+        "elementType": "labels.text.stroke",
+        "stylers": [
+          {
+            "color": "#1d2c4d"
+          }
+        ]
+      },
+      {
+        "featureType": "road.arterial",
+        "stylers": [
+          {
+            "visibility": "off"
+          }
+        ]
+      },
+      {
+        "featureType": "road.highway",
+        "elementType": "geometry",
+        "stylers": [
+          {
+            "color": "#2c6675"
+          }
+        ]
+      },
+      {
+        "featureType": "road.highway",
+        "elementType": "geometry.stroke",
+        "stylers": [
+          {
+            "color": "#255763"
+          }
+        ]
+      },
+      {
+        "featureType": "road.highway",
+        "elementType": "labels",
+        "stylers": [
+          {
+            "visibility": "off"
+          }
+        ]
+      },
+      {
+        "featureType": "road.highway",
+        "elementType": "labels.text.fill",
+        "stylers": [
+          {
+            "color": "#b0d5ce"
+          }
+        ]
+      },
+      {
+        "featureType": "road.highway",
+        "elementType": "labels.text.stroke",
+        "stylers": [
+          {
+            "color": "#023e58"
+          }
+        ]
+      },
+      {
+        "featureType": "road.local",
+        "stylers": [
+          {
+            "visibility": "off"
+          }
+        ]
+      },
+      {
+        "featureType": "road.local",
+        "elementType": "labels",
+        "stylers": [
+          {
+            "visibility": "off"
+          }
+        ]
+      },
+      {
+        "featureType": "transit",
+        "stylers": [
+          {
+            "visibility": "off"
+          }
+        ]
+      },
+      {
+        "featureType": "transit",
+        "elementType": "labels.text.fill",
+        "stylers": [
+          {
+            "color": "#98a5be"
+          }
+        ]
+      },
+      {
+        "featureType": "transit",
+        "elementType": "labels.text.stroke",
+        "stylers": [
+          {
+            "color": "#1d2c4d"
+          }
+        ]
+      },
+      {
+        "featureType": "transit.line",
+        "elementType": "geometry.fill",
+        "stylers": [
+          {
+            "color": "#283d6a"
+          }
+        ]
+      },
+      {
+        "featureType": "transit.station",
+        "elementType": "geometry",
+        "stylers": [
+          {
+            "color": "#3a4762"
+          }
+        ]
+      },
+      {
+        "featureType": "water",
+        "elementType": "geometry",
+        "stylers": [
+          {
+            "color": "#0e1626"
+          }
+        ]
+      },
+      {
+        "featureType": "water",
+        "elementType": "labels.text.fill",
+        "stylers": [
+          {
+            "color": "#4e6d70"
+          }
+        ]
       }
-	 function showCoordinate(){
+    ]);
+    return styledMapType;
+    }
+function showCoordinate(){
 		 document.getElementById("longitude").innerHTML= "Longitude: " + mark.getPosition().lng();
 		 document.getElementById("latitude").innerHTML= "Latitude: " + mark.getPosition().lat();
 		 document.getElementById("longitudeH").value= "Longitude: " + mark.getPosition().lng();

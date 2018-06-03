@@ -93,16 +93,16 @@ class Super_user extends CI_Controller {
                 $this->form_validation->set_rules("country", "Password", "trim|required|min_length[2]|max_length[40]");
                 if ($this->form_validation->run()) {
                     
-                $data['name'] = $this->input->post('destination');
-                $data['longitude'] = explode(":",$this->input->post('longitudeH'))[1];
-                $data['latitude'] = explode(":",$this->input->post('latitudeH'))[1];
-                $data['pending'] = 1;
-                $data['country'] = $this->input->post('country');
-                
-                $idDest = $this->destination_model->insert_destination($data);
-                $this->request_model->insert("destination added", $idDest);
+                    $data['name'] = $this->input->post('destination');
+                    $data['longitude'] = explode(":",$this->input->post('longitudeH'))[1];
+                    $data['latitude'] = explode(":",$this->input->post('latitudeH'))[1];
+                    $data['pending'] = 1;
+                    $data['country'] = $this->input->post('country');
 
-                $this->load("super_user_add_destination","Request created");
+                    $idDest = $this->destination_model->insert_destination($data);
+                    $this->request_model->insert("destination added", $idDest, $this->session->userdata('user')->username);
+
+                    $this->load("super_user_add_destination","Request created");
                 } else {
                     $this->load("super_user_add_destination");
                 }

@@ -19,26 +19,21 @@ class Request_model extends CI_Model{
         $this->load->model("user_model");
     }
     
-    public function insert($type, $id)
+    public function insert($type, $id, $username=NULL)
     {   
         
         $new_request['idRev'] = NULL;
         $new_request['idDest'] = NULL;
-        $new_request['username'] = NULL;
+        $new_request['username'] = $username;
+        $new_request['type'] = $type;
         switch($type){
             case "destination added":
-                $new_request['type'] = $type;
                 $new_request['idDest'] = $id;
-                //$new_request['username'] = $username; //Hudi odkomentarisao
                 break;
             case "negative review":
-                $new_request['type'] = $type;
                 $new_request['idRev'] = $id;
-                //$new_request['username'] = $username; //Hudi odkomentarisao
                 break;
             case "user promotion":
-                $new_request['username'] = $id;
-                $new_request['type'] = $type;
                 break;
         }
         

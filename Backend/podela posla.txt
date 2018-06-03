@@ -13,7 +13,7 @@ Jakov:	//apdejtovanje statistike za svako dodavanje destinacije rivjua itd... [d
 	//pravljenje linkova preko pinova [done]
 	//azuriranje slike i pola za other profile [done]
 	//vote-ovi [done]
-	generisanje negative review request-ova
+	//generisanje negative review request-ova [done]
 	
 
 Dejan:	//pretraga korisnika [done]
@@ -28,9 +28,9 @@ Trebace verovatno u requestu da se stavi link ka korisniku na koga se odnosi taj
 
 - //ubaciti sve markere na stranici add_destination[done]
 - //promeniti tekst prilikom dodavanja destinacije, pise Successfully added trebalo bi nesto tipa Request created[done]
-- Automatko prebacivanje sa desert i noc u zavisnosti od trenutnog vremena
+- Automatko prebacivanje sa desert i noc u zavisnosti od trenutnog vremena[done]
 - //!!!BUG: kada se u adminu klikne na GeoTag LOGO gore levo (osvezavanje home strane) izbaguju se Pending requests[done]
 
 - !Ostalo od pre, kako da znamo na kojoj smo strani i tako boldujemo u nav baru taj Title? (postavimo active)
 - //BUG: Kada admin votuje uvek ga vrati na pocetnu, iako je na strani destinacije Hudi: [done]
-- U requestu treba da bude uvek username (ko je addovo destinaciju, ciji review je dostigao negativne votove, ko se promovise[ovo postoji])
+- //U requestu treba da bude uvek username (ko je addovo destinaciju, ciji review je dostigao negativne votove, ko se promovise[ovo postoji])[done]

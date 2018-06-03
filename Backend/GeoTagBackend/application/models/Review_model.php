@@ -14,7 +14,9 @@
 
 // 
 define("UP_VOTE_PROMO", 10);
-define("DOWN_VOTE_PROMO", 2);
+define("DOWN_VOTE_PROMO_PERCENT", 0.2);
+define("NEG_REV_PER", 2);
+define("NEG_REV_LIMIT", 15);
 
 class Review_model  extends CI_Model{
     
@@ -29,6 +31,7 @@ class Review_model  extends CI_Model{
         $this->load->model("destination_model");
         $this->load->model("request_model");
         $this->load->model("vote_model");
+        $this->load->model("user_model");
     }
 
     
@@ -421,7 +424,7 @@ class Review_model  extends CI_Model{
                 $this->db->update('vote');
                 
                 // possibly generate request for 'user promotion' OR 'negative review'
-                $this->generate_requests($id, $type, $username);
+                $this->generate_requests($id, $type);
             }
             else {
                 //insert new vote table
@@ -441,30 +444,63 @@ class Review_model  extends CI_Model{
         }
     }
     
-    // generate 'user promotion' request when upVoteCount for user is > 10 AND downVoteCount is < 2
+    // generate 'user promotion' request when upVoteCount for user is > 10 AND downVoteCount is less than 20% of upVoteCount
     // generate 'negative review' request when downVoteCount for request is 2 * upVoteCount AND totalVoteCount > 15
-    public function generate_requests($id, $type, $username) {
+    public function generate_requests($id, $type) {
         
+        // get review author
+        $this->db->where('idRev', $id);
+        $this->db->select('username');
+        $this->db->from('review');
+        $result = $this->db->get()->row_array();
+
+        $username = $result['username'];
+        
+        if ($type == 1) {
         // USER_PROMO
-        $this->db->where('username', $username);
-        $this->db->select_sum('upCount');
-        $this->db->select_sum('downCount');
-        $query = $this->db->get('review')->row_array();
-        
-        if ($query['upCount'] > UP_VOTE_PROMO && $query['downCount'] < DOWN_VOTE_PROMO) {
+
             
-            // create request if it doesn't already exist
-            
-            $this->db->where('username', $username);
-            $this->db->where('type', 'user promotion');
-            $this->db->from('request');
-            if ($this->db->count_all_results() == 0)
-                $this->request_model->insert('user promotion', $username);
+
+            // PROMO only available for regular users
+            if ($this->user_model->get_status($username) == 'user') {
+                $this->db->where('username', $username);
+                $this->db->select_sum('upCount');
+                $this->db->select_sum('downCount');
+                $result = $this->db->get('review')->row_array();
+
+                if ($result['upCount'] > UP_VOTE_PROMO && $result['downCount'] < (DOWN_VOTE_PROMO_PERCENT * $result['upCount'])) {
+                    // create request if it doesn't already exist
+
+                    $this->db->where('username', $username);
+                    $this->db->where('type', 'user promotion');
+                    $this->db->from('request');
+                    if ($this->db->count_all_results() == 0) {
+                        $this->request_model->insert('user promotion', NULL, $username);
+                    }
+                }
+            }
         }
-        
-        // TODO: NEG_REVIEW
-        
-        
+        else {
+        // NEG_REVIEW
+            // get votes for review
+            $this->db->where('idRev', $id);
+            $this->db->select('upCount');
+            $this->db->select('downCount');
+            $this->db->from('review');
+            $result = $this->db->get()->row_array();
+            
+            if ($result['downCount'] >= ($result['upCount'] * NEG_REV_PER) && ($result['downCount'] + $result['upCount']) > NEG_REV_LIMIT) {
+                // create request if it doesn't already exist
+                
+                $this->db->where('idRev', $id);
+                $this->db->where('username', $username);
+                $this->db->where('type', 'negative review');
+                $this->db->from('request');
+                if ($this->db->count_all_results() == 0) {
+                    $this->request_model->insert('negative review', $id, $username);
+                }
+            }
+        } 
     }
     
 
