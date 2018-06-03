@@ -43,11 +43,11 @@ class Review_model  extends CI_Model{
         $ret = "";  
         $query = $this->db->query("SELECT * from review ORDER BY idRev DESC LIMIT ".$N);
         //User validation
-            if (($this->session->userdata('user')) != NULL) {
-            $user1 = $this->session->userdata('user')->status;
-            }
-            else
-                $user1 = "guest";
+        if (($this->session->userdata('user')) != NULL) {
+        $user1 = $this->session->userdata('user')->status;
+        }
+        else
+            $user1 = "guest";
             
         foreach ($query->result() as $row)
         {

@@ -1,5 +1,12 @@
 
-
+                <?php
+                //User detection
+                if (($this->session->userdata('user')) != NULL) {
+                    $user1 = $this->session->userdata('user')->status;
+                }
+                else
+                    $user1 = "guest";      
+                ?>
 		<div class="container-fluid">
 			<div class="row">
 
@@ -28,7 +35,7 @@
 										<br>
 										<div class="media-body">
 											<h4 class="mt-2 mb-3">News</h4>
-                                             <p>[30.5.2018] Today we added <strong>SuperUser</strong>! See more info in <a href="<?php echo base_url()?>index.php/user/load/guest_help">Help</a> tab.</p>
+                                             <p>[30.5.2018] Today we added <strong>SuperUser</strong>! See more info in <a href="<?php echo base_url()?>index.php/<?php echo $user1;?>/load/guest_help">Help</a> tab.</p>
                                              <p>[3.6.2018] We hit <strong>100</strong> users!</p>
 										</div>
 									</div>
