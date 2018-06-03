@@ -33,3 +33,4 @@ Trebace verovatno u requestu da se stavi link ka korisniku na koga se odnosi taj
 
 - !Ostalo od pre, kako da znamo na kojoj smo strani i tako boldujemo u nav baru taj Title? (postavimo active)
 - //BUG: Kada admin votuje uvek ga vrati na pocetnu, iako je na strani destinacije Hudi: [done]
+- U requestu treba da bude uvek username (ko je addovo destinaciju, ciji review je dostigao negativne votove, ko se promovise[ovo postoji])

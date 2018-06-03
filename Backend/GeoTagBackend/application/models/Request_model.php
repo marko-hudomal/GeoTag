@@ -20,8 +20,8 @@ class Request_model extends CI_Model{
     }
     
     public function insert($type, $id)
-    {
-       
+    {   
+        
         $new_request['idRev'] = NULL;
         $new_request['idDest'] = NULL;
         $new_request['username'] = NULL;
@@ -29,10 +29,12 @@ class Request_model extends CI_Model{
             case "destination added":
                 $new_request['type'] = $type;
                 $new_request['idDest'] = $id;
+                //$new_request['username'] = $username; //Hudi odkomentarisao
                 break;
             case "negative review":
                 $new_request['type'] = $type;
                 $new_request['idRev'] = $id;
+                //$new_request['username'] = $username; //Hudi odkomentarisao
                 break;
             case "user promotion":
                 $new_request['username'] = $id;
