@@ -28,6 +28,7 @@ class Review_model  extends CI_Model{
         parent::__construct();
         $this->load->model("destination_model");
         $this->load->model("request_model");
+        $this->load->model("vote_model");
     }
 
     
@@ -85,7 +86,16 @@ class Review_model  extends CI_Model{
             }
             
             else {
-            
+                //Vote disable----------------------------------------------------------------------------------------------------
+                //**BITNO: SLEDECE VREDNOSTI KONTROLISU DA LI JE DUGME AKTIVIRANO ILI NE
+                $disable_vote_pic_plus="";
+                $disable_vote_plus="";
+                $disable_vote_pic_minus="";
+                $disable_vote_minus="";
+                if (($this->session->userdata('user')->username==$row->username)) {$disable_vote_pic_plus="-dis";$disable_vote_plus="disabled";$disable_vote_pic_minus="-dis";$disable_vote_minus="disabled";}
+                if ($this->vote_model->get_vote_status($this->session->userdata('user')->username,$row->idRev)==1){$disable_vote_pic_plus="-dis";$disable_vote_plus="disabled";}
+                if ($this->vote_model->get_vote_status($this->session->userdata('user')->username,$row->idRev)==-1){$disable_vote_pic_minus="-dis";$disable_vote_minus="disabled";}
+                //----------------------------------------------------------------------------------------------------------------
                 $ret=$ret."<div class=\"card\" style=\"margin-top:20px\">
                    <div class=\"card-header\">
                       <table width=\"100%\">
@@ -93,7 +103,7 @@ class Review_model  extends CI_Model{
                             <td width=\"70%\"><strong><a href='".base_url()."index.php/".$this->session->userdata('user')->status."/preview_other_user/".$row->username."'>".$row->username."</a>, ".$dest_name." </strong></td>
                             <td width=\"10%\" align=\"center\" style=\"text-align: right;\"  >
                                 <form action=\"".base_url()."index.php/".$user1."/vote_up/".$row->idRev."\" method=\"PUT\" style=\"padding-top: 0px;\">
-                                    <input type=\"image\" name=\"submit\" src=\"".base_url()."img/plus-vote.png\" width=\"30px\" border=\"0\" alt=\"Submit\" style=\"\" />
+                                    <input ".$disable_vote_plus." type=\"image\" name=\"submit\" src=\"".base_url()."img/plus-vote".$disable_vote_pic_plus.".png\" width=\"30px\" border=\"0\" alt=\"Submit\" style=\"\" />
                                 </form>
                             </td>
                             <td width=\"5%\" align=\"center\" style=\"padding-bottom: 15px;\">
@@ -101,7 +111,7 @@ class Review_model  extends CI_Model{
                             </td>
                             <td width=\"10%\" align=\"center\" style=\"text-align: right\" >
                                 <form action=\"".base_url()."index.php/".$user1."/vote_down/".$row->idRev."\" method=\"PUT\" style=\"padding-top: 0px;\">
-                                    <input type=\"image\" name=\"submit\" src=\"".base_url()."img/minus-vote.png\" width=\"30px\" border=\"0\" alt=\"Submit\" style=\"\" />
+                                    <input ".$disable_vote_minus." type=\"image\" name=\"submit\" src=\"".base_url()."img/minus-vote".$disable_vote_pic_minus.".png\" width=\"30px\" border=\"0\" alt=\"Submit\" style=\"\" />
                                 </form>  
                             </td>
                             <td width=\"5%\" align=\"center\" style=\"padding-bottom: 15px;\">
@@ -217,6 +227,16 @@ class Review_model  extends CI_Model{
                         </div>";
                 }else
                 {
+                    //Vote disable----------------------------------------------------------------------------------------------------
+                    //**BITNO: SLEDECE VREDNOSTI KONTROLISU DA LI JE DUGME AKTIVIRANO ILI NE
+                    $disable_vote_pic_plus="";
+                    $disable_vote_plus="";
+                    $disable_vote_pic_minus="";
+                    $disable_vote_minus="";
+                    if (($this->session->userdata('user')->username==$row->username)) {$disable_vote_pic_plus="-dis";$disable_vote_plus="disabled";$disable_vote_pic_minus="-dis";$disable_vote_minus="disabled";}
+                    if ($this->vote_model->get_vote_status($this->session->userdata('user')->username,$row->idRev)==1){$disable_vote_pic_plus="-dis";$disable_vote_plus="disabled";}
+                    if ($this->vote_model->get_vote_status($this->session->userdata('user')->username,$row->idRev)==-1){$disable_vote_pic_minus="-dis";$disable_vote_minus="disabled";}
+                    //----------------------------------------------------------------------------------------------------------------
                     $ret=$ret." <div class=\"card\" style=\"margin-top:20px;overflow:auto;\">
                             <div class=\"card-header\">
                                <table width=\"100%\">
@@ -224,7 +244,7 @@ class Review_model  extends CI_Model{
                                     <td width=\"70%\"><strong><a href='".base_url()."index.php/".$this->session->userdata('user')->status."/preview_other_user/".$row->username."'>".$row->username."</a> </strong></td>
                                     <td width=\"10%\" align=\"center\" style=\"text-align: center;\"  >
                                         <form action=\"".base_url()."index.php/".$user1."/vote_up/".$row->idRev."/".$destination_id."\" method=\"PUT\" style=\"padding-top: 0px;\">
-                                            <input type=\"image\" name=\"submit\" src=\"".base_url()."img/plus-vote.png\" width=\"40px\" border=\"0\" alt=\"Submit\" style=\"\" />
+                                            <input ".$disable_vote_plus." type=\"image\" name=\"submit\" src=\"".base_url()."img/plus-vote".$disable_vote_pic_plus.".png\" width=\"40px\" border=\"0\" alt=\"Submit\" style=\"\" />
                                         </form>
                                     </td>
                                     <td width=\"5%\" align=\"center\" style=\"padding-bottom: 15px; text-align:left\">
@@ -232,7 +252,7 @@ class Review_model  extends CI_Model{
                                     </td>
                                     <td width=\"10%\" align=\"center\" style=\"text-align: center\" >
                                         <form action=\"".base_url()."index.php/".$user1."/vote_down/".$row->idRev."/".$destination_id."\" method=\"PUT\" style=\"padding-top: 0px;\">
-                                            <input type=\"image\" name=\"submit\" src=\"".base_url()."img/minus-vote.png\" width=\"40px\" border=\"0\" alt=\"Submit\" style=\"\" />
+                                            <input ".$disable_vote_minus." type=\"image\" name=\"submit\" src=\"".base_url()."img/minus-vote".$disable_vote_pic_minus.".png\" width=\"40px\" border=\"0\" alt=\"Submit\" style=\"\" />
                                         </form>  
                                     </td>
                                     <td width=\"5%\" align=\"center\" style=\"padding-bottom: 15px; text-align:left\">
@@ -279,6 +299,16 @@ class Review_model  extends CI_Model{
             else
                 $user1 = "guest";
             
+            //Vote disable----------------------------------------------------------------------------------------------------
+            //**BITNO: SLEDECE VREDNOSTI KONTROLISU DA LI JE DUGME AKTIVIRANO ILI NE
+            $disable_vote_pic_plus="";
+            $disable_vote_plus="";
+            $disable_vote_pic_minus="";
+            $disable_vote_minus="";
+            if (($this->session->userdata('user')->username==$row->username)) {$disable_vote_pic_plus="-dis";$disable_vote_plus="disabled";$disable_vote_pic_minus="-dis";$disable_vote_minus="disabled";}
+            if ($this->vote_model->get_vote_status($this->session->userdata('user')->username,$row->idRev)==1){$disable_vote_pic_plus="-dis";$disable_vote_plus="disabled";}
+            if ($this->vote_model->get_vote_status($this->session->userdata('user')->username,$row->idRev)==-1){$disable_vote_pic_minus="-dis";$disable_vote_minus="disabled";}
+            //----------------------------------------------------------------------------------------------------------------
             $ret=$ret." <div class=\"card\" style=\"margin-top:20px\">
                             <div class=\"card-header\" style=\"overflow:auto\">
                                <table width=\"100%\">
@@ -286,7 +316,7 @@ class Review_model  extends CI_Model{
                                     <td width=\"60%\"><strong><a href='".base_url()."index.php/".$this->session->userdata('user')->status."/preview_other_user/".$row->username."'>".$row->username."</a> </strong></td>
                                     <td width=\"10%\" align=\"center\" style=\"text-align: right;\"  >
                                         <form action=\"".base_url()."index.php/".$user1."/vote_up/".$row->idRev."\" method=\"PUT\" style=\"padding-top: 0px;\">
-                                            <input type=\"image\" name=\"submit\" src=\"".base_url()."img/plus-vote.png\" width=\"30px\" border=\"0\" alt=\"Submit\" style=\"\" />
+                                            <input ".$disable_vote_plus." type=\"image\" name=\"submit\" src=\"".base_url()."img/plus-vote".$disable_vote_pic_plus.".png\" width=\"30px\" border=\"0\" alt=\"Submit\" style=\"\" />
                                         </form>
                                     </td>
                                     <td width=\"5%\" align=\"center\" style=\"padding-bottom: 15px;\">
@@ -294,7 +324,7 @@ class Review_model  extends CI_Model{
                                     </td>
                                     <td width=\"10%\" align=\"center\" style=\"text-align: right\" >
                                         <form action=\"".base_url()."index.php/".$user1."/vote_down/".$row->idRev."\" method=\"PUT\" style=\"padding-top: 0px;\">
-                                            <input type=\"image\" name=\"submit\" src=\"".base_url()."img/minus-vote.png\" width=\"30px\" border=\"0\" alt=\"Submit\" style=\"\" />
+                                            <input ".$disable_vote_minus." type=\"image\" name=\"submit\" src=\"".base_url()."img/minus-vote".$disable_vote_pic_minus.".png\" width=\"30px\" border=\"0\" alt=\"Submit\" style=\"\" />
                                         </form>  
                                     </td>
                                     <td width=\"5%\" align=\"center\" style=\"padding-bottom: 15px;\">
