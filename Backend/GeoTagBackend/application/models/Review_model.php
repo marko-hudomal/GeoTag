@@ -315,7 +315,7 @@ class Review_model  extends CI_Model{
                                   <tr>
                                     <td width=\"60%\"><strong><a href='".base_url()."index.php/".$this->session->userdata('user')->status."/preview_other_user/".$row->username."'>".$row->username."</a> </strong></td>
                                     <td width=\"10%\" align=\"center\" style=\"text-align: right;\"  >
-                                        <form action=\"".base_url()."index.php/".$user1."/vote_up/".$row->idRev."\" method=\"PUT\" style=\"padding-top: 0px;\">
+                                        <form action=\"".base_url()."index.php/".$user1."/vote_up/".$row->idRev."/".$destination_id."\" method=\"PUT\" style=\"padding-top: 0px;\">
                                             <input ".$disable_vote_plus." type=\"image\" name=\"submit\" src=\"".base_url()."img/plus-vote".$disable_vote_pic_plus.".png\" width=\"30px\" border=\"0\" alt=\"Submit\" style=\"\" />
                                         </form>
                                     </td>
@@ -323,7 +323,7 @@ class Review_model  extends CI_Model{
                                          ".$row->upCount."
                                     </td>
                                     <td width=\"10%\" align=\"center\" style=\"text-align: right\" >
-                                        <form action=\"".base_url()."index.php/".$user1."/vote_down/".$row->idRev."\" method=\"PUT\" style=\"padding-top: 0px;\">
+                                        <form action=\"".base_url()."index.php/".$user1."/vote_down/".$row->idRev."/".$destination_id."\" method=\"PUT\" style=\"padding-top: 0px;\">
                                             <input ".$disable_vote_minus." type=\"image\" name=\"submit\" src=\"".base_url()."img/minus-vote".$disable_vote_pic_minus.".png\" width=\"30px\" border=\"0\" alt=\"Submit\" style=\"\" />
                                         </form>  
                                     </td>
