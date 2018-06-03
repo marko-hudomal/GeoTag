@@ -30,19 +30,19 @@
 			<div class="collapse navbar-collapse" style="text-align:right" id="collapsibleNavbar">
 				<ul class="navbar-nav mx-auto">
 					<li class="nav-item">
-						<a class="nav-link" href="<?php echo base_url()?>index.php/guest/load/guest_home">Home</a>
+						<a class="nav-link <?php if ($page == 'guest_home') echo "active"; ?>" href="<?php echo base_url()?>index.php/guest/load/guest_home">Home</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="<?php echo base_url()?>index.php/guest/getStatistics">View statistics</a>
+						<a class="nav-link <?php if ($page == 'guest_statistics') echo "active"; ?>" href="<?php echo base_url()?>index.php/guest/getStatistics">View statistics</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="<?php echo base_url()?>">Sign up</a>
+						<a class="nav-link <?php if ($page == 'index.php') echo "active"; ?>" href="<?php echo base_url()?>">Sign up</a>
 					</li> 
 					<li class="nav-item">
-						<a class="nav-link" href="<?php echo base_url()?>index.php/guest/load/guest_about">About</a>
+						<a class="nav-link <?php if ($page == 'guest_about') echo "active"; ?>" href="<?php echo base_url()?>index.php/guest/load/guest_about">About</a>
 					</li> 
 					<li class="nav-item">
-						<a class="nav-link" href="<?php echo base_url()?>index.php/guest/load/guest_help">Help</a>
+						<a class="nav-link <?php if ($page == 'guest_help') echo "active"; ?>" href="<?php echo base_url()?>index.php/guest/load/guest_help">Help</a>
 					</li> 
 				</ul>
 

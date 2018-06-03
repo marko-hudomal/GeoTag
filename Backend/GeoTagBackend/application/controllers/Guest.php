@@ -43,7 +43,7 @@ class Guest extends CI_Controller {
     // @param string $message
     // @return void
     function index($message = null) {
-        $data = [];
+        $data['page'] = 'index.php';
         if ($message)
             $data['message'] = $message;
 
@@ -123,7 +123,9 @@ class Guest extends CI_Controller {
     public function load($page,$data=null) {
         $data['last_reviews_html'] = $this->review_model->get_html_last_n_reviews();
         
-        $this->load->view("templates/guest_header.php");
+        $info['page'] = $page;
+        
+        $this->load->view("templates/guest_header.php", $info);
         $this->load->view($page.".php",$data);
         $this->load->view("templates/footer.php");
     }

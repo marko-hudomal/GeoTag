@@ -43,7 +43,7 @@ class User extends CI_Controller {
 
         $data['profile_pic'] = $this->get_img_name();
         $data['last_reviews_html'] = $this->review_model->get_html_last_n_reviews();
-        
+        $data['page'] = 'guest_home';
         $this->load->view("templates/user_header.php", $data);
         $this->load->view("guest_home.php", $data);
         $this->load->view("templates/footer.php");
@@ -62,10 +62,12 @@ class User extends CI_Controller {
         $info['profile_pic'] = $this->get_img_name();
         $data['last_reviews_html'] = $this->review_model->get_html_last_n_reviews();
         
+        $info['page'] = $page;
+        
         if ($message){
             $info['message'] = $message;
             if ($data!=null)
-            $data = $data + $info;
+                $data = $data + $info;
         }
             
         
