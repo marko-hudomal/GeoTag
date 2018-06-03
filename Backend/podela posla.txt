@@ -24,7 +24,7 @@ Trebace verovatno u requestu da se stavi link ka korisniku na koga se odnosi taj
 
 *** PREUZMITE STA HOCETE I DODAJTE AKO NESTO FALI
 
-- ubaciti sve markere na stranici add_destination
-- promeniti tekst prilikom dodavanja destinacije, pise Successfully added trebalo bi nesto tipa Request created
+- ubaciti sve markere na stranici add_destination[done]
+- promeniti tekst prilikom dodavanja destinacije, pise Successfully added trebalo bi nesto tipa Request created[done]
 - Automatko prebacivanje sa desert i noc u zavisnosti od trenutnog vremena
-- !!!BUG: kada se u adminu klikne na GeoTag LOGO gore levo (osvezavanje home strane) izbaguju se Pending requests
+- !!!BUG: kada se u adminu klikne na GeoTag LOGO gore levo (osvezavanje home strane) izbaguju se Pending requests[done]

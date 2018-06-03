@@ -1,14 +1,22 @@
-		<div class="container-fluid" >
+		 <?php
+    if (($this->session->userdata('user')) != NULL) {
+        $user1 = $this->session->userdata('user')->status;
+    }
+    else
+        $user1 ="guest";
+?>
+<div class="container-fluid" >
 			<div class="row">
 				<div class="col-sm-8">					
 					<div onmouseover="showCoordinate()" id="map" class="card" style="height:700px;">
 							<div id="map"></div>
 					</div>
-                                        
+                                        <div id="pass_controller_type" hidden>
+          <?php echo base_url().'index.php/'.$user1;?>
+      </div>
 					<script src="<?php echo base_url()?>js/map_styles.js"></script>
 					<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCGhsVpjnpP_alimoKSREfuSE8tJRA1v3U&callback=myMap"></script>
 				</div>
-
 					<div class="col-md-4">
 
 						<div class="jumbotron" style="height:400px; padding:10px;padding-left:20px;padding-right:20px;background-size:cover; background-image: url('<?php echo base_url()?>img/brown-gradient.png');">

@@ -102,7 +102,7 @@ class Super_user extends CI_Controller {
                 $idDest = $this->destination_model->insert_destination($data);
                 $this->request_model->insert("destination added", $idDest);
 
-                $this->load("super_user_add_destination","Successfully added destination");
+                $this->load("super_user_add_destination","Request created");
                 } else {
                     $this->load("super_user_add_destination");
                 }
