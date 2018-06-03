@@ -116,7 +116,7 @@
             </div>
          </div>
          <div class="col-md-4">
-            <input class="form-control" name="search_text_people" id="search_text_people" type="text" placeholder="Search for destinations">
+            <input class="form-control" name="search_text_people" id="search_text_people" type="text" placeholder="Search for people">
             <div id="result_people"></div>
          </div>
       </div>
