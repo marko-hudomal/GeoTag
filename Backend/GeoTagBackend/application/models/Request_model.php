@@ -21,22 +21,27 @@ class Request_model extends CI_Model{
     
     public function insert($type, $id)
     {
-        $sql = "";
+       
+        $new_request['idRev'] = NULL;
+        $new_request['idDest'] = NULL;
+        $new_request['username'] = NULL;
         switch($type){
             case "destination added":
-                $sql = "insert into request (type, idDest)
-                values ('".$type."',".$id.")";
+                $new_request['type'] = $type;
+                $new_request['idDest'] = $id;
                 break;
             case "negative review":
-                $sql = "insert into request (type, idRev)
-                values ('".$type+"',".$id.")";  
+                $new_request['type'] = $type;
+                $new_request['idRev'] = $id;
                 break;
             case "user promotion":
-                $sql = "insert into request (type, username )
-                values ('".$type."',".$id.")";
+                $new_request['username'] = $id;
+                $new_request['type'] = $type;
                 break;
         }
-        $this->db->query($sql);
+        
+        $this->db->insert('request', $new_request); 
+        
     }
     
     public function delete($request_id)

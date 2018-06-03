@@ -437,29 +437,24 @@ public function get_all_destinations(){
             $this->preview_profile();
     }
     
-    public function vote_up($review_id, $destination_id=null)
-    {
+    public function vote_up($review_id, $destination_id=null) {
         
-        //kod
+        $this->review_model->update_vote_count($review_id, "upCount", $this->session->userdata('user')->username);
         
-        //Za povratak na stranicu
         if ($destination_id==null)
         {
             $this->index();
         }else
             $this->load_dest($destination_id);
     }
-    public function vote_down($review_id, $destination_id=null)
-    {
+    public function vote_down($review_id, $destination_id=null) {
         
-        //kod
+        $this->review_model->update_vote_count($review_id, "downCount", $this->session->userdata('user')->username);
         
-        
-        //Za povratak na stranicu
         if ($destination_id==null)
         {
             $this->index();
         }else
             $this->load_dest($destination_id);
-    }
+    }  
 }

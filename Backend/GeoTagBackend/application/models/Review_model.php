@@ -9,8 +9,13 @@
 /**
  * Description of Review_model
  *
- * @author User
+ * @author Jakov Jezdic 0043/2015
  */
+
+// 
+define("UP_VOTE_PROMO", 10);
+define("DOWN_VOTE_PROMO", 2);
+
 class Review_model  extends CI_Model{
     
     // @var object $user
@@ -22,6 +27,7 @@ class Review_model  extends CI_Model{
     public function __construct() {
         parent::__construct();
         $this->load->model("destination_model");
+        $this->load->model("request_model");
     }
 
     
@@ -345,6 +351,90 @@ class Review_model  extends CI_Model{
         $this->db->insert('image', $data);
         $insert_id = $this->db->insert_id();
         return $insert_id;
+    }
+    
+    public function update_vote_count($id, $field, $username) {
+        
+        
+        if ($field == 'upCount'){
+            $opposite_field = 'downCount';
+            $type = 1;
+        }
+        else {
+            $opposite_field = 'upCount';
+            $type = -1;
+        }
+        
+        $this->db->where('username', $username);
+        $this->db->where('idRev', $id);
+        $this->db->from('vote');
+        $result = $this->db->get()->row_array();
+        
+        if ($result == NULL || $result['type'] == $type*(-1)) {
+            
+            // user hasn't voted on this review OR has voted differently
+            // update voteCount
+            $this->db->set($field, $field."+1", FALSE);
+            $this->db->where('idRev', $id);
+            $this->db->update('review');
+            
+            if ($result['type'] == $type*(-1)) {
+                // update oppositeVoteCount
+                $this->db->set($opposite_field, $opposite_field."-1", FALSE);
+                $this->db->where('idRev', $id);
+                $this->db->update('review');
+                
+                // change vote type in vote table
+                $this->db->set('type', $type);
+                $this->db->where('idRev', $id);
+                $this->db->where('username', $username);
+                $this->db->update('vote');
+                
+                // possibly generate request for 'user promotion' OR 'negative review'
+                $this->generate_requests($id, $type, $username);
+            }
+            else {
+                //insert new vote table
+                $newvote['username'] = $username;
+                $newvote['idRev'] = $id;
+                $newvote['type'] = $type;
+                $this->db->insert('vote', $newvote);
+                
+                // possibly generate request for 'user promotion' OR 'negative review'
+                $this->generate_requests($id, $type, $username);
+            }
+            
+        }
+        else {
+            //user voted on this review
+            
+        }
+    }
+    
+    // generate 'user promotion' request when upVoteCount for user is > 10 AND downVoteCount is < 2
+    // generate 'negative review' request when downVoteCount for request is 2 * upVoteCount AND totalVoteCount > 15
+    public function generate_requests($id, $type, $username) {
+        
+        // USER_PROMO
+        $this->db->where('username', $username);
+        $this->db->select_sum('upCount');
+        $this->db->select_sum('downCount');
+        $query = $this->db->get('review')->row_array();
+        
+        if ($query['upCount'] > UP_VOTE_PROMO && $query['downCount'] < DOWN_VOTE_PROMO) {
+            
+            // create request if it doesn't already exist
+            
+            $this->db->where('username', $username);
+            $this->db->where('type', 'user promotion');
+            $this->db->from('request');
+            if ($this->db->count_all_results() == 0)
+                $this->request_model->insert('user promotion', $username);
+        }
+        
+        // TODO: NEG_REVIEW
+        
+        
     }
     
 
