@@ -174,6 +174,7 @@ class User extends CI_Controller {
         $data['posReviews']=$statistics->posReviews;
         $this->load("guest_statistics",null,$data);
 }
+//search destinations
     public function search(){
        $output = '';
 		$query = '';
@@ -209,6 +210,43 @@ class User extends CI_Controller {
 		$output .= '</table>';
 		echo $output;
     }
+        
+    public function search_people(){
+       $output = '';
+		$query = '';
+		
+		if($this->input->post('query'))
+		{
+			$query = $this->input->post('query');
+		}
+		$data = $this->User_model->search_data($query);
+		$output .= '
+		<div class="table-responsive">
+					<table class="table bg-light">
+
+		';
+		if($data->num_rows() > 0)
+		{
+			foreach($data->result() as $row)
+			{
+				$output .= '
+						<tr>
+							<td><a href="'.base_url().'index.php/user/preview_other_user/'.$row->username.'">'.$row->firstname.'</a></td>
+                                                        <td>'.$row->lastname.'</td>    
+						</tr>
+				';
+			}
+		}
+		else
+		{
+			$output .= '<tr>
+							
+						</tr>';
+		}
+		$output .= '</table>';
+		echo $output;
+    }
+    
      public function load_dest($id,$message=null){
        $data['dest_name'] = $this->destination_model->get_name($id);
        $data['dest_country'] = $this->destination_model->get_country($id);

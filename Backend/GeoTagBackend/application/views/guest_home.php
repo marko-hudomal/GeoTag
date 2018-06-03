@@ -25,7 +25,7 @@
    <div class="col-md-4">
       <div class="jumbotron" style="max-height:700px; padding:10px;padding-left:20px;padding-right:20px;background-size:cover; background-image: url('<?php echo base_url()?>img/brown-gradient.png');">
         
-               <input class="form-control" name="search_text" id="search_text" type="text" placeholder="Search for destinations, people...">
+               <input class="form-control" name="search_text" id="search_text" type="text" placeholder="Search for destinations">
          
           <div id="result"></div>
           <hr>

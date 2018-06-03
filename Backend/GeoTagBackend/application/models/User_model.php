@@ -196,4 +196,21 @@ class User_model extends CI_Model {
         
         return $result['status'];
     }
+    
+       function search_data($query)
+	{
+		$this->db->select("*");
+		$this->db->from("user");
+		if($query != '')
+		{
+			$this->db->like('username', $query);
+			$this->db->or_like('firstname', $query);
+                        $this->db->or_like('lastname', $query);
+                        return $this->db->get();
+
+		}
+                
+			$this->db->or_like('gender', 123);
+                        return $this->db->get();
+	}
 }
