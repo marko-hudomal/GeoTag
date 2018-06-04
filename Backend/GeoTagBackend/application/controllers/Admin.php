@@ -82,6 +82,7 @@ class Admin extends CI_Controller {
                 break;
             case "user promotion":
                 $this->promote_user($request->username);
+                return;
                 break;
             default:
 
