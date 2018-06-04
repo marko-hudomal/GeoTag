@@ -89,7 +89,7 @@ class Admin extends CI_Controller {
                 break;
             }
         $this->request_model->delete($request_id);
-        $this->load("admin_home");
+        redirect("admin/load/admin_home");
     }
     public function dismiss_request($request_id){
         $this->is_regular_user();
@@ -115,7 +115,7 @@ class Admin extends CI_Controller {
             }
             
         $this->request_model->delete($request_id);
-        $this->load("admin_home");
+         redirect("admin/load/admin_home");
     }
     public function delete_review($destination_id, $review_id){
         $this->is_regular_user();
@@ -281,7 +281,7 @@ $this->is_regular_user();
                 
                 $this->destination_model->insert_destination($data);
 
-                $this->load("super_user_add_destination", Array("message"=>"Successfully changed username"));
+                $this->load("super_user_add_destination", Array("message"=>"Successfully added destination"));
                 } else {
                     $this->load("super_user_add_destination");
                 }
