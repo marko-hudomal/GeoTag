@@ -81,8 +81,7 @@ class Admin extends CI_Controller {
                 $this->review_model->delete($rev->idDest);
                 break;
             case "user promotion":
-                $this->promote_user($request->username);
-                return;
+                $this->User_model->promote_user($request->username);      
                 break;
             default:
 
