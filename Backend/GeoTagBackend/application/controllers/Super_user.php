@@ -19,7 +19,7 @@ class Super_user extends CI_Controller {
         $this->load->model("review_model");
         
         // check if user is already logged in, or if unauthorized access through the link
-        if (($this->session->userdata('user')) != NULL) {
+        if (($this->session->userdata('user')) != NULL && $this->session->userdata('remember') == true) {
             switch ($this->session->userdata('user')->status) {
                  case "user":
                     redirect("user");

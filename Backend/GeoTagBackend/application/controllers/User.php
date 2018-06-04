@@ -18,8 +18,8 @@ class User extends CI_Controller {
         $this->load->model("statistic_model");
         $this->load->model("review_model");
         // check if user is already logged in, or if unauthorized access through the link
-        if (($this->session->userdata('user')) != NULL) {
-            switch ($this->session->userdata('user')->status) {
+        if (($this->session->userdata('user')) != NULL  && $this->session->userdata('remember') == true) {
+            switch ($this->session->userdata('user')->status ) {
               
                
                 case "super_user":

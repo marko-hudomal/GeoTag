@@ -18,7 +18,7 @@ class Guest extends CI_Controller {
         $this->load->model("review_model");
         
         // check if user is already logged in, or if unauthorized access through the link
-        if (($this->session->userdata('user')) != NULL) {
+        if ($this->session->userdata('user') != NULL && $this->session->userdata('remember') == true) {
             switch ($this->session->userdata('user')->status) {
                 case "user":
                     redirect("user");
@@ -110,8 +110,13 @@ class Guest extends CI_Controller {
                 $this->index("Wrong password");
             } else {
                 $user = $this->User_model->user;
-                $this->session->set_userdata('user', $user);
-                switch ($this->session->userdata('user')->status) {
+                if ($this->input->post("rememberme") == true)
+                    $this->session->set_userdata('remember', true);
+                else 
+                    $this->session->set_userdata('remember', false);
+                
+                    $this->session->set_userdata('user', $user);
+                switch ($user->status) {
                     case "user":
                         redirect("User");
                         break;
