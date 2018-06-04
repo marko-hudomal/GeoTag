@@ -81,7 +81,7 @@ class Guest extends CI_Controller {
             /*else
                 $this->User_model->insert_user($data);*/
 
-            $this->index("Successfully registered, you can login");
+            $this->index("Confirmation mail has been sent.");
             
             $to      = $this->session->userdata('email');
             $subject = 'GeoTag Registration';

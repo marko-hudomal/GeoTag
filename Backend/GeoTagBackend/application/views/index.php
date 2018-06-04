@@ -20,7 +20,7 @@
         <span>
             <?php if (isset($message) && ($message == "Confirmation mail has been sent.")) 
                 echo "<div class=\"alert alert-info\" style=\" margin-left:15px; margin-right:15px;\">
-                        <strong>Check mail,</strong> ".$message."
+                        <strong>Check mail! </strong> ".$message."
                       </div>"
             ?>
         </span>
