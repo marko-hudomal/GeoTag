@@ -3,7 +3,7 @@ Hudi:	//pripremis teren za matketove votove,[done]
 	//korisnik moze da obrise svoj rivju[done] + zabrana glasanja za samog sebe[done]
 	//+User, disabluje mu se glasanje za svoj review[done]
 	//+User, disabluje mu se glasanje za svoj vote u reviewu[done]
-	!VIDITE DA LI VAM SE SVIDJA: *Progress bar na profilu[done]
+	//VIDITE DA LI VAM SE SVIDJA: *Progress bar na profilu[done]
 
 Matke:	unapredjivanje u superuser,
 	brisanje korisnika
@@ -22,7 +22,7 @@ Dejan:	//pretraga korisnika [done]
 
 //Dodatak: Cira nek podesi u pretrazi destinacije da ne izlaze one sa pending=1 atributom [done]
 
-Trebace verovatno u requestu da se stavi link ka korisniku na koga se odnosi taj request
+//Trebace verovatno u requestu da se stavi link ka korisniku na koga se odnosi taj request[done]
 
 *** PREUZMITE STA HOCETE I DODAJTE AKO NESTO FALI
 
