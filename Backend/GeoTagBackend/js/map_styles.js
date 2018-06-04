@@ -44,16 +44,7 @@ function init_markers(styledMapType, x, y) {
             url:"https://image.flaticon.com/icons/svg/526/526744.svg",
             scaledSize: new google.maps.Size(50,65), // scaled size
          };
-    var path = window.location.pathname;
-    var page = path.split("/").pop();
-    if (page == 'super_user_add_destination'){
-        mark = new google.maps.Marker({
-            position: {lat: x, lng: y},
-            map: map,
-            draggable: true,
-            icon
-        });
-    }
+    
 	
     //var lat = homeMarker.getPosition().lat();
     //var lng = homeMarker.getPosition().lng();
@@ -76,7 +67,11 @@ function init_markers(styledMapType, x, y) {
     var infoWindow = new google.maps.InfoWindow(), marker, i;
     
     // Loop through our array of markers & place each one on the map  
+    var lat_center = 0;
+    var lng_center = 0;
     for( i = 0; i < markers.length; i++ ) {
+        lat_center += markers[i][1];
+        lng_center += markers[i][2];
         var position = new google.maps.LatLng(markers[i][1], markers[i][2]);
         bounds.extend(position);
         marker = new google.maps.Marker({
@@ -95,7 +90,20 @@ function init_markers(styledMapType, x, y) {
 
     // Automatically center the map fitting all markers on the screen
     map.fitBounds(bounds);
+    
         
+    }
+    lat_center /= markers.length;
+    lng_center /= markers.length;
+    var path = window.location.pathname;
+    var page = path.split("/").pop();
+    if (page == 'super_user_add_destination'){
+        mark = new google.maps.Marker({
+            position: {lat: lat_center, lng: lng_center},
+            map: map,
+            draggable: true,
+            icon
+        });
     }
 }
 function initMap_Dessert(x,y) {

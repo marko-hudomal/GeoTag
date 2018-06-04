@@ -2,7 +2,7 @@
 <head>
 	<meta charset="UTF-8">
         <link rel="icon" href="<?php echo base_url()?>img/logo.png">
-	<title>General Error</title>
+	<title>404 Error</title>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/snap.svg/0.3.0/snap.svg-min.js"></script>
 
 	<link type="text/css" rel="stylesheet" href="<?php echo base_url(); ?>css/err404.css" />
@@ -190,4 +190,4 @@
 </g>
 </svg>
 </body>
-<div hidden>
+</html>
