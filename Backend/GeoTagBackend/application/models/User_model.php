@@ -22,6 +22,7 @@ class User_model extends CI_Model {
     // @param array $data (represents one row in table user)
     // @return void
     public function insert_user($data) {
+        $data['password'] =  password_hash($data['password'], PASSWORD_DEFAULT);
         $this->db->insert('user', $data);
     }
     public function promote_user($username)
@@ -55,7 +56,7 @@ class User_model extends CI_Model {
     public function check_password($password, $username) {
         $this->db->where('username', $username);
         $row = $this->db->get('user')->row();
-        if ($row->password == $password) {
+        if (password_verify($password, $row->password)) {
             return TRUE;
         } else {
             return FALSE;
@@ -78,7 +79,7 @@ class User_model extends CI_Model {
     // @return void
     public function change_password($new_password) {
 
-        $this->db->set('password', $new_password);
+        $this->db->set('password', password_hash($new_password, PASSWORD_DEFAULT));
         $this->db->where('username', $this->session->userdata('user')->username);
         $this->db->update('user');
         $this->session->userdata('user')->password = $new_password;
