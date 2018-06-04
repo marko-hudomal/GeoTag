@@ -50,7 +50,7 @@ class Guest extends CI_Controller {
         $data['page'] = 'index.php';
         if ($message)
             $data['message'] = $message;
-
+           
         $this->load->view("index.php", $data);
     }
 
@@ -120,14 +120,12 @@ class Guest extends CI_Controller {
             $this->statistic_model->updateStatistics('userCount');
             
             $this->session->sess_destroy();
-            echo "Your registration has been confirmed! You can login now!";
             //sleep(2);
-            $this->index();
+            $this->index("Your registration has been confirmed! You can login now!");
         } 
         else {
-            echo "Your registration has expired!";
             //sleep(2);
-            $this->index();
+            $this->index("Your registration has expired!");
         }
     }
 
