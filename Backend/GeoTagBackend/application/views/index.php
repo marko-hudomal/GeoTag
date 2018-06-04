@@ -19,21 +19,21 @@
         
         <span>
             <?php if (isset($message) && ($message == "Confirmation mail has been sent.")) 
-                echo "<div class=\"alert alert-info\" style=\" margin-left:15px; margin-right:15px;\">
+                echo "<div class=\"alert alert-info \" style=\" margin-left:15px; margin-right:15px;\">
                         <strong>Check mail! </strong> ".$message."
                       </div>"
             ?>
         </span>
         <span>
             <?php if (isset($message) && ($message == "Your registration has been confirmed! You can login now!")) 
-                echo "<div class=\"alert alert-success\" style=\" margin-left:15px; margin-right:15px;\">
+                echo "<div class=\"alert alert-success \" style=\" margin-left:15px; margin-right:15px;\">
                         <strong>Success!</strong> ".$message."
                       </div>"
             ?>
         </span>
         <span>
             <?php if (isset($message) && ($message == "Your registration has expired!")) 
-                echo "<div class=\"alert alert-danger\" style=\" margin-left:15px; margin-right:15px;\">
+                echo "<div class=\"alert alert-danger \" style=\" margin-left:15px; margin-right:15px;\">
                         <strong>Error!</strong> ".$message."
                       </div>"
             ?>
