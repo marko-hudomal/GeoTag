@@ -2,12 +2,14 @@
 
 /**
  * @author Dejan Ciric 570/15
- * 
+ * @author Jakov Jezdic 0043/15
  * Guest - class that handle all requests for guest
  * and for more privileged users if they use the same actions
  */
 class Guest extends CI_Controller {
-
+    
+    
+    
     // Creating new instance
     // @return void
     function __construct() {
@@ -16,6 +18,8 @@ class Guest extends CI_Controller {
         $this->load->model("destination_model");
         $this->load->model("statistic_model");
         $this->load->model("review_model");
+        
+        //$this->register_data['gender'] = null;
         
         // check if user is already logged in, or if unauthorized access through the link
         if ($this->session->userdata('user') != NULL && $this->session->userdata('remember') == true) {
@@ -59,41 +63,71 @@ class Guest extends CI_Controller {
         $this->form_validation->set_rules("first_name", "Firstname", "required|max_length[20]");
         $this->form_validation->set_rules("last_name", "Lastname", "required|max_length[20]");
         $this->form_validation->set_rules("gender", "Gender", "required");
-        $data['gender'] = $this->input->post('gender');
+        
+        $this->session->set_userdata('gender', $this->input->post('gender'));
 
         if ($this->form_validation->run()) {
-            $data['username'] = $this->input->post('username');
-            $data['email'] = $this->input->post('email');
-            $data['status'] = "user";
-            $data['password'] = $this->input->post('pwd_signup');
-            $data['firstname'] = $this->input->post('first_name');
-            $data['lastname'] = $this->input->post('last_name');
-
-
-            if ($data['gender'] == "0")
+            $this->session->set_userdata('username', $this->input->post('username'));
+            $this->session->set_userdata('email', $this->input->post('email'));
+            $this->session->set_userdata('status', $this->input->post('confirmation'));
+            $this->session->set_userdata('password', $this->input->post('pwd_signup'));
+            $this->session->set_userdata('firstname', $this->input->post('first_name'));
+            $this->session->set_userdata('lastname', $this->input->post('last_name'));
+            $code = rand(1000, 10000);
+            $this->session->set_userdata('code', $code);
+            
+            if ($this->session->userdata('gender') == "0")
                 $this->index("Please select gender");
-            else
-                $this->User_model->insert_user($data);
+            /*else
+                $this->User_model->insert_user($data);*/
 
             $this->index("Successfully registered, you can login");
             
-            $to      = $this->input->post('email');
+            $to      = $this->session->userdata('email');
             $subject = 'GeoTag Registration';
-            $code = rand(100, 10000);
-            $message = 'You have successfully registered on GeoTag! Here is your code: '.$code.' Have fun :)';
+            $link = base_url().'index.php/guest/confirm_registration/'.$code;
+            
+            $message = 'You have successfully registered on GeoTag! Here is your activation link: '.$link.' Have fun :)';
             
             $headers = 'From: geotag.dp@gmail.com' . "\r\n" .
             'Reply-To: geotag.dp@gmail.com' . "\r\n" .
             'X-Mailer: PHP/' . phpversion();
-
-            //mail($to, $subject, $message, $headers);
             
-            $this->statistic_model->updateStatistics('userCount');
+            mail($to, $subject, $message, $headers);
+            
+            //$this->statistic_model->updateStatistics('userCount');
         } else {
-            if ($data['gender'] == "0")
+            if ($this->session->userdata('gender') == "0")
                 $this->index("Please select gender");
             else
                 $this->index();
+        }
+    }
+    
+    public function confirm_registration($code) {
+        
+        if ($code == $this->session->userdata('code')) {
+            $data['username'] = $this->session->userdata('username');
+            $data['email'] = $this->session->userdata('email');
+            $data['status'] = 'user';
+            $data['password'] = $this->session->userdata('password');
+            $data['firstname'] = $this->session->userdata('firstname');
+            $data['lastname'] = $this->session->userdata('lastname');
+            $data['gender'] = $this->session->userdata('gender');
+            
+            $this->User_model->insert_user($data);
+            
+            $this->statistic_model->updateStatistics('userCount');
+            
+            $this->session->sess_destroy();
+            echo "Your registration has been confirmed! You can login now!";
+            //sleep(2);
+            $this->index();
+        } 
+        else {
+            echo "Your registration has expired!";
+            //sleep(2);
+            $this->index();
         }
     }
 
