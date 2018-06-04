@@ -391,6 +391,9 @@ class Super_user extends CI_Controller {
             }
             $data['profile_pic'] = $profile_pic;
             
+            $status = $this->User_model->get_status($other);
+            $data['status'] = $status;
+            
             $this->load("profile_other", null, $data);
         }
         else

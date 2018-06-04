@@ -375,6 +375,9 @@ $this->is_regular_user();
             }
             $data['profile_pic'] = $profile_pic;
             
+            $status = $this->User_model->get_status($other);
+            $data['status'] = $status;
+            
             $this->load("profile_other", null, $data);
         }
         else
