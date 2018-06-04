@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jun 01, 2018 at 11:29 PM
+-- Generation Time: Jun 04, 2018 at 04:47 PM
 -- Server version: 5.7.20-log
 -- PHP Version: 5.6.35
 
@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS `destination` (
   `pending` tinyint(1) NOT NULL,
   `country` varchar(40) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`idDest`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `destination`
@@ -45,9 +45,12 @@ CREATE TABLE IF NOT EXISTS `destination` (
 
 INSERT INTO `destination` (`idDest`, `name`, `longitude`, `latitude`, `pending`, `country`) VALUES
 (12, 'Beograd', 20.45434737375001, 44.77446920344899, 0, 'Srbija'),
-(13, 'Kraljevo', 20.67407393625001, 43.71994548813585, 1, 'Srbija'),
-(14, 'Kacarevo', 20.6982781904004, 44.966200860372346, 1, 'Srbija'),
-(15, 'Zrenjanin', 20.37469649484376, 45.38151829026838, 1, 'Srbija');
+(16, 'Titel', 20.285432578828136, 45.2114980600597, 0, 'Srbija'),
+(17, 'Vrsac', 21.29480147531251, 45.120482958475634, 0, 'Srbija'),
+(20, 'Pancevo', 20.65210128000001, 44.87090149651767, 0, 'Srbija'),
+(21, 'Rimini', 12.56753707101575, 44.08999561760694, 0, 'Italija'),
+(25, 'Grac', 15.46655440500001, 47.051826810104906, 1, 'Austrija'),
+(26, 'Pariz', 2.3269059675000108, 48.919290244349654, 1, 'Francuska');
 
 -- --------------------------------------------------------
 
@@ -60,38 +63,15 @@ CREATE TABLE IF NOT EXISTS `image` (
   `idImg` int(11) NOT NULL AUTO_INCREMENT,
   `img` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`idImg`)
-) ENGINE=InnoDB AUTO_INCREMENT=70 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=74 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `image`
 --
 
 INSERT INTO `image` (`idImg`, `img`) VALUES
-(45, 'ALL_Users_-_UserPhoto.jpg'),
-(46, 'b1.jpg'),
-(47, 'b2.jpg'),
-(48, 'b3.jpg'),
-(49, 'b4.jpg'),
-(50, 'inf11.jpg'),
-(51, 'festival1.png'),
-(52, 'festival2.png'),
-(53, 'festival3.png'),
-(54, 'festival4.png'),
-(55, 'festival5.png'),
-(56, 'festival6.png'),
-(57, 'festival7.png'),
-(58, 'bikovic1.jpg'),
-(59, 'bjela4.jpg'),
-(60, 'bjela5.jpg'),
-(61, 'ovsJG.png'),
-(62, '123.png'),
-(63, '1231.png'),
-(64, 'fb1.png'),
-(65, 'b11.jpg'),
-(66, 'b5.jpg'),
-(67, 'inf12.jpg'),
-(68, 'fb2.png'),
-(69, 'bjela6.jpg');
+(72, 'pic_grand.jpg'),
+(73, 'pic_grand1.jpg');
 
 -- --------------------------------------------------------
 
@@ -110,17 +90,15 @@ CREATE TABLE IF NOT EXISTS `request` (
   KEY `username` (`username`),
   KEY `idRev` (`idRev`),
   KEY `idDest` (`idDest`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `request`
 --
 
 INSERT INTO `request` (`idReq`, `type`, `username`, `idRev`, `idDest`) VALUES
-(1, 'Neispravan request', 'user', NULL, NULL),
-(2, 'destination added', 'superuser', NULL, 13),
-(3, 'destination added', 'superuser', NULL, 15),
-(4, 'destination added', 'superuser', NULL, 14);
+(11, 'destination added', 'superuser', NULL, 25),
+(12, 'destination added', 'superuser', NULL, 26);
 
 -- --------------------------------------------------------
 
@@ -142,16 +120,19 @@ CREATE TABLE IF NOT EXISTS `review` (
   KEY `idImg` (`idImg`),
   KEY `username` (`username`),
   KEY `idDest` (`idDest`)
-) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `review`
 --
 
 INSERT INTO `review` (`idRev`, `content`, `upCount`, `downCount`, `date`, `username`, `idImg`, `idDest`) VALUES
-(35, 'asdf', 0, 0, '2018-06-02 00:00:00', 'user', NULL, 12),
-(36, 'asdasdasdasdasdasdasda', 0, 0, '2018-06-02 00:00:00', 'user', NULL, 12),
-(37, '2132141242142132131312', 0, 0, '2018-06-02 00:00:00', 'user', NULL, 12);
+(53, '1111', 1, 1, '2018-06-04 00:00:00', 'superuser', NULL, 12),
+(55, 'pozitivan rev', 2, 0, '2018-06-04 00:00:00', 'superuser', NULL, 12),
+(56, 'negativan rev', 0, 2, '2018-06-04 00:00:00', 'superuser', NULL, 12),
+(57, '1111', 0, 1, '2018-06-04 00:00:00', 'user', NULL, 12),
+(58, 'review', 0, 1, '2018-06-04 00:00:00', 'user', 73, 12),
+(59, 'review bez slike', 0, 1, '2018-06-04 00:00:00', 'user', NULL, 12);
 
 -- --------------------------------------------------------
 
@@ -175,11 +156,7 @@ CREATE TABLE IF NOT EXISTS `statistic` (
 --
 
 INSERT INTO `statistic` (`date`, `userCount`, `reviewCount`, `destinationCount`, `positiveVoteCount`, `negativeVoteCount`) VALUES
-('2018-05-29 00:00:00', 0, 0, 0, 0, 0),
-('2018-05-30 00:00:00', 0, 0, 0, 0, 0),
-('2018-05-31 00:00:00', 0, 0, 0, 0, 0),
-('2018-06-01 00:00:00', 0, 0, 0, 0, 0),
-('2018-06-02 00:00:00', 0, 0, 0, 0, 0);
+('2018-06-04 00:00:00', 3, 6, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -192,7 +169,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `username` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `email` varchar(40) COLLATE utf8_unicode_ci NOT NULL,
   `status` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
-  `password` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `password` varchar(70) COLLATE utf8_unicode_ci NOT NULL,
   `firstname` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `lastname` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `gender` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
@@ -207,9 +184,12 @@ CREATE TABLE IF NOT EXISTS `user` (
 --
 
 INSERT INTO `user` (`username`, `email`, `status`, `password`, `firstname`, `lastname`, `gender`, `idImg`) VALUES
-('admin', 'admin@admin.com', 'admin', 'admin', 'Admin', 'Admin', 'male', 46),
-('superuser', 'superuser@superuser.com', 'super_user', 'superuser', 'Superuser', 'Superuser', 'male', NULL),
-('user', 'user@user.com', 'user', 'user', 'User', 'User', 'male', 47);
+('admin', 'admin@o3enzyme.com', 'admin', '$2y$10$swhPDdt8Wet90ZUTDxl9nu/ixf71FjpLoPaJuEYK/VlCa3/glnoh2', 'Admin', 'Admin', 'male', NULL),
+('markohudomal', 'markohudomal@yahoo.com', 'admin', '$2y$10$jSkVxQe5Yd.7ZPAGP6ZB3OV5LEAmRdbh8RylCb6tHjoU3NjE2btx2', 'Marko', 'Hudomal', 'male', NULL),
+('superuser', 'superuser@fxprix.com', 'super_user', '$2y$10$opt2L0zHRTF6fKrEAEOapeyrfHVcWzQ8SRAKNuuJoQMms2UGXYIBK', 'SuperUser', 'SuperUser', 'male', NULL),
+('user', 'user@loketa.com', 'user', '$2y$10$LTlkmHSvwjiyFKPcJxZapOfP76nQuY1pp9/SMOWHKkB2/Dh4pohTC', 'User', 'User', 'female', NULL),
+('user2', 'user2@sfamo.com', 'user', '$2y$10$ySfS1xkG8gSk2tA47lvu4u1JwRUtkKI7FGUy7lE0On4g5jvZNaoe2', 'User2', 'User2', 'male', NULL),
+('user3', 'user3@o3enzyme.com', 'user', '$2y$10$r0x3a452DmYR1dc4tZ/D9.brzrZGZMK7AXks1wdQlFqLvgox5S0uy', 'User3', 'User3', 'female', NULL);
 
 -- --------------------------------------------------------
 
@@ -225,6 +205,21 @@ CREATE TABLE IF NOT EXISTS `vote` (
   PRIMARY KEY (`username`,`idRev`),
   KEY `idRev` (`idRev`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `vote`
+--
+
+INSERT INTO `vote` (`username`, `idRev`, `type`) VALUES
+('admin', 53, -1),
+('admin', 55, 1),
+('admin', 56, -1),
+('admin', 57, -1),
+('admin', 58, -1),
+('admin', 59, -1),
+('user', 53, 1),
+('user', 55, 1),
+('user', 56, -1);
 
 --
 -- Constraints for dumped tables
