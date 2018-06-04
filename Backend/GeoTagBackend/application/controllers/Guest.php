@@ -75,7 +75,19 @@ class Guest extends CI_Controller {
             else
                 $this->User_model->insert_user($data);
 
-            $this->index("Successfully registred, you can login");
+            $this->index("Successfully registered, you can login");
+            
+            $to      = $this->input->post('email');
+            $subject = 'GeoTag Registration';
+            $code = rand(100, 10000);
+            $message = 'You have successfully registered on GeoTag! Here is your code: '.$code.' Have fun :)';
+            
+            $headers = 'From: geotag.dp@gmail.com' . "\r\n" .
+            'Reply-To: geotag.dp@gmail.com' . "\r\n" .
+            'X-Mailer: PHP/' . phpversion();
+
+            //mail($to, $subject, $message, $headers);
+            
             $this->statistic_model->updateStatistics('userCount');
         } else {
             if ($data['gender'] == "0")
