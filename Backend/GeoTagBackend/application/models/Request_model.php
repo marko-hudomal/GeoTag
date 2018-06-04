@@ -60,23 +60,25 @@ class Request_model extends CI_Model{
         foreach ($query->result() as $row)
         {
             $dest_name="";
+            
+            
             switch ($row->type) {
             case "destination added":
                 $dest=$this->destination_model->get_destination($row->idDest);
                 
-                $req_content="<strong>Destination: </strong>".$dest->name.", ".$dest->country."<hr>"."(Long: ".$dest->longitude.", Lat: ".$dest->latitude.")";
+                $req_content="<strong>Destination: </strong><a href='".base_url()."index.php/".$this->session->userdata('user')->status."/load_dest/".$row->idDest."'>".$dest->name."</a>, ".$dest->country."<hr>"."(Long: ".$dest->longitude.", Lat: ".$dest->latitude.")";
                 $button_func="<i>Add destination?</i>";
                 break;
             case "negative review":
                 $rev = $this->review_model->get_review($row->idRev);
                 $dest= $this->destination_model->get_destination($rev->idDest);
                 
-                $req_content="<strong>Destination: </strong>".$dest->name.", ".$dest->country."<hr>"."<Strong>Up/Down vote: </strong>".$rev->upCount."/".$rev->downCount."<hr><strong>Text: </strong><br>".$rev->content;
+                $req_content="<strong>Destination:</strong><a href='".base_url()."index.php/".$this->session->userdata('user')->status."/load_dest/".$rev->idDest."'>".$dest->name."</a>, ".$dest->country."<hr>"."<Strong>Up/Down vote: </strong>".$rev->upCount."/".$rev->downCount."<hr><strong>Text: </strong><br>".$rev->content;
                 $button_func="<i>Delete review?</i>";
                 break;
             case "user promotion":
                 $status=$this->user_model->get_status($row->username);
-                $req_content="<strong>Username: </strong>".$row->username."<hr> <strong>Status: </strong>".$status; 
+                $req_content="<strong>Username: </strong>"."<a href='".base_url()."index.php/".$this->session->userdata('user')->status."/preview_other_user/".$row->username."'>".$row->username."</a>"."<hr> <strong>Status: </strong>".$status; 
                 $button_func="<i>Promote to SuperUser?</i>";
                 break;
             default:
@@ -95,7 +97,7 @@ class Request_model extends CI_Model{
                                 <div class=\"card-header\">
                                     <table style=\"width:100%;\">
                                         <tr>
-                                            <td rowspan=\"2\"><strong>$row->username</strong></td>
+                                            <td rowspan=\"2\"><strong><a href='".base_url()."index.php/".$this->session->userdata('user')->status."/preview_other_user/".$row->username."'>".$row->username."</a></strong></td>
                                             <td rowspan=\"2\" style=\"text-align:right\">$button_func</td>
                                             <form action=\"".base_url()."index.php/".$user1."/approve_request/".$row->idReq."\" method=\"PUT\" >
                                                 <td style=\"text-align: right;\"><button type=\"submit\" class=\"btn btn-success btn-sm\">Approve</button> </td>

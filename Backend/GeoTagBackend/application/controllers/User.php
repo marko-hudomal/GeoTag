@@ -249,7 +249,7 @@ class User extends CI_Controller {
 		echo $output;
     }
     
-     public function load_dest($id,$message=null){
+     public function load_dest($id, $message=null){
        $data['dest_name'] = $this->destination_model->get_name($id);
        $data['dest_country'] = $this->destination_model->get_country($id);
        $data['all_reviews_current_destination_html'] = $this->review_model->get_html_all_reviews($id);
