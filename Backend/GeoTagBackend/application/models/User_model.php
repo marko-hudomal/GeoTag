@@ -215,4 +215,9 @@ class User_model extends CI_Model {
             return $this->db->get();
     }
     
+    public function delete_user($user){
+        $this->db->where('username', $user);
+        $this->db->delete('user');    
+    }
+    
 }

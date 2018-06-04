@@ -81,7 +81,7 @@ class Admin extends CI_Controller {
                 $this->review_model->delete($rev->idDest);
                 break;
             case "user promotion":
-                $this->User_model->promote_user($request->username);
+                $this->promote_user($request->username);
                 break;
             default:
 
@@ -418,6 +418,7 @@ public function get_all_destinations(){
             $full_name = $this->User_model->get_full_name($other);
             $data['firstname'] = $full_name['firstname'];
             $data['lastname'] = $full_name['lastname'];
+            $data['status'] = $this->User_model->get_status($other);
             $data['username'] = $other;
             
             $gender = $this->User_model->get_gender($other);
@@ -460,4 +461,15 @@ public function get_all_destinations(){
         }else
             $this->load_dest($destination_id);
     }  
+    
+    public function promote_user($user){
+        $this->User_model->promote_user($user); 
+        $this->preview_other_user($user);
+    }
+    
+    
+    public function delete_user($user){
+        $this->User_model->delete_user($user);    
+        $this->index();
+    }
 }

@@ -31,8 +31,40 @@
                                                 <h6 style=\"color:white;font-weight: 600;\">".$down_count."</h6>
                                         </div>";
                             }
-                            ?>                  
+                            ?> 
+                             
                         </div>
+                        
+                         <?php
+                            //User detection
+                            if (($this->session->userdata('user')) != NULL) {
+                                $user1 = $this->session->userdata('user')->status;
+                            }
+                            else
+                                $user1 = "Guest";   
+                            
+                            
+                            if ($user1=="admin"){
+                                if ($status=="user"){
+                                    $link=base_url()."index.php/".$user1."/promote_user/".$username;
+                                    echo "<br><a href='".$link."' class='btn btn-success'>Promote user</a> ";
+                                    
+                                    $link=base_url()."index.php/".$user1."/delete_user/".$username;
+                                    echo "<a href='".$link."' class='btn btn-danger'>Delete user</a> ";
+                    
+                                }
+      
+                            }
+                            
+                             if ($user1=="admin"){
+                                if ($status=="super_user"){                      
+                                    $link=base_url()."index.php/".$user1."/delete_user/".$username;
+                                    echo "<br><a href='".$link."' class='btn btn-danger'>Delete user</a> ";
+
+                                }
+      
+                            }
+                            ?>
                     </div>
                 </div>
              
