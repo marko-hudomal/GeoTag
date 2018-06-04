@@ -47,7 +47,10 @@
                             if ($user1=="admin"){
                                 if ($status=="user"){
                                     $link=base_url()."index.php/".$user1."/promote_user/".$username;
-                                    echo "<br><a href='".$link."' class='btn btn-success'>Promote user</a> ";
+                                    echo "<br>  <a href='".$link."' class='btn btn-success'>
+                                                Promote user
+                                                <img src=\"http://localhost:5050/GeoTag/Backend/GeoTagBackend/img/promote-icon.png\" width=\"15px\" style=\"opacity:0.9\">
+                                                </a> ";
                                     
                                     $link=base_url()."index.php/".$user1."/delete_user/".$username;
                                     echo "<a href='".$link."' class='btn btn-danger'>Delete user</a> ";
