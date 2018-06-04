@@ -24,10 +24,8 @@ class User extends CI_Controller {
                
                 case "super_user":
                     redirect("super_user");
-                    break;
                 case "admin":
                     redirect("admin");
-                    break;
             }
         }
         $phpArray = $this->get_all_destinations();

@@ -26,13 +26,10 @@ class Guest extends CI_Controller {
             switch ($this->session->userdata('user')->status) {
                 case "user":
                     redirect("user");
-                    break;
                 case "super_user":
                     redirect("super_user");
-                    break;
                 case "admin":
                     redirect("admin");
-                    break;
             }
         }
         $phpArray = $this->get_all_destinations();
@@ -154,13 +151,10 @@ class Guest extends CI_Controller {
                 switch ($user->status) {
                     case "user":
                         redirect("User");
-                        break;
                     case "super_user":
                         redirect("Super_user");
-                        break;
                     case "admin":
                         redirect("Admin");
-                        break;
                 }
             }
             $data['email'] = $this->input->post('emailSignin');
@@ -259,8 +253,7 @@ class Guest extends CI_Controller {
         
         if ($this->session->userdata('user') != null){
              $this->session->sess_destroy();
-             redirect("My404");
-             
+             redirect("My404"); 
         }
     }
 }

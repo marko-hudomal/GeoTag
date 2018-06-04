@@ -22,10 +22,8 @@ class Admin extends CI_Controller {
             switch ($this->session->userdata('user')->status) {
                  case "user":
                     redirect("user");
-                    break;
                 case "super_user":
                     redirect("super_user");
-                    break;
                 
                 
             }
