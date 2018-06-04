@@ -47,6 +47,7 @@ class Guest extends CI_Controller {
     // @param string $message
     // @return void
     function index($message = null) {
+        //$this->is_regular_user();
         $data['page'] = 'index.php';
         if ($message)
             $data['message'] = $message;
@@ -57,6 +58,7 @@ class Guest extends CI_Controller {
     // form validation check, and forwarding to corresponding model to insert new user 
     // @return void
     function register() {
+        $this->is_regular_user();
         $this->form_validation->set_rules("username", "Username", "trim|required|min_length[4]|max_length[20]|is_unique[user.username]");
         $this->form_validation->set_rules("pwd_signup", "Password", "trim|required|min_length[4]|max_length[20]");
         $this->form_validation->set_rules("email", "Email", "required|valid_email|max_length[40]|is_unique[user.email]");
@@ -105,7 +107,7 @@ class Guest extends CI_Controller {
     }
     
     public function confirm_registration($code) {
-        
+        $this->is_regular_user();
         if ($code == $this->session->userdata('code')) {
             $data['username'] = $this->session->userdata('username');
             $data['email'] = $this->session->userdata('email');
@@ -133,6 +135,7 @@ class Guest extends CI_Controller {
     // and redirecting when login based on status field of user
     // @return void
     function login() {
+        $this->is_regular_user();
         $this->form_validation->set_rules("usernameSignin", "Username", "required");
         $this->form_validation->set_rules("pwd_signin", "Password", "required");
         if ($this->form_validation->run()) {
@@ -170,6 +173,7 @@ class Guest extends CI_Controller {
 
     // @return void
     public function load($page,$data=null) {
+        $this->is_regular_user();
         $data['last_reviews_html'] = $this->review_model->get_html_last_n_reviews();
         
         $info['page'] = $page;
@@ -181,7 +185,7 @@ class Guest extends CI_Controller {
     
     public function getStatistics(){
         
-        
+        $this->is_regular_user();
         $statistics['userCount']=0;
         $statistics['reviewCount']=0;
         $statistics['destinationCount']=0;
@@ -200,6 +204,7 @@ class Guest extends CI_Controller {
         $this->load("guest_statistics",$data);
 }
     public function search(){
+        $this->is_regular_user();
        $output = '';
 		$query = '';
 		
@@ -236,6 +241,7 @@ class Guest extends CI_Controller {
     }
     
     public function load_dest($id){
+        $this->is_regular_user();
        $data['dest_name'] = $this->destination_model->get_name($id);
        $data['dest_country'] = $this->destination_model->get_country($id);
        $data['all_reviews_current_destination_html'] = $this->review_model->get_html_all_reviews($id);
@@ -246,8 +252,16 @@ class Guest extends CI_Controller {
     }
     
     public function get_all_destinations(){
+         $this->is_regular_user();
         return $this->destination_model->get_all_destinations();
     }
-
+    public function is_regular_user(){
+        
+        if ($this->session->userdata('user') != null){
+             $this->session->sess_destroy();
+             redirect("My404");
+             
+        }
+    }
 }
 

@@ -40,7 +40,7 @@ class User extends CI_Controller {
     // and add all information reading from database on load here
     // @return void
     public function index() {
-
+$this->is_regular_user();
         $data['profile_pic'] = $this->get_img_name();
         $data['last_reviews_html'] = $this->review_model->get_html_last_n_reviews();
         $data['page'] = 'guest_home';
@@ -54,11 +54,13 @@ class User extends CI_Controller {
     // @param string $page, string $message
     // @return void
     public function delete_review($destination_id, $review_id){
+        $this->is_regular_user();
         //Brisanje reviewa
         $this->review_model->delete($review_id);      
         $this->load_dest($destination_id);
     }
     public function load($page, $message = null,$data=null) {
+        $this->is_regular_user();
         $info['profile_pic'] = $this->get_img_name();
         $data['last_reviews_html'] = $this->review_model->get_html_last_n_reviews();
         
@@ -80,6 +82,7 @@ class User extends CI_Controller {
     // logout function, breaks session
     // @return void
     public function logout() {
+        $this->is_regular_user();
         $this->session->unset_userdata("user");
         $this->session->sess_destroy();
         redirect("Guest");
@@ -88,6 +91,7 @@ class User extends CI_Controller {
     // form check and forward request to coresponding model
     // @return void
     public function change_username() {
+        $this->is_regular_user();
         $this->form_validation->set_rules("usernameChange", "Username", "trim|required|min_length[4]|max_length[20]|is_unique[user.username]");
         if ($this->form_validation->run()) {
             $new_username = $this->input->post('usernameChange');
@@ -103,6 +107,7 @@ class User extends CI_Controller {
     // form check and forward request to coresponding model
     // @return void
     public function change_password() {
+        $this->is_regular_user();
         $this->form_validation->set_rules("oldPass", "Old password", "trim|required|min_length[4]|max_length[20]");
         $this->form_validation->set_rules("newPass1", "New password", "trim|required|min_length[4]|max_length[20]");
         $this->form_validation->set_rules("newPass2", "Confirm new password", "trim|required|min_length[4]|max_length[20]|matches[newPass1]");
@@ -124,6 +129,7 @@ class User extends CI_Controller {
     // and later use path for display
     // @return void
     public function do_upload() {
+        $this->is_regular_user();
         $config['upload_path'] = './uploads/';
         $config['allowed_types'] = 'gif|jpg|png';
         $config['max_size'] = 100;
@@ -146,7 +152,7 @@ class User extends CI_Controller {
     // @param string $id
     // @return string
     public function get_img_name() {
-
+$this->is_regular_user();
         $path = $this->User_model->get_img_name($this->session->userdata('user')->idImg);
 
         if ($path == "avatar.png")
@@ -158,7 +164,7 @@ class User extends CI_Controller {
 
         public function getStatistics(){
         
-        
+        $this->is_regular_user();
         $statistics['userCount']=0;
         $statistics['reviewCount']=0;
         $statistics['destinationCount']=0;
@@ -178,6 +184,7 @@ class User extends CI_Controller {
 }
 //search destinations
     public function search(){
+        $this->is_regular_user();
        $output = '';
 		$query = '';
 		
@@ -214,6 +221,7 @@ class User extends CI_Controller {
     }
         
     public function search_people(){
+        $this->is_regular_user();
        $output = '';
 		$query = '';
 		
@@ -250,6 +258,7 @@ class User extends CI_Controller {
     }
     
      public function load_dest($id, $message=null){
+         $this->is_regular_user();
        $data['dest_name'] = $this->destination_model->get_name($id);
        $data['dest_country'] = $this->destination_model->get_country($id);
        $data['all_reviews_current_destination_html'] = $this->review_model->get_html_all_reviews($id);
@@ -262,12 +271,14 @@ class User extends CI_Controller {
     }
     
     public function get_all_destinations(){
+        $this->is_regular_user();
         return $this->destination_model->get_all_destinations();
     }
     
     
     
     public function add_review($id){
+        $this->is_regular_user();
         $this->form_validation->set_rules("comment", "Comment", "trim|required|min_length[2]|max_length[255]");
         
         $data['content']="";
@@ -323,7 +334,7 @@ class User extends CI_Controller {
     
     // loads profile view with needed data
     public function preview_profile($message = "") {
-        
+        $this->is_regular_user();
         $data['review_count'] = $this->User_model->get_user_review_count($this->session->userdata('user')->username);
         $data['places_count'] = $this->User_model->get_user_added_places_count($this->session->userdata('user')->username);
         
@@ -337,7 +348,7 @@ class User extends CI_Controller {
     
     // previews profile_other if user is trying to view someone elses profile
     public function preview_other_user($other) {
-        
+        $this->is_regular_user();
         if ($other != $this->session->userdata('user')->username){
             $data['review_count'] = $this->User_model->get_user_review_count($other);
             $data['places_count'] = $this->User_model->get_user_added_places_count($other);
@@ -373,7 +384,7 @@ class User extends CI_Controller {
     }
     
     public function vote_up($review_id, $destination_id=null) {
-        
+        $this->is_regular_user();
         $this->review_model->update_vote_count($review_id, "upCount", $this->session->userdata('user')->username);
         
         if ($destination_id==null)
@@ -383,7 +394,7 @@ class User extends CI_Controller {
             $this->load_dest($destination_id);
     }
     public function vote_down($review_id, $destination_id=null) {
-        
+        $this->is_regular_user();
         $this->review_model->update_vote_count($review_id, "downCount", $this->session->userdata('user')->username);
         
         if ($destination_id==null)
@@ -392,4 +403,17 @@ class User extends CI_Controller {
         }else
             $this->load_dest($destination_id);
     }  
+    public function is_regular_user(){
+        
+        if ($this->session->userdata('user') != null){
+            if ($this->session->userdata('user')->status != "user"){
+                $this->session->sess_destroy();
+                redirect("My404");
+            }
+                
+        }else{
+            $this->session->sess_destroy();
+            redirect("My404");
+        }
+    }
 }
