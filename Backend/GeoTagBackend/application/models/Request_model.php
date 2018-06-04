@@ -66,7 +66,7 @@ class Request_model extends CI_Model{
             case "destination added":
                 $dest=$this->destination_model->get_destination($row->idDest);
                 
-                $req_content="<strong>Destination: </strong><a href='".base_url()."index.php/".$this->session->userdata('user')->status."/load_dest/".$row->idDest."'>".$dest->name."</a>, ".$dest->country."<hr>"."(Long: ".$dest->longitude.", Lat: ".$dest->latitude.")";
+                $req_content="<strong>Destination: </strong>".$dest->name.", ".$dest->country."<hr>"."(Long: ".$dest->longitude.", Lat: ".$dest->latitude.")";
                 $button_func="<i>Add destination?</i>";
                 break;
             case "negative review":

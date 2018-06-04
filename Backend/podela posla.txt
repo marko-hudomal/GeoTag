@@ -38,4 +38,5 @@ Dejan:	//pretraga korisnika [done]
 - Added place u statistici treba da bude po broju prihvacenih requestova. SuperUser u nasem slucaju moze da ispamuje sa milion destinacija invalidnih koje ce admin da odbije, ali mu stoji u statistici Added places:10000...
 - Kada se gleda profil drugog lika vise nema search za coveka? (Kod mene za primer iz ugla superusera prema adminu
 - Da dodamo u prikazu profila usera i njegov status, nigde ne moze da se zakljuci da li je admin,superuser, ili user?
-- Link iz reviewa na Destinaciju?
+- //Link iz reviewa na Destinaciju [done]
+- //Izbrisati link ka Destinaciji iz requesta destination added, jer ta Destinacija jos uvek ne postoji [done]

@@ -103,7 +103,7 @@ class Review_model  extends CI_Model{
                    <div class=\"card-header\">
                       <table width=\"100%\">
                          <tr>
-                            <td width=\"70%\"><strong><a href='".base_url()."index.php/".$this->session->userdata('user')->status."/preview_other_user/".$row->username."'>".$row->username."</a>, ".$dest_name." </strong></td>
+                            <td width=\"70%\"><strong><a href='".base_url()."index.php/".$this->session->userdata('user')->status."/preview_other_user/".$row->username."'>".$row->username."</a>, <a href='".base_url()."index.php/".$this->session->userdata('user')->status."/load_dest/".$row->idDest."'>".$dest_name."</a> </strong></td>
                             <td width=\"10%\" align=\"center\" style=\"text-align: right;\"  >
                                 <form action=\"".base_url()."index.php/".$user1."/vote_up/".$row->idRev."\" method=\"PUT\" style=\"padding-top: 0px;\">
                                     <input ".$disable_vote_plus." type=\"image\" name=\"submit\" src=\"".base_url()."img/plus-vote".$disable_vote_pic_plus.".png\" width=\"30px\" border=\"0\" alt=\"Submit\" style=\"\" />
