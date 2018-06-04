@@ -239,6 +239,8 @@ class Guest extends CI_Controller {
        $data['dest_name'] = $this->destination_model->get_name($id);
        $data['dest_country'] = $this->destination_model->get_country($id);
        $data['all_reviews_current_destination_html'] = $this->review_model->get_html_all_reviews($id);
+       $data['image']=null;
+       $data['image']=$this->destination_model->get_image($id);
        
        $this->load("destination_guest",$data);
     }

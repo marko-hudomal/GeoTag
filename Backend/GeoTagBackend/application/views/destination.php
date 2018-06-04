@@ -3,7 +3,7 @@
    <div class="col-8">      
       <div class="jumbotron" style="width:100%;background-size:cover; background-image: url('<?php echo base_url(); ?>img/brown-gradient.png'); height:85%; overflow:auto;">
          <div class="media" style="width: 100%" >
-            <img src="<?php echo base_url(); ?>img/destination-icon.png" width="180px" style="margin-right:20px">
+            <img src="<?php if ($image==null) echo base_url().'img/destination-icon.png'; else echo $image; ?>" width="180px" style="margin-right:20px">
             <br>
             <div class="media-body" style="overflow:auto;width:70%">
                 <table>

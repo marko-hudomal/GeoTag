@@ -218,6 +218,8 @@ class Super_user extends CI_Controller {
        $data['all_reviews_current_destination_html'] = $this->review_model->get_html_all_reviews($id);
        $data['dest_id']=$id;
        $data['message']=$message;
+       $data['image']=null;
+       $data['image']=$this->destination_model->get_image($id);
        
        $this->load("destination",null,$data);
     }

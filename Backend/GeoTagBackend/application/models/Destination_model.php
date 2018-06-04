@@ -81,5 +81,43 @@ class Destination_model extends CI_Model{
         public function get_all_destinations(){
            $query = $this->db->query("select name, country, longitude, latitude, idDest from destination where pending=0");
            return $query->result_array();  
-       }
+        }
+       
+        public function get_image($destid){
+            $query = $this->db->query("select * from review where idDest=".$destid);
+            $reviews=$query->result();     
+            
+            $img=null;
+            $max;
+            
+            foreach($reviews as $r){
+                
+                if ($r->idImg!=null){
+                    if ($img==null){
+                        $img=$r->idImg;
+                        $max=$r->upCount-$r->downCount;
+                    }
+                    else {   
+                        
+                        if ($max<$r->upCount-$r->downCount){
+                            $img=$r->idImg;
+                            $max=$r->upCount-$r->downCount;
+                        }  
+                    }
+                    
+                }
+                
+            }
+            
+            if ($img==null)
+                return null;
+            
+            $query = $this->db->query("select * from image where idImg=".$img);
+            
+            
+            return base_url()."uploads/".$query->result()[0]->img;
+             
+            
+            return null;
+        }
 }

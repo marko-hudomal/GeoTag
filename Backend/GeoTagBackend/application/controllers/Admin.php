@@ -140,7 +140,7 @@ class Admin extends CI_Controller {
             return base_url() . "uploads/" . $path;
         }
     }
-public function get_all_destinations(){
+    public function get_all_destinations(){
         return $this->destination_model->get_all_destinations();
     }
     
@@ -250,6 +250,8 @@ public function get_all_destinations(){
        $data['all_reviews_current_destination_html'] = $this->review_model->get_html_all_reviews_admin($id);
        $data['dest_id']=$id;
        $data['message']=$message;
+       $data['image']=null;
+       $data['image']=$this->destination_model->get_image($id);
        
        $this->load("destination",$data);
     }
