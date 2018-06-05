@@ -4,7 +4,7 @@
        
       <div class="jumbotron" style="background-size:cover; background-image: url('<?php echo base_url(); ?>img/brown-gradient.png'); height:85%; overflow:auto;">
          <div class="media">
-            <img src="<?php if ($image==null) echo base_url().'img/destination-icon.png'; else echo $image; ?>" width="180px" style="margin-right:20px">
+            <img src="<?php if ($image==null) echo base_url().'img/destination-icon.png'; else echo $image; ?>" width="180px" style="margin-right:20px;border: 3px solid #333333;">
            
             <br>
             <div class="media-body" style="overflow:auto;">
