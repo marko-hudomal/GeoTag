@@ -14,7 +14,7 @@
 	
 	<body >
 		
-		<nav class="stroke navbar navbar-expand-md navbar-dark" style="background-image: url('<?php echo base_url()?>img/header.jpg'); margin:10px;margin-bottom:60px; border-radius: 3px">
+		<nav class="stroke navbar navbar-expand-md navbar-dark" style="background-image: url('<?php echo base_url()?>img/header.jpg'); margin:10px;margin-bottom:60px; border-radius: 3px;">
 			<!-- Logo -->
 			<a class="navbar-brand" href="<?php echo base_url()?>index.php/admin/load/guest_home" style="height:50px; margin-left:50px">
 					<img src="<?php echo base_url()?>img/logo.png" alt="logo" align=left style="width:110px;">
@@ -27,7 +27,7 @@
 			</button>
 			
 			<!-- likovi -->
-			<div class="collapse navbar-collapse" style="text-align:right" id="collapsibleNavbar">
+			<div class="collapse navbar-collapse" style="text-align:right;" id="collapsibleNavbar">
 				<ul class="navbar-nav mx-auto">
 					<li class="nav-item">
 						<a class="nav-link <?php if ($page == 'admin_home') echo "active"; ?>" href="<?php echo base_url()?>index.php/admin/load/admin_home">Home</a>

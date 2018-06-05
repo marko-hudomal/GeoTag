@@ -2,6 +2,7 @@
 
 /**
  * @author Dejan Ciric 570/15
+ * @author Marko Hudomal 0112/15
  * Destination_model - handles all database manipulation regarding destinations
  */
 class Destination_model extends CI_Model{
@@ -56,8 +57,9 @@ class Destination_model extends CI_Model{
         return $this->db->get();
     }
         
-    //Mislim da ne radi ova funkcija, ja sam sa get_name radio, #Hudi
-    // ?????????????????????????????????
+    // get destination by id
+    // @param int $id
+    // @return destination object
     public function get_info($id){
         $query = $this->db->query("select name, country, longitude, latitude from destination where idDest=".$id." and pending=0");
         return $query->result_array()[0];  

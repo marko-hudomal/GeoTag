@@ -1,6 +1,7 @@
 <?php
 
 /**
+ * @author Marko Hudomal 0112/15
  * @author Jakov Jezdic 0043/2015
  * Request_model - handles all database manipulation regarding requests
  */

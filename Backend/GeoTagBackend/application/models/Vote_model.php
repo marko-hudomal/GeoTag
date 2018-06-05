@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @author User
+ * @author Marko Hudomal 0112/15
  * Vote_model - handles all database manipulation regarding votes
  */
 class Vote_model extends CI_Model {
