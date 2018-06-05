@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jun 04, 2018 at 04:47 PM
--- Server version: 5.7.20-log
+-- Generation Time: Jun 05, 2018 at 11:48 AM
+-- Server version: 5.7.21
 -- PHP Version: 5.6.35
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -252,7 +252,7 @@ ALTER TABLE `user`
 --
 ALTER TABLE `vote`
   ADD CONSTRAINT `idRev` FOREIGN KEY (`idRev`) REFERENCES `review` (`idRev`) ON DELETE CASCADE,
-  ADD CONSTRAINT `username2` FOREIGN KEY (`username`) REFERENCES `user` (`username`) ON DELETE CASCADE;
+  ADD CONSTRAINT `username2` FOREIGN KEY (`username`) REFERENCES `user` (`username`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
