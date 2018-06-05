@@ -89,7 +89,7 @@ class Review_model  extends CI_Model{
             
             else {
                 //Vote disable----------------------------------------------------------------------------------------------------
-                //**BITNO: SLEDECE VREDNOSTI KONTROLISU DA LI JE DUGME AKTIVIRANO ILI NE
+                //**CONTROLING BUTTON STATE!
                 $disable_vote_pic_plus="";
                 $disable_vote_plus="";
                 $disable_vote_pic_minus="";
@@ -234,7 +234,7 @@ class Review_model  extends CI_Model{
                 }else
                 {
                     //Vote disable----------------------------------------------------------------------------------------------------
-                    //**BITNO: SLEDECE VREDNOSTI KONTROLISU DA LI JE DUGME AKTIVIRANO ILI NE
+                    //**CONTROLING BUTTON STATE!
                     $disable_vote_pic_plus="";
                     $disable_vote_plus="";
                     $disable_vote_pic_minus="";
@@ -310,7 +310,7 @@ class Review_model  extends CI_Model{
                 $user1 = "guest";
             
             //Vote disable----------------------------------------------------------------------------------------------------
-            //**BITNO: SLEDECE VREDNOSTI KONTROLISU DA LI JE DUGME AKTIVIRANO ILI NE
+            //**CONTROLING BUTTON STATE!
             $disable_vote_pic_plus="";
             $disable_vote_plus="";
             $disable_vote_pic_minus="";
