@@ -3,6 +3,7 @@
 /**
  * @author Dejan Ciric 570/15
  * @author Jakov Jezdic 0043/15
+ * @author Milos Matijasevic 0440/15
  * 
  * User - handles all requests for classic registered user 
  * 

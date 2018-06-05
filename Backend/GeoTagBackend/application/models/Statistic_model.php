@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @author Milos_Matijasevic 440/15
+ * @author Milos Matijasevic 0440/15
  * @author Jakov Jezdic 0043/15
  * Statistic_model - handles all database manipulation regarding statistics
  */
@@ -58,7 +58,7 @@ class Statistic_model extends CI_Model{
             }
         }
         
-        if ($row==null){                                //za svaki dan se pravi novi red u tabeli
+        if ($row==null){                                //for every day making new row in table
             $newrow['date']=$date;
             $newrow['userCount']=0;
             $newrow['reviewCount']=0;
@@ -70,7 +70,7 @@ class Statistic_model extends CI_Model{
             
             $retrow= new \stdClass();
             $retrow->date=$newrow['date'];
-            $retrow->userCount=$newrow['userCount'];       //ovo se radi da bi bilo konzistentno kad se koristi kao povratna vrednost
+            $retrow->userCount=$newrow['userCount'];       //to be consistently as return value
             $retrow->reviewCount=$newrow['reviewCount'];
             $retrow->destinationCount=$newrow['destinationCount'];
             $retrow->positiveVoteCount=$newrow['positiveVoteCount'];
@@ -82,16 +82,16 @@ class Statistic_model extends CI_Model{
         
         $row->day=$row->date;
         
-        foreach ($rows as $r ){//trazimo one koji su u istoj nedelji sa nama
+        foreach ($rows as $r ){//searching rows for last 7 days
             
             $interval = date_diff(date_create($row->date),date_create($r->date),true);
             
-            $diff=(int)($interval->format("%d"));            // racuna se kolika je razlika u danima
+            $diff=(int)($interval->format("%d"));            // diffrence in days
 
             
             if ($diff<7 && $r->date != $row->date){
                 $row->userCount=$row->userCount+$r->userCount;
-                $row->reviewCount=$row->reviewCount+$r->reviewCount;            //ako je u proslih 7 dana
+                $row->reviewCount=$row->reviewCount+$r->reviewCount;            //if row is in last 7 days add
                 $row->destinationCount=$row->destinationCount+$r->destinationCount;
                 $row->positiveVoteCount=$row->positiveVoteCount+$r->positiveVoteCount;
                 
@@ -102,10 +102,10 @@ class Statistic_model extends CI_Model{
         $reviews=$this->db->get('review')->result();
         
         $row->posReviews=0;
-        foreach ($reviews as $rev){                             //petlja koja proverava koliko ima positivnih review-ova koji su napravljeni u ovoj nedelji
+        foreach ($reviews as $rev){                             //loop for sum of reviews in last 7 days
             $interval = date_diff(date_create($row->date),date_create($r->date),true);
             
-            $diff=(int)($interval->format("%d"));            // racuna se kolika je razlika u danima
+            $diff=(int)($interval->format("%d"));           
                 
             if ($diff<7){
                 if ($rev->upCount>$rev->downCount)
