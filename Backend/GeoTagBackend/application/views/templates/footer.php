@@ -1,4 +1,11 @@
-				<hr>
+
+
+<!-- Dejan Ciric 0570/15 -->
+<!-- Marko Hudomal 0112/15 -->
+
+
+
+<hr>
 				<footer>
 						<table width="100%">
 								<tr>

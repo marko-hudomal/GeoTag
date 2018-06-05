@@ -1,4 +1,8 @@
-		 <?php
+
+<!-- Jakov Jezdic 0043/15 -->
+
+
+ <?php
     if (($this->session->userdata('user')) != NULL) {
         $user1 = $this->session->userdata('user')->status;
     }

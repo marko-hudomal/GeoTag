@@ -1,3 +1,7 @@
+
+<!-- Marko Hudomal 0112/15 -->
+
+
  <?php
     if (($this->session->userdata('user')) != NULL) {
         $user1 = $this->session->userdata('user')->status;

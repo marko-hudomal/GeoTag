@@ -1,4 +1,6 @@
 
+<!-- Jakov Jezdic 0043/15 -->
+<!-- Marko Hudomal 0112/15 -->
 
 		<div class="container-fluid">
 			<div class="row">

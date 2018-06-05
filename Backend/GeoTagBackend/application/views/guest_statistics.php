@@ -1,4 +1,7 @@
 
+<!-- Marko Hudomal 0112/15 -->
+<!-- Dejan Ciric 570/15 -->
+
                 <?php
                 //User detection
                 if (($this->session->userdata('user')) != NULL) {
