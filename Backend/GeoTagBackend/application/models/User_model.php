@@ -148,7 +148,7 @@ class User_model extends CI_Model {
     // @return int
     public function get_user_added_places_count($username) {
         $this->db->where('username', $username);
-        $this->db->where('type', 'destination added');
+        $this->db->where('type', 'destination confirm');
         $this->db->from('request');
         return $this->db->count_all_results();
     }

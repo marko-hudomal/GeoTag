@@ -77,6 +77,7 @@ class Admin extends CI_Controller {
                 //Brise destinaciju
                 $this->destination_model->approve_destination($request->idDest);
                 $this->statistic_model->updateStatistics('destinationCount');
+                $this->request_model->insert('destination confirm', $request->idDest, $request->username);
                 break;
             case "negative review":         
                 $rev=$this->review_model->get_review($request->idRev);
@@ -280,16 +281,20 @@ class Admin extends CI_Controller {
         $this->form_validation->set_rules("country", "Password", "trim|required|min_length[2]|max_length[40]");
         if ($this->form_validation->run()) {
 
-        $data['name'] = $this->input->post('destination');
-        $data['longitude'] = explode(":",$this->input->post('longitudeH'))[1];
-        $data['latitude'] = explode(":",$this->input->post('latitudeH'))[1];
-        $data['pending'] = 0;
-        $data['country'] = $this->input->post('country');
+            $data['name'] = $this->input->post('destination');
+            $data['longitude'] = explode(":",$this->input->post('longitudeH'))[1];
+            $data['latitude'] = explode(":",$this->input->post('latitudeH'))[1];
+            $data['pending'] = 0;
+            $data['country'] = $this->input->post('country');
 
-        $this->destination_model->insert_destination($data);
-        $this->statistic_model->updateStatistics('destinationCount');
+            $this->destination_model->insert_destination($data);
 
-        $this->load("super_user_add_destination", Array("message"=>"Successfully added destination"));
+            $id_dest = $this->destination_model->get_id($data['name']);
+
+            $this->statistic_model->updateStatistics('destinationCount');
+            $this->request_model->insert('destination confirm', $id_dest, $this->session->userdata('user')->username);
+
+            $this->load("super_user_add_destination", Array("message"=>"Successfully added destination"));
         } else {
             $this->load("super_user_add_destination");
         }

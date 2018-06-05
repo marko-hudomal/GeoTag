@@ -29,10 +29,14 @@ class Request_model extends CI_Model{
                 break;
             case "user promotion":
                 break;
+            case "destination confirm":
+                $new_request['idDest'] = $id;
         }
         
         $this->db->insert('request', $new_request); 
     }
+    
+    
     
     // delete request
     // @param int $request_id

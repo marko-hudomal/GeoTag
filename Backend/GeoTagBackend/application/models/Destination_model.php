@@ -110,6 +110,14 @@ class Destination_model extends CI_Model{
        return $query->result_array();  
     }
     
+    // Get destination id by it's name
+    // @param int $name
+    // @return destination id
+    public function get_id($name) {
+        $query = $this->db->query("select * from destination where name='".$name."'");
+        return $query->result()[0]->idDest;
+    }
+    
     // get destination image by id
     // @param int $id
     // @return string Image url
