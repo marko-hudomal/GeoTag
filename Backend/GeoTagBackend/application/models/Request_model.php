@@ -99,7 +99,7 @@ class Request_model extends CI_Model{
             //if ($req_content=="Request type unknown..") continue;
             
             $ret=$ret."<div class=\"card\" style=\"margin-top:20px\">
-                                <div class=\"card-header\">
+                                <div class=\"card-header\" style=\"overflow: auto;\">
                                     <table style=\"width:100%;\">
                                         <tr>
                                             <td rowspan=\"2\"><strong><a href='".base_url()."index.php/".$this->session->userdata('user')->status."/preview_other_user/".$row->username."'>".$row->username."</a></strong></td>
