@@ -3,18 +3,21 @@
 /**
  * @author Milos_Matijasevic 440/15
  * @author Jakov Jezdic 0043/15
- * Statistic_model - class that handle all requests for Statistic table
+ * Statistic_model - handles all database manipulation regarding statistics
  */
 class Statistic_model extends CI_Model{
     
-     public function updateStatistics($field, $dir = "+1") {
+    // update statistic table, on given field in given direction
+    // @param string $field Field in table statistic to be updated, string $dir How much it should be increased/decreased (default ++)
+    // @return void
+    public function updateStatistics($field, $dir = "+1") {
         date_default_timezone_set("Europe/Belgrade");
         $now = new DateTime();
         $date=$now->format('Y-m-d');
-        
+
         $this->db->where('date', $date);
         $this->db->from('statistic');
-        
+
         if ($this->db->count_all_results() > 0) {
             $this->db->set($field, $field.$dir, FALSE);
             $this->db->where('date', $date);
@@ -27,13 +30,15 @@ class Statistic_model extends CI_Model{
             $newrow['destinationCount']=0;
             $newrow['positiveVoteCount']=0;
             $newrow['negativeVoteCount']=0;
-            
+
             $newrow[$field] = 1;
             $this->db->insert('statistic', $newrow);
         }
-     }
+    }
     
-     public function getStatistics(){
+    // get statistics data
+    // @return array Array containing all needed fields 
+    public function getStatistics(){
         
         date_default_timezone_set("Europe/Belgrade");
         $now = new DateTime();
@@ -93,7 +98,6 @@ class Statistic_model extends CI_Model{
             }
             
         }
-        
         
         $reviews=$this->db->get('review')->result();
         

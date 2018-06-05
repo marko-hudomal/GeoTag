@@ -1,15 +1,8 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
- * Description of Request_model
- *
- * @author User
+ * @author Jakov Jezdic 0043/2015
+ * Request_model - handles all database manipulation regarding requests
  */
 class Request_model extends CI_Model{
     public function __construct() {
@@ -19,8 +12,9 @@ class Request_model extends CI_Model{
         $this->load->model("user_model");
     }
     
-    public function insert($type, $id, $username=NULL)
-    {   
+    // insert new request
+    // @param string $type Request type, int $id request-type-specific id, string $username Username of user connected with request
+    public function insert($type, $id, $username=NULL) {   
         
         $new_request['idRev'] = NULL;
         $new_request['idDest'] = NULL;
@@ -38,20 +32,24 @@ class Request_model extends CI_Model{
         }
         
         $this->db->insert('request', $new_request); 
-        
     }
     
-    public function delete($request_id)
-    {
+    // delete request
+    // @param int $request_id
+    // @return void
+    public function delete($request_id) {
         $this->db->where('idReq', $request_id);
         $this->db->delete('request');
     }
     
+    // ????????????????????????
     public function get_request($id){
         $query = $this->db->query("select * from request where idReq=".$id);
         return $query->result()[0];
     }
     
+    // get all requests
+    // @return string $ret HTML code for all requests
     public function get_html_all_requests()
     {
         $ret = "";  

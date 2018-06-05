@@ -1,21 +1,17 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
- * Description of Vote_model
- *
  * @author User
+ * Vote_model - handles all database manipulation regarding votes
  */
 class Vote_model extends CI_Model {
      public function __construct() {
         parent::__construct();
     }
     
+    // get vote type for user on a specific review if it exists
+    // @param string $username, int $review_id
+    // @return int Vote type [-1,0,1]
     public function get_vote_status($username,$review_id)
     {
         $this->db->where('username', $username);

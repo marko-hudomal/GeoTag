@@ -3,12 +3,9 @@
 /**
  * @author Dejan Ciric 570/15
  * @author Jakov Jezdic 0043/15
- * Guest - class that handle all requests for guest
- * and for more privileged users if they use the same actions
+ * Guest - handles all requests for guest
  */
 class Guest extends CI_Controller {
-    
-    
     
     // Creating new instance
     // @return void
@@ -32,7 +29,7 @@ class Guest extends CI_Controller {
                     redirect("admin");
             }
         }
-        $phpArray = $this->get_all_destinations();
+        $phpArray = $this->destination_model->get_all_destinations();
         ?>
         <script type="text/javascript">var jArray =<?php echo json_encode($phpArray); ?>;</script>
         <?php
@@ -44,7 +41,7 @@ class Guest extends CI_Controller {
     // @param string $message
     // @return void
     function index($message = null) {
-        //$this->is_regular_user();
+        
         $data['page'] = 'index.php';
         if ($message)
             $data['message'] = $message;
@@ -55,7 +52,7 @@ class Guest extends CI_Controller {
     // form validation check, and forwarding to corresponding model to insert new user 
     // @return void
     function register() {
-        $this->is_regular_user();
+        
         $this->form_validation->set_rules("username", "Username", "trim|required|min_length[4]|max_length[20]|is_unique[user.username]");
         $this->form_validation->set_rules("pwd_signup", "Password", "trim|required|min_length[4]|max_length[20]");
         $this->form_validation->set_rules("email", "Email", "required|valid_email|max_length[40]|is_unique[user.email]");
@@ -103,8 +100,11 @@ class Guest extends CI_Controller {
         }
     }
     
+    // confirm registration, activated by clicking on confirmation link from e-mail
+    // @param int $code Random code generated when registering
+    // @return void
     public function confirm_registration($code) {
-        $this->is_regular_user();
+        
         if ($code == $this->session->userdata('code')) {
             $data['username'] = $this->session->userdata('username');
             $data['email'] = $this->session->userdata('email');
@@ -132,7 +132,7 @@ class Guest extends CI_Controller {
     // and redirecting when login based on status field of user
     // @return void
     function login() {
-        $this->is_regular_user();
+        
         $this->form_validation->set_rules("usernameSignin", "Username", "required");
         $this->form_validation->set_rules("pwd_signin", "Password", "required");
         if ($this->form_validation->run()) {
@@ -164,10 +164,13 @@ class Guest extends CI_Controller {
         }
     }
 
-
+    
+    // load different views for user and can pass different messages to the view
+    // and add all information reading from database on load here
+    // @param string $page, array $data
     // @return void
     public function load($page,$data=null) {
-        $this->is_regular_user();
+        
         $data['last_reviews_html'] = $this->review_model->get_html_last_n_reviews();
         
         $info['page'] = $page;
@@ -177,9 +180,11 @@ class Guest extends CI_Controller {
         $this->load->view("templates/footer.php");
     }
     
+    
+    // loading statistics view by wrapping statistic model call to acces data
+    // @return void
     public function getStatistics(){
         
-        $this->is_regular_user();
         $statistics['userCount']=0;
         $statistics['reviewCount']=0;
         $statistics['destinationCount']=0;
@@ -196,9 +201,12 @@ class Guest extends CI_Controller {
         $data['positiveVoteCount']=$statistics->positiveVoteCount;
         $data['posReviews']=$statistics->posReviews;
         $this->load("guest_statistics",$data);
-}
+    }
+    
+    // search destinations
+    // @return void
     public function search(){
-        $this->is_regular_user();
+       
        $output = '';
 		$query = '';
 		
@@ -234,8 +242,12 @@ class Guest extends CI_Controller {
 		echo $output;
     }
     
+    // load destination view, wraps destination model and default user load calls
+    // in order to preview destination page with neccessary data
+    // @param int $id
+    // @return void
     public function load_dest($id){
-        $this->is_regular_user();
+        
        $data['dest_name'] = $this->destination_model->get_name($id);
        $data['dest_country'] = $this->destination_model->get_country($id);
        $data['all_reviews_current_destination_html'] = $this->review_model->get_html_all_reviews($id);
@@ -243,18 +255,6 @@ class Guest extends CI_Controller {
        $data['image']=$this->destination_model->get_image($id);
        
        $this->load("destination_guest",$data);
-    }
-    
-    public function get_all_destinations(){
-         $this->is_regular_user();
-        return $this->destination_model->get_all_destinations();
-    }
-    public function is_regular_user(){
-        
-        if ($this->session->userdata('user') != null){
-             $this->session->sess_destroy();
-             redirect("My404"); 
-        }
     }
 }
 

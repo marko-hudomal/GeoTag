@@ -1,18 +1,11 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
- * Description of Review_model
- *
  * @author Jakov Jezdic 0043/2015
+ * Review_model - handles all database manipulation regarding reviews
  */
 
-// 
+// promotion requirement constants
 define("UP_VOTE_PROMO", 10);
 define("DOWN_VOTE_PROMO_PERCENT", 0.2);
 define("NEG_REV_PER", 2);
@@ -34,12 +27,17 @@ class Review_model  extends CI_Model{
         $this->load->model("user_model");
     }
 
-    
+    // delete review by id
+    // @param id $review_id
+    // @return void
     public function delete($review_id)
     {
         $this->db->where('idRev', $review_id);
         $this->db->delete('review');
     }
+    
+    // get latetest reviews, which will be previewed on home page
+    // @return string $ret HTML code of latest reviews
     public function get_html_last_n_reviews()
     {
         $N=10;
@@ -132,6 +130,10 @@ class Review_model  extends CI_Model{
         
         return $ret;
     }
+    
+    // get all reviews for destination
+    // @param int $destination_id
+    // @return string $ret HTML code of destination reviews
     public function get_html_all_reviews($destination_id){
         $ret = "";  
         $query = $this->db->query("SELECT * from review where idDest=".$destination_id." ORDER BY idRev DESC");
@@ -280,6 +282,10 @@ class Review_model  extends CI_Model{
         
         return $ret;
     }
+    
+    // get all reviews for destination, admin specific
+    // @param int $destination_id
+    // @return string $ret HTML code of destination reviews
     public function get_html_all_reviews_admin($destination_id){
         $ret = "";  
         $query = $this->db->query("SELECT * from review where idDest=".$destination_id." ORDER BY idRev DESC");
@@ -354,6 +360,10 @@ class Review_model  extends CI_Model{
         
         return $ret;
     }
+    
+    // get image name by its id
+    // @param int $id Image id
+    // @return string
     public function get_img_name($id) {
         $this->db->where('idImg', $id);
         $row = $this->db->get('image')->row();
@@ -364,17 +374,24 @@ class Review_model  extends CI_Model{
             return "";
         }
     }
+    
+    // ????????????????????????????
     public function get_review($id){
         $query = $this->db->query("select * from review where idRev=".$id);
         return $query->result()[0];
     }
+    
+    // insert review
+    // @param array $data Array containing all fields from Review table
+    // @return void
     public function insert_review($data){
-        
         $this->db->insert('review', $data);
     }  
     
     
-    //dodaje novu sliku i vraca njen id
+    // add image
+    // @param string $name Image name
+    // @return int $insert_id Id of added image
     public function add_photo($name){
         $data = array(
             'idImg' => '',
@@ -386,6 +403,9 @@ class Review_model  extends CI_Model{
         return $insert_id;
     }
     
+    // update vote count on a review and possibly generate requests
+    // @param int $id Review id, string $field Field in review table to be updated ['upCount'/'downCount'], string $username Username of user who voted
+    // @return void
     public function update_vote_count($id, $field, $username) {
         
         
@@ -446,6 +466,8 @@ class Review_model  extends CI_Model{
     
     // generate 'user promotion' request when upVoteCount for user is > 10 AND downVoteCount is less than 20% of upVoteCount
     // generate 'negative review' request when downVoteCount for request is 2 * upVoteCount AND totalVoteCount > 15
+    // @param int $id Review id, int $type 1 when upVoted, -1 when downVoted
+    // @return void
     public function generate_requests($id, $type) {
         
         // get review author
@@ -458,9 +480,7 @@ class Review_model  extends CI_Model{
         
         if ($type == 1) {
         // USER_PROMO
-
-            
-
+        
             // PROMO only available for regular users
             if ($this->user_model->get_status($username) == 'user') {
                 $this->db->where('username', $username);
@@ -502,6 +522,4 @@ class Review_model  extends CI_Model{
             }
         } 
     }
-    
-
 }

@@ -3,7 +3,7 @@
 /**
  * @author Dejan Ciric 570/15
  * @author Jakov Jezdic 570/15
- * User_model - class that handle all requests for User table
+ * User_model - handles all database manipulation regarding statistics
  */
 class User_model extends CI_Model {
 
@@ -25,15 +25,19 @@ class User_model extends CI_Model {
         $data['password'] =  password_hash($data['password'], PASSWORD_DEFAULT);
         $this->db->insert('user', $data);
     }
-    public function promote_user($username)
-    {   
-        //Ako nije status = user, odbacuje se
+    
+    // change user status from user to superuser
+    // @param string $username
+    // @return void
+    public function promote_user($username) {   
+        
         if ($this->get_status($username)!="user") {return;}
         
         $this->db->set('status', "super_user");
         $this->db->where('username', $username);
         $this->db->update('user');
     }
+    
     // get user acording to his username and store it in variable $user
     // return bool is user with that username found or not
     // @param string $username
@@ -117,6 +121,9 @@ class User_model extends CI_Model {
         }
     }
     
+    // get user img name by username
+    // @param string $username
+    // @return string
     public function get_img_id($username) {
         $this->db->where('username', $username);
         $this->db->select('idImg');
@@ -180,7 +187,7 @@ class User_model extends CI_Model {
     
     // get gender of a user, for other-user-profile page
     // @param string $username
-    // @return array
+    // @return string
     public function get_gender($username) {
         $this->db->where('username', $username);
         $this->db->select('gender');
@@ -189,6 +196,10 @@ class User_model extends CI_Model {
         
         return $result['gender'];
     }
+    
+    // get status of a user, for other-user-profile page
+    // @param string $username
+    // @return string
     public function get_status($username){
         $this->db->where('username', $username);
         $this->db->select('status');
@@ -198,6 +209,7 @@ class User_model extends CI_Model {
         return $result['status'];
     }
     
+    // ??????????
     function search_data($query)
     {
         $this->db->select("*");
@@ -215,6 +227,9 @@ class User_model extends CI_Model {
             return $this->db->get();
     }
     
+    // delete user
+    // @param int $user Id of user to be deleted
+    // @return void
     public function delete_user($user){
         $this->db->where('username', $user);
         $this->db->delete('user');    

@@ -4,7 +4,7 @@
  * @author Dejan Ciric 570/15
  * @author Jakov Jezdic 0043/15
  * 
- * Admin - class that handle all requests for admin
+ * Admin - handles all requests for admin
  */
 class Admin extends CI_Controller {
 
@@ -28,7 +28,7 @@ class Admin extends CI_Controller {
                 
             }
         }
-        $phpArray = $this->get_all_destinations();
+        $phpArray = $this->destination_model->get_all_destinations();
         ?>
 <script type="text/javascript">var jArray =<?php echo json_encode($phpArray); ?>;</script>
 <?php
@@ -38,7 +38,7 @@ class Admin extends CI_Controller {
     // and add all information reading from database on load here
     // @return void
     function index() {
-        $this->is_regular_user();
+        
         $data['profile_pic'] = $this->get_img_name();
         $data['last_pendings_html'] =$this->request_model->get_html_all_requests();
         $data['page'] = 'admin_home';
@@ -53,7 +53,7 @@ class Admin extends CI_Controller {
     // @param string $page
     // @return void
     public function load($page, $data=null) {
-        $this->is_regular_user();
+        
         $info['profile_pic'] = $this->get_img_name();       
         $data['last_pendings_html'] =$this->request_model->get_html_all_requests();
         
@@ -64,10 +64,11 @@ class Admin extends CI_Controller {
         $this->load->view("templates/footer.php");
     }
 
-    
-    
+    // approve request of various types, reload admin home
+    // @param int $request_id
+    // @return void
     public function approve_request($request_id){
-        $this->is_regular_user();
+        
         //Proveri se tim requesta i u zavinosti od toga izvrsi funkcija, i obrise request
         $request=$this->request_model->get_request($request_id);
         
@@ -85,28 +86,27 @@ class Admin extends CI_Controller {
                 $this->User_model->promote_user($request->username);      
                 break;
             default:
-
                 break;
-            }
+        }
         $this->request_model->delete($request_id);
         redirect("admin/load/admin_home");
     }
+    
+    // decline request of various types, reload admin home
+    // @param int $request_id
+    // @return void
     public function dismiss_request($request_id){
-        $this->is_regular_user();
-        //Brisanje requesta
+        
         $request=$this->request_model->get_request($request_id);
         
         switch ($request->type) {
             case "destination added":
-                //Brise destinaciju
                 $dest=$this->destination_model->get_destination($request->idDest);
                 $this->destination_model->delete($dest->idDest);
                 break;
             case "negative review":         
-                //Nista
                 break;
             case "user promotion":
-                //Nista
                 break;
             default:
                 $req_content="Request type unknown..";
@@ -115,11 +115,14 @@ class Admin extends CI_Controller {
             }
             
         $this->request_model->delete($request_id);
-         redirect("admin/load/admin_home");
+        redirect("admin/load/admin_home");
     }
+    
+    // delete review for specific destination
+    // @param int $destination_id, int $review_id
+    // @return void
     public function delete_review($destination_id, $review_id){
-        $this->is_regular_user();
-        //Brisanje reviewa
+        
         $this->review_model->delete($review_id);
         $this->statistic_model->updateStatistics('reviewCount', '-1');
         $this->load_dest($destination_id);
@@ -131,7 +134,7 @@ class Admin extends CI_Controller {
     // @param string $id
     // @return string
     public function get_img_name() {
-$this->is_regular_user();
+
         $path = $this->User_model->get_img_name($this->session->userdata('user')->idImg);
         
         if ($path == "avatar.png"){
@@ -143,21 +146,19 @@ $this->is_regular_user();
             return base_url() . "uploads/" . $path;
         }
     }
-    public function get_all_destinations(){
-        $this->is_regular_user();
-        return $this->destination_model->get_all_destinations();
-    }
     
-      // logout function, breaks session
+    // logout function, breaks session
     // @return void
     public function logout() {
-        $this->is_regular_user();
+        
         $this->session->unset_userdata("user");
         $this->session->sess_destroy();
         redirect("Guest");
     }
-        public function getStatistics(){
-        $this->is_regular_user();
+    
+    // loading statistics view by wrapping statistic model call to acces data
+    // @return void
+    public function getStatistics(){
         
         $statistics['userCount']=0;
         $statistics['reviewCount']=0;
@@ -175,11 +176,13 @@ $this->is_regular_user();
         $data['positiveVoteCount']=$statistics->positiveVoteCount;
         $data['posReviews']=$statistics->posReviews;
         $this->load("guest_statistics",$data);
-}
-    //search destinations
+    }
+    
+    // search destinations
+    // @return void
     public function search(){
-        $this->is_regular_user();
-       $output = '';
+        
+        $output = '';
 		$query = '';
 		
 		if($this->input->post('query'))
@@ -214,9 +217,10 @@ $this->is_regular_user();
 		echo $output;
     }
     
-        
+    // search users
+    // @return void
     public function search_people(){
-        $this->is_regular_user();
+        
        $output = '';
 		$query = '';
 		
@@ -251,8 +255,13 @@ $this->is_regular_user();
 		$output .= '</table>';
 		echo $output;
     }
-     public function load_dest($id,$message=null){
-         $this->is_regular_user();
+    
+    // load destination view, wraps destination model and default user load calls
+    // in order to preview destination page with neccessary data
+    // @param int $id, string $message
+    // @return void
+    public function load_dest($id,$message=null){
+         
        $data['dest_name'] = $this->destination_model->get_name($id);
        $data['dest_country'] = $this->destination_model->get_country($id);
        $data['all_reviews_current_destination_html'] = $this->review_model->get_html_all_reviews_admin($id);
@@ -264,34 +273,33 @@ $this->is_regular_user();
        $this->load("destination",$data);
     }
 
-         // add new pending destination if it is requested from superuser
-        // or just enter new destination if it is requested from admin
-        // @return void
-        public function add_destination(){
-$this->is_regular_user();
-                $this->form_validation->set_rules("destination", "Username", "trim|required|min_length[2]|max_length[40]");
-                $this->form_validation->set_rules("country", "Password", "trim|required|min_length[2]|max_length[40]");
-                if ($this->form_validation->run()) {
-                    
-                $data['name'] = $this->input->post('destination');
-                $data['longitude'] = explode(":",$this->input->post('longitudeH'))[1];
-                $data['latitude'] = explode(":",$this->input->post('latitudeH'))[1];
-                $data['pending'] = 0;
-                $data['country'] = $this->input->post('country');
-                
-                $this->destination_model->insert_destination($data);
+    // insert new destination directly
+    // @return void
+    public function add_destination(){
 
-                $this->load("super_user_add_destination", Array("message"=>"Successfully added destination"));
-                } else {
-                    $this->load("super_user_add_destination");
-                }
-            
+        $this->form_validation->set_rules("destination", "Username", "trim|required|min_length[2]|max_length[40]");
+        $this->form_validation->set_rules("country", "Password", "trim|required|min_length[2]|max_length[40]");
+        if ($this->form_validation->run()) {
+
+        $data['name'] = $this->input->post('destination');
+        $data['longitude'] = explode(":",$this->input->post('longitudeH'))[1];
+        $data['latitude'] = explode(":",$this->input->post('latitudeH'))[1];
+        $data['pending'] = 0;
+        $data['country'] = $this->input->post('country');
+
+        $this->destination_model->insert_destination($data);
+
+        $this->load("super_user_add_destination", Array("message"=>"Successfully added destination"));
+        } else {
+            $this->load("super_user_add_destination");
         }
+
+    }
         
-            // form check and forward request to coresponding model
+    // form check and forward request to coresponding model
     // @return void
     public function change_username() {
-        $this->is_regular_user();
+        
         $this->form_validation->set_rules("usernameChange", "Username", "trim|required|min_length[4]|max_length[20]|is_unique[user.username]");
         if ($this->form_validation->run()) {
             $new_username = $this->input->post('usernameChange');
@@ -306,7 +314,7 @@ $this->is_regular_user();
     // form check and forward request to coresponding model
     // @return void
     public function change_password() {
-        $this->is_regular_user();
+        
         $this->form_validation->set_rules("oldPass", "Old password", "trim|required|min_length[4]|max_length[20]");
         $this->form_validation->set_rules("newPass1", "New password", "trim|required|min_length[4]|max_length[20]");
         $this->form_validation->set_rules("newPass2", "Confirm new password", "trim|required|min_length[4]|max_length[20]|matches[newPass1]");
@@ -328,7 +336,7 @@ $this->is_regular_user();
     // and later use path for display
     // @return void
     public function do_upload() {
-        $this->is_regular_user();
+        
         $config['upload_path'] = './uploads/';
         $config['allowed_types'] = 'gif|jpg|png';
         $config['max_size'] = 100;
@@ -346,9 +354,11 @@ $this->is_regular_user();
         }
     }
     
-    
+    // add review for specific destination and reload destination page
+    // @param int $id Destination id
+    // @return void
     public function add_review($id){
-        $this->is_regular_user();
+        
         $this->form_validation->set_rules("comment", "Comment", "trim|required|min_length[2]|max_length[255]");
         
         $data['content']="";
@@ -402,9 +412,10 @@ $this->is_regular_user();
         
     }
     
-    // loads profile view with needed data
+    // loads user profile view with needed data
+    // @return void
     public function preview_profile($message = "") {
-        $this->is_regular_user();
+        
         $data['review_count'] = $this->User_model->get_user_review_count($this->session->userdata('user')->username);
         $data['places_count'] = $this->User_model->get_user_added_places_count($this->session->userdata('user')->username);
         
@@ -417,9 +428,11 @@ $this->is_regular_user();
         $this->load('profile', $data);
     }
     
-    // previews profile_other if user is trying to view someone elses profile
+    // loads other users profile with needed data
+    // @param int $other Other user id
+    // @return void
     public function preview_other_user($other) {
-        $this->is_regular_user();
+        
         if ($other != $this->session->userdata('user')->username) {
             $data['review_count'] = $this->User_model->get_user_review_count($other);
             $data['places_count'] = $this->User_model->get_user_added_places_count($other);
@@ -458,8 +471,12 @@ $this->is_regular_user();
             $this->preview_profile();
     }
     
+    // register vote up on a specific review
+    // reload destination view
+    // @param int $review_id, int $destination_id
+    // @return void
     public function vote_up($review_id, $destination_id=null) {
-        $this->is_regular_user();
+        
         $this->review_model->update_vote_count($review_id, "upCount", $this->session->userdata('user')->username);
         
         if ($destination_id==null)
@@ -468,8 +485,13 @@ $this->is_regular_user();
         }else
             $this->load_dest($destination_id);
     }
+    
+    // register vote down on a specific review
+    // reload destination view
+    // @param int $review_id, int $destination_id
+    // @return void
     public function vote_down($review_id, $destination_id=null) {
-        $this->is_regular_user();
+        
         $this->review_model->update_vote_count($review_id, "downCount", $this->session->userdata('user')->username);
         
         if ($destination_id==null)
@@ -479,31 +501,22 @@ $this->is_regular_user();
             $this->load_dest($destination_id);
     }  
     
+    // promote regular user to super user
+    // @param int $user User to be promoted
+    // @return void
     public function promote_user($user){
-        $this->is_regular_user();
+        
         $this->User_model->promote_user($user); 
         $this->preview_other_user($user);
     }
     
-    
+    // delete user
+    // @param int $user User to be deleted
+    // @return void
     public function delete_user($user){
-        $this->is_regular_user();
         
         $this->User_model->delete_user($user);    
         $this->index();
     }
     
-    public function is_regular_user(){
-        if ($this->session->userdata('user') != null){
-            if ($this->session->userdata('user')->status != "admin"){
-                 $this->session->sess_destroy();
-                 redirect("My404");
-            }
-                
-                
-        }else{
-            $this->session->sess_destroy();
-            redirect("My404");
-        }
-    }
 }
