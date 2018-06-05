@@ -287,6 +287,7 @@ class Admin extends CI_Controller {
         $data['country'] = $this->input->post('country');
 
         $this->destination_model->insert_destination($data);
+        $this->statistic_model->updateStatistics('destinationCount');
 
         $this->load("super_user_add_destination", Array("message"=>"Successfully added destination"));
         } else {
