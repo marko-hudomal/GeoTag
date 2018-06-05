@@ -39,3 +39,4 @@ Dejan:	//pretraga korisnika [done]
 - //Da dodamo u prikazu profila usera i njegov status, nigde ne moze da se zakljuci da li je admin,superuser, ili user? [done]
 - //Link iz reviewa na Destinaciju [done]
 - //Izbrisati link ka Destinaciji iz requesta destination added, jer ta Destinacija jos uvek ne postoji [done]
+- Cira da doda i proveru sifre kada se menja username na profilu

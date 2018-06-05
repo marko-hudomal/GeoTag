@@ -11,14 +11,31 @@
                     <img src="<?php echo $profile_pic;?>" class="rounded_circle" width="120px" style="margin-right:20px">
                     <br>
                     <div class="media-body">
-                        <h2 class="mt-2"><strong><?php echo $firstname." ".$lastname ?></strong></h2>
+                        <h2 class="mt-2"><strong><?php echo $firstname." ".$lastname ?></strong>
+                            <?php
+                                switch ($status) {
+                                    case "user":
+                                        echo "&nbsp;<span class=\"badge badge-success\">User</span>";
+                                        break;
+                                    case "super_user":
+                                        echo "&nbsp;<span class=\"badge badge-warning\">SuperUser</span>";
+                                        break;
+                                    case "admin":
+                                        echo "&nbsp;<span class=\"badge badge-danger\">Admin</span>";
+                                        break;
+                                    default:
+                                        echo "&nbsp;<span class=\"badge badge-info\">Other</span>";
+                                }                             
+                            ?>
+                            
+                        </h2>
                         <hr>
-                        <h6>Username:								<span id="username_info"><?php echo $username?></span> </h6>
-                        <h6>Status:								 	<span id="gender_info"><?php echo $status?></span> </h6>
+                        <h6>Username:                                                                   <span id="username_info"><?php echo $username?></span> </h6>
+                        <!--<h6>Status:								 	<span id="status_info"><?php /*echo $status*/?></span> </h6>-->
                         <h6>Gender:								 	<span id="gender_info"><?php echo $gender?></span> </h6>
-                        <h6>Number of reviews:						<span id="num_reviews_info"><?php  echo $review_count ?></span> </h6>	
-                        <h6>Added places:							<span id="num_added_places_info"><?php echo $places_count ?></span> </h6>
-                        <h6>Upvote/Downvote rate:					<span id="up_down_info"><?php echo $up_count.'/'.$down_count ?></span> </h6>										
+                        <h6>Number of reviews:                                                          <span id="num_reviews_info"><?php  echo $review_count ?></span> </h6>	
+                        <h6>Added places:                                                               <span id="num_added_places_info"><?php echo $places_count ?></span> </h6>
+                        <h6>Upvote/Downvote rate:                                                       <span id="up_down_info"><?php echo $up_count.'/'.$down_count ?></span> </h6>										
                         <div class="progress" style="width:190px; height:20px;">
                             <?php if (($up_count+$down_count)==0)
                             {
