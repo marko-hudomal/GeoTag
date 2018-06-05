@@ -42,7 +42,9 @@ class Request_model extends CI_Model{
         $this->db->delete('request');
     }
     
-    // ????????????????????????
+    // get review by it's id
+    // @param int $id 
+    // @return request as array
     public function get_request($id){
         $query = $this->db->query("select * from request where idReq=".$id);
         return $query->result()[0];

@@ -53,6 +53,10 @@
                            ?>
                         <form action="<?php echo base_url() ?>index.php/<?php echo $user1;?>/change_username" method="POST">
                            <div class="form-group" style="width:60%">
+                              <label for="oldPass1">Password:</label>
+                              <input type="password" class="form-control" name="oldPass1">
+                           </div>
+                            <div class="form-group" style="width:60%">
                               <label for="usernameChange">New username:</label>
                               <input type="text" class="form-control" name="usernameChange">
                            </div>
@@ -63,9 +67,15 @@
                   <span><font color ="green"><?php
                      if (isset($message) && ($message == "Successfully changed username"))
                          echo $message;
-                     else
-                         echo form_error("usernameChange", "<font color='red'>", "</font>");
+                     else if (isset($message) && ($message == "Wrong old password!"))
+                         echo "<font color='red'>".$message. "</font>";
+                     else{
+                         echo form_error("oldPass1", "<font color='red'>", "</font>");
+                         echo form_error("usernameChange", "<font color='red'>", "</font>");            
+                     }
+                    
                      ?></font></span>
+                   
                </div>
                <div class="col-sm-4">
                   <div class="collapse multi-collapse" id="changePicture">
@@ -86,7 +96,7 @@
                      </div>
                   </div>
                   <?php
-                     if (isset($message) && $message!="Successfully changed password" && $message!="Wrong old password" && $message!="Successfully changed username")
+                     if (isset($message) && $message!="Successfully changed password" && $message!="Wrong old password" && $message!="Wrong old password!" && $message!="Successfully changed username")
                          echo "<font color='red'>".$message. "</font>";?>
                </div>
                <div class="col-sm-4">

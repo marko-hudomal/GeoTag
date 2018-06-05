@@ -50,7 +50,7 @@ class Admin extends CI_Controller {
 
     // load different views for user
     // and add all information reading from database on load here
-    // @param string $page
+    // @param string $page, array $data
     // @return void
     public function load($page, $data=null) {
         
@@ -131,7 +131,6 @@ class Admin extends CI_Controller {
     
     
     // get img name by its id if null return default avatar
-    // @param string $id
     // @return string
     public function get_img_name() {
 
@@ -301,11 +300,15 @@ class Admin extends CI_Controller {
     public function change_username() {
         
         $this->form_validation->set_rules("usernameChange", "Username", "trim|required|min_length[4]|max_length[20]|is_unique[user.username]");
+        $this->form_validation->set_rules("oldPass1", "Old password", "trim|required|min_length[4]|max_length[20]");
         if ($this->form_validation->run()) {
             $new_username = $this->input->post('usernameChange');
-
+             if (!$this->User_model->check_password($this->input->post('oldPass1'),$this->session->userdata('user')->username)) {
+                $this->preview_profile("Wrong old password!");
+            } else {
             $this->User_model->change_username($new_username);
             $this->preview_profile("Successfully changed username");
+            }
         } else {
             $this->preview_profile();
         }
@@ -413,6 +416,7 @@ class Admin extends CI_Controller {
     }
     
     // loads user profile view with needed data
+    // @param string $message
     // @return void
     public function preview_profile($message = "") {
         

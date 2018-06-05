@@ -245,13 +245,17 @@ class Super_user extends CI_Controller {
     public function change_username() {
         
         $this->form_validation->set_rules("usernameChange", "Username", "trim|required|min_length[4]|max_length[20]|is_unique[user.username]");
+        $this->form_validation->set_rules("oldPass1", "Old password", "trim|required|min_length[4]|max_length[20]");
         if ($this->form_validation->run()) {
             $new_username = $this->input->post('usernameChange');
-
+ if (!$this->User_model->check_password($this->input->post('oldPass1'),$this->session->userdata('user')->username)) {
+                $this->preview_profile("Wrong old password!");
+            } else {
             $this->User_model->change_username($new_username);
             $this->preview_profile("Successfully changed username");
+            }
         } else {
-            $this->load("profile");
+            $this->preview_profile();
         }
     }
 
@@ -355,8 +359,9 @@ class Super_user extends CI_Controller {
     }
     
     // loads user profile view with needed data
+    // @param string $message
     // @return void
-    public function preview_profile() {
+    public function preview_profile($message = "") {
         
         $data['review_count'] = $this->User_model->get_user_review_count($this->session->userdata('user')->username);
         $data['places_count'] = $this->User_model->get_user_added_places_count($this->session->userdata('user')->username);
@@ -365,8 +370,9 @@ class Super_user extends CI_Controller {
         $up_down_count = $this->User_model->up_down_count($this->session->userdata('user')->username);
         $data['up_count'] = $up_down_count['upCount'];
         $data['down_count'] = $up_down_count['downCount'];
+       
         
-        $this->load('profile', null, $data);
+        $this->load('profile', $message, $data);
     }
     
     // loads other users profile with needed data

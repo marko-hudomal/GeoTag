@@ -39,7 +39,9 @@ class Destination_model extends CI_Model{
         $this->db->update('destination');
     }
     
-    // ?????????????????????????????
+    // search for destination
+    // @param string $query
+    // @return array of all destinations that meets the conditions
     function search_data($query) {
         $this->db->select("*");
         $this->db->from("destination");
@@ -93,7 +95,9 @@ class Destination_model extends CI_Model{
         return $query->result()[0]->latitude;
     }
     
-    // ?????????????????????????????????
+    // Get destination by it's id
+    // @param int $id 
+    // @return destination as array
     public function get_destination($id){
         $query = $this->db->query("select * from destination where idDest=".$id);
         return $query->result()[0];

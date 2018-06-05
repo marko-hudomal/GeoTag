@@ -375,7 +375,9 @@ class Review_model  extends CI_Model{
         }
     }
     
-    // ????????????????????????????
+    // get review by it's id
+    // @param int $id 
+    // @return review as array
     public function get_review($id){
         $query = $this->db->query("select * from review where idRev=".$id);
         return $query->result()[0];
