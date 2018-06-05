@@ -96,6 +96,9 @@
                      </div>
                   </div>
                   <?php
+                  if (isset($message) && $message == "Successfully changed photo")
+                      echo "<font color='green'>".$message. "</font>";
+                  else
                      if (isset($message) && $message!="Successfully changed password" && $message!="Wrong old password" && $message!="Wrong old password!" && $message!="Successfully changed username")
                          echo "<font color='red'>".$message. "</font>";?>
                </div>

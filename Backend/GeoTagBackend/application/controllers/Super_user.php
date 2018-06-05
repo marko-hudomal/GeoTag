@@ -298,7 +298,7 @@ class Super_user extends CI_Controller {
             $this->preview_profile($message);
         } else {
             $this->User_model->change_photo($this->upload->data()['file_name']);
-            $this->preview_profile("Successfully changed username");
+            $this->preview_profile("Successfully changed photo");
         }
     }
     
