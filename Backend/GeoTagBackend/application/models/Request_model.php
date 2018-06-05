@@ -64,7 +64,7 @@ class Request_model extends CI_Model{
         foreach ($query->result() as $row)
         {
             $dest_name="";
-            
+            if ($row->type=="destination confirm") continue;
             
             switch ($row->type) {
             case "destination added":
@@ -96,6 +96,7 @@ class Request_model extends CI_Model{
             }
             else
                 $user1 = "guest";
+            //if ($req_content=="Request type unknown..") continue;
             
             $ret=$ret."<div class=\"card\" style=\"margin-top:20px\">
                                 <div class=\"card-header\">

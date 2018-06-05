@@ -31,7 +31,7 @@
           <hr>
          <h5>Latest comments:</h5>
          <div id="last_reviews" style="overflow-y: scroll; height:450px; padding:10px;">            
-            <?php if ($user1=="admin") echo $last_pendings_html; else echo $last_reviews_html; ?>          
+            <?php echo $last_reviews_html; ?>          
          </div>
       </div>
    </div>
