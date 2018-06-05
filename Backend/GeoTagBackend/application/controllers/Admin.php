@@ -90,7 +90,12 @@ class Admin extends CI_Controller {
                 break;
         }
         $this->request_model->delete($request_id);
-        redirect("admin/load/admin_home");
+                    $phpArray = $this->destination_model->get_all_destinations();
+        ?>
+<script type="text/javascript">var jArray =<?php echo json_encode($phpArray); ?>;</script>
+<?php
+            
+        $this->load("admin_home");
     }
     
     // decline request of various types, reload admin home
@@ -293,8 +298,12 @@ class Admin extends CI_Controller {
 
             $this->statistic_model->updateStatistics('destinationCount');
             $this->request_model->insert('destination confirm', $id_dest, $this->session->userdata('user')->username);
-
+            $phpArray = $this->destination_model->get_all_destinations();
+        ?>
+<script type="text/javascript">var jArray =<?php echo json_encode($phpArray); ?>;</script>
+<?php
             $this->load("super_user_add_destination", Array("message"=>"Successfully added destination"));
+            
         } else {
             $this->load("super_user_add_destination");
         }

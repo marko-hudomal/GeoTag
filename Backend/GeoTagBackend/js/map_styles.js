@@ -97,7 +97,7 @@ function init_markers(styledMapType, x, y) {
     lng_center /= markers.length;
     var path = window.location.pathname;
     var page = path.split("/").pop();
-    if (page == 'super_user_add_destination'){
+    if (page == 'super_user_add_destination' || page == 'add_destination'){
         mark = new google.maps.Marker({
             position: {lat: lat_center, lng: lng_center},
             map: map,
