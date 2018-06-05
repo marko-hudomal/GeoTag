@@ -2,6 +2,7 @@
 
 /**
  * @author Dejan Ciric 570/15
+ * @author Milos Matijasevic 0440/15
  * Destination_model - handles all database manipulation regarding destinations
  */
 class Destination_model extends CI_Model{
