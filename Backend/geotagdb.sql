@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jun 05, 2018 at 11:48 AM
+-- Generation Time: Jun 06, 2018 at 10:17 AM
 -- Server version: 5.7.21
 -- PHP Version: 5.6.35
 
@@ -61,7 +61,7 @@ INSERT INTO `destination` (`idDest`, `name`, `longitude`, `latitude`, `pending`,
 DROP TABLE IF EXISTS `image`;
 CREATE TABLE IF NOT EXISTS `image` (
   `idImg` int(11) NOT NULL AUTO_INCREMENT,
-  `img` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `img` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`idImg`)
 ) ENGINE=InnoDB AUTO_INCREMENT=74 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
