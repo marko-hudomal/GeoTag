@@ -1,7 +1,6 @@
 <?php
 
 /**
- * @author Dejan Ciric 570/15
  * @author Jakov Jezdic 043/15
  * @author Milos Matijasevic 0440/15
  * 
