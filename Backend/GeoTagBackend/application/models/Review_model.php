@@ -61,7 +61,7 @@ class Review_model  extends CI_Model{
                <div class=\"card-header\">
                   <table width=\"100%\">
                     <tr>
-                        <td width=\"70%\"><strong>".$row->username.", ".$dest_name." </strong></td>
+                        <td width=\"70%\"><strong>".$row->username.", <a href='".base_url()."index.php/guest/load_dest/".$row->idDest."'>".$dest_name."</a> </strong></td>
                         <td width=\"10%\" align=\"center\" style=\"text-align: right;\"  >
 
                                 <input disabled type=\"image\" name=\"submit\" src=\"".base_url()."img/plus-vote-dis.png\" width=\"30px\" border=\"0\" alt=\"Submit\" style=\"\" />

@@ -38,8 +38,8 @@
 										<br>
 										<div class="media-body">
 											<h4 class="mt-2 mb-3">News</h4>
-                                             <p>[30.5.2018] Today we added <strong>SuperUser</strong>! See more info in <a href="<?php echo base_url()?>index.php/<?php echo $user1;?>/load/guest_help">Help</a> tab.</p>
-                                             <p>[3.6.2018] We hit <strong>100</strong> users!</p>
+                                                                                        <p>[6.6.2018] Today we revealed initial version of <strong>GeoTag</strong>! Help us celebrate by <a href="<?php echo base_url()?>index.php">registering</a>!
+                                             <p>[16.3.2018] We made our first commit! Be prepared ...</p>
 										</div>
 									</div>
 

@@ -21,25 +21,22 @@ class User extends CI_Controller {
         // check if user is already logged in, or if unauthorized access through the link
         if (($this->session->userdata('user')) != NULL  && $this->session->userdata('remember') == true) {
             switch ($this->session->userdata('user')->status ) {
-              
-               
                 case "super_user":
                     redirect("super_user");
                 case "admin":
                     redirect("admin");
             }
         }
-        $phpArray = $this->destination_model->get_all_destinations();
-        ?>
-<script type="text/javascript">var jArray =<?php echo json_encode($phpArray); ?>;</script>
-<?php
     }
 
     // default function, load default views
     // and add all information reading from database on load here
     // @return void
     public function index() {
-        
+        $phpArray = $this->destination_model->get_all_destinations();
+?>
+            <script type="text/javascript">var jArray =<?php echo json_encode($phpArray); ?>;</script>
+<?php
         $data['profile_pic'] = $this->get_img_name();
         $data['last_reviews_html'] = $this->review_model->get_html_last_n_reviews();
         $data['page'] = 'guest_home';
@@ -63,7 +60,12 @@ class User extends CI_Controller {
     // @param string $page, string $message, array $data
     // @return void
     public function load($page, $message = null,$data=null) {
-        
+        if ($page == 'guest_home') {
+            $phpArray = $this->destination_model->get_all_destinations();
+?>
+            <script type="text/javascript">var jArray =<?php echo json_encode($phpArray); ?>;</script>
+<?php
+        }
         $info['profile_pic'] = $this->get_img_name();
         $data['last_reviews_html'] = $this->review_model->get_html_last_n_reviews();
         

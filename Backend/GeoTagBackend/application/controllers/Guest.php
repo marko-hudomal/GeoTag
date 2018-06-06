@@ -30,19 +30,16 @@ class Guest extends CI_Controller {
                     redirect("admin");
             }
         }
-        $phpArray = $this->destination_model->get_all_destinations();
-        ?>
-        <script type="text/javascript">var jArray =<?php echo json_encode($phpArray); ?>;</script>
-        <?php
-        
-
     }
 
     // default function, load default view and can pass different messages to the view
     // @param string $message
     // @return void
     function index($message = null) {
-        
+        $phpArray = $this->destination_model->get_all_destinations();
+?>
+            <script type="text/javascript">var jArray =<?php echo json_encode($phpArray); ?>;</script>
+<?php
         $data['page'] = 'index.php';
         if ($message)
             $data['message'] = $message;
@@ -171,7 +168,12 @@ class Guest extends CI_Controller {
     // @param string $page, array $data
     // @return void
     public function load($page,$data=null) {
-        
+        if ($page == 'guest_home') {
+            $phpArray = $this->destination_model->get_all_destinations();
+?>
+            <script type="text/javascript">var jArray =<?php echo json_encode($phpArray); ?>;</script>
+<?php
+        }
         $data['last_reviews_html'] = $this->review_model->get_html_last_n_reviews();
         
         $info['page'] = $page;

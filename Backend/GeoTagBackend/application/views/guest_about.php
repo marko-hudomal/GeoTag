@@ -29,7 +29,7 @@
 								</div>
 							</div>
 						</div>
-						<br><br>
+						
 						<div class="media" style="margin:10px;">
 							<img src="<?php echo base_url()?>img/DP-team.png" width="150px">
 							<div class="media-body">

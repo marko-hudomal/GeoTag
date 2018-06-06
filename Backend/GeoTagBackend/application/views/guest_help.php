@@ -34,7 +34,7 @@
                                                         <hr>
                                                         <h5><strong>Help us get better</strong></h5>
                                                         <p>
-                                                                If you have any suggestions or you've find bugs in GeoTag, please be free to contact us on <a href="#">geotag@gmail.com</a>.
+                                                                If you have any suggestions or you've find bugs in GeoTag, please be free to contact us on <a href="mailto:geotag.dp@gmail.com">geotag.dp@gmail.com</a>.
                                                         </p>
 
 
