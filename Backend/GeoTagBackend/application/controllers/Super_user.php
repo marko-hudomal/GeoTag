@@ -42,6 +42,7 @@ class Super_user extends CI_Controller {
         $data['profile_pic'] = $this->get_img_name();
         $data['last_reviews_html'] = $this->review_model->get_html_last_n_reviews();
         $data['page'] = 'guest_home';
+        $data['status'] = ($this->session->userdata('user') != NULL);
         
         $this->load->view("templates/super_user_header.php", $data);
         $this->load->view("guest_home.php");
@@ -61,6 +62,7 @@ class Super_user extends CI_Controller {
         }
         $info['profile_pic'] = $this->get_img_name();
         $data['last_reviews_html'] = $this->review_model->get_html_last_n_reviews();
+        $data['status'] = ($this->session->userdata('user') != NULL);
         
         $info['page'] = $page;
         if ($message != null){
