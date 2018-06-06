@@ -19,13 +19,16 @@ class Admin extends CI_Controller {
         $this->load->model("review_model");
         $this->load->model("request_model");
         // check if user is already logged in, or if unauthorized access through the link
-        if (($this->session->userdata('user')) != NULL  && $this->session->userdata('remember') == true) {
+        if (($this->session->userdata('user')) != NULL  ) {
             switch ($this->session->userdata('user')->status) {
                 case "user":
                     redirect("user");
                 case "super_user":
                     redirect("super_user");
             }
+        }
+        else{
+            redirect("guest/load/guest_home");
         }
     }   
 
@@ -51,6 +54,7 @@ class Admin extends CI_Controller {
     // @param string $page, array $data
     // @return void
     public function load($page, $data=null) {
+        $this->is_regular_user();
         if ($page == 'admin_home' || $page == 'super_user_add_destination') {
             $phpArray = $this->destination_model->get_all_destinations();
 ?>
@@ -540,6 +544,22 @@ class Admin extends CI_Controller {
         
         $this->User_model->delete_user($user);    
         $this->index();
+    }
+    // check if user is already logged in, or if unauthorized access through the link
+    // @return void
+    public function is_regular_user(){
+        
+        if (($this->session->userdata('user')) != NULL  ) {
+            switch ($this->session->userdata('user')->status) {
+                case "user":
+                    redirect("user");
+                case "super_user":
+                    redirect("super_user");
+            }
+        }
+        else{
+            redirect("guest/load/guest_home");
+        }
     }
     
 }

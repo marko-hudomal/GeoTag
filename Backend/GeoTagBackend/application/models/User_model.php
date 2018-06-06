@@ -211,7 +211,9 @@ class User_model extends CI_Model {
         return $result['status'];
     }
     
-    // ??????????
+    // search for people
+    // @param string $query
+    // @return array of all users that meets the conditions
     function search_data($query)
     {
         $this->db->select("*");

@@ -36,6 +36,7 @@ class Guest extends CI_Controller {
     // @param string $message
     // @return void
     function index($message = null) {
+        $this->is_regular_user("index");
         $phpArray = $this->destination_model->get_all_destinations();
 ?>
             <script type="text/javascript">var jArray =<?php echo json_encode($phpArray); ?>;</script>
@@ -168,6 +169,7 @@ class Guest extends CI_Controller {
     // @param string $page, array $data
     // @return void
     public function load($page,$data=null) {
+        $this->is_regular_user("load");
         if ($page == 'guest_home') {
             $phpArray = $this->destination_model->get_all_destinations();
 ?>
@@ -258,6 +260,35 @@ class Guest extends CI_Controller {
        $data['image']=$this->destination_model->get_image($id);
        
        $this->load("destination_guest",$data);
+    }
+        
+    // check if user is already logged in, or if unauthorized access through the link
+    // @return void
+    public function is_regular_user($from){
+        if ($from == "index"){
+          if ($this->session->userdata('user') != NULL && $this->session->userdata('remember') == true) {
+            switch ($this->session->userdata('user')->status) {
+                case "user":
+                    redirect("user");
+                case "super_user":
+                    redirect("super_user");
+                case "admin":
+                    redirect("admin");
+            }
+        }  
+        }else{
+            if ($this->session->userdata('user') != NULL) {
+            switch ($this->session->userdata('user')->status) {
+                case "user":
+                    redirect("user");
+                case "super_user":
+                    redirect("super_user");
+                case "admin":
+                    redirect("admin");
+            }
+        }
+        }
+        
     }
 }
 
