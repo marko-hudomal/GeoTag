@@ -52,7 +52,7 @@
 								<button type="submit" class="btn btn-dark" onClick="getLatLng();">Add Location</button><br>
                                                                 <span><font color = "green"><?php if (isset($message)) echo $message; ?></font></span>
 							</form>
-							<br>
+	
 							<p>Drag marker until you reach to desired destination</p>
 						</div>
 						
