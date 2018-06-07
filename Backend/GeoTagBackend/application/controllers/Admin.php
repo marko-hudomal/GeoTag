@@ -42,7 +42,7 @@ class Admin extends CI_Controller {
         $data['profile_pic'] = $this->get_img_name();
         $data['last_pendings_html'] =$this->request_model->get_html_all_requests();
         $data['page'] = 'admin_home';
-        $data['status'] = ($this->session->userdata('user') != NULL);
+        $data['is_guest'] = ($this->session->userdata('user') == NULL);
         
         $this->load->view("templates/admin_header.php", $data);
         $this->load->view("admin_home.php");
@@ -64,9 +64,9 @@ class Admin extends CI_Controller {
         
         $info['profile_pic'] = $this->get_img_name();       
         $data['last_pendings_html'] =$this->request_model->get_html_all_requests();
-        $data['status'] = 'admin';
+        
         $info['page'] = $page;
-        $data['status'] = ($this->session->userdata('user') != NULL);
+        $data['is_guest'] = ($this->session->userdata('user') == NULL);
         
         $this->load->view("templates/admin_header.php", $info);
         $this->load->view($page . ".php", $data);
