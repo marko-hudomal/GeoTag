@@ -8,7 +8,7 @@
        
       <div class="jumbotron" style="background-size:cover; background-image: url('<?php echo base_url(); ?>img/brown-gradient.png'); height:85%; overflow:auto;">
          <div class="media">
-            <img src="<?php if ($image==null) echo base_url().'img/destination-icon.png'; else echo $image; ?>" width="180px" style="margin-right:20px;border: 3px solid #333333;">
+            <img src="<?php if ($image==null) echo base_url().'img/destination-icon.png'; else echo $image; ?>" width="180" style="margin-right:20px;border: 2px solid #3f2a14; border-radius:5px; box-shadow: 3px 2px 4px rgba(43,29,14, .5);">
            
             <br>
             <div class="media-body" style="overflow:auto;">

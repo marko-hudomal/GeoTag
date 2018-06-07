@@ -55,8 +55,13 @@ footer {
   /*color:#d1a27b !important;*/
   text-decoration: none;
 }
+
 .rounded_circle{
-    border-radius: 50%;
+    border-radius: 15%;
+    box-shadow: 1px 1px 3px rgba(43,29,14, .4);
+}
+.rounded_circle_header{
+    border-radius: 30%;
 }
 .center {
   text-align: center;

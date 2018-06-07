@@ -49,11 +49,11 @@
 					</li> 
 				</ul>
 
-				<a href="#"><span id="username_korisnika" style="color:white"> </span></a>
+				<a href="#"><span id="username_korisnika" style="color:white"> </span>
 				&nbsp;
 				<span id="tip_korisnika" class="badge badge-info">Guest</span>
 
-				<img id="slika_korisnika" class="rounded_circle"  src="<?php echo base_url()?>img/avatar.png" style="width:50px; margin-left:20px;margin-right:10px">
-
+				<img id="slika_korisnika" class="rounded_circle_header"  src="<?php echo base_url()?>img/avatar.png" style="width:50px; margin-left:20px;margin-right:10px">
+                                </a>
 			</div> 
 		</nav>

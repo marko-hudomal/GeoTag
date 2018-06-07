@@ -5,9 +5,9 @@
 <div class="container-fluid">
 <div class="row">
    <div class="col-8">      
-      <div class="jumbotron" style="width:100%;background-size:cover; background-image: url('<?php echo base_url(); ?>img/brown-gradient.png'); height:85%; overflow:auto;">
+      <div class="jumbotron" style="width:100%;background-size:cover; background-image: url('<?php echo base_url(); ?>img/brown-gradient.png'); height:85%; overflow:auto;border-radius:5px; ">
          <div class="media" style="width: 100%" >
-            <img src="<?php if ($image==null) echo base_url().'img/destination-icon.png'; else echo $image; ?>" width="180px" style="margin-right:20px;border: 3px solid #333333;">
+            <img src="<?php if ($image==null) echo base_url().'img/destination-icon.png'; else echo $image; ?>" width="180" style="margin-right:20px;border: 1px solid #3f2a14; border-radius:4px; box-shadow: 3px 3px 5px rgba(43,29,14, .3);">
             <br>
             <div class="media-body" style="overflow:auto;width:70%">
                 <table>
