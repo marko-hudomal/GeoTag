@@ -90,7 +90,7 @@ class Admin extends CI_Controller {
                 break;
             case "negative review":         
                 $rev=$this->review_model->get_review($request->idRev);
-                $this->review_model->delete($rev->idDest);
+                $this->review_model->delete($rev->idRev);
                 break;
             case "user promotion":
                 $this->User_model->promote_user($request->username);      
