@@ -53,7 +53,7 @@
 				&nbsp;
 				<span id="tip_korisnika" class="badge badge-danger">Admin</span>
 
-                                <a href="<?php echo base_url()?>index.php/user/preview_profile">
+                                <a href="<?php echo base_url()?>index.php/admin/preview_profile">
 				<img id="slika_korisnika" class="rounded_circle_header" src="<?php echo $profile_pic;?>" style="width:50px; margin-left:20px;margin-right:10px">
                                 </a>
 				<a href="<?php echo base_url()?>index.php/admin/logout" class="btn btn-dark">logout</a>
