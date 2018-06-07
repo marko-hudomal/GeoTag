@@ -10,7 +10,7 @@
       <div class="row">
          <div class = "col-md-8">
             <div class="media">
-               <img src="<?php echo $profile_pic;?>" class="rounded_circle" width="150px" style="margin-right:20px">
+               <img src="<?php echo $profile_pic;?>" class="rounded_circle" width="150" style="margin-right:20px">
                <br>
                <div class="media-body">
                   <h2 class="mt-2"><strong><?php echo $this->session->userdata('user')->firstname." ".$this->session->userdata('user')->lastname ?></strong></h2>
