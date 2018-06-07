@@ -55,7 +55,11 @@ class Review_model  extends CI_Model{
         {
             $dest_name=$this->destination_model->get_name($row->idDest);
             
+            $temp_d = new DateTime($row->date);
+            $temp_date=$temp_d->format('d-m-Y');
+            
             // u slucaju kada je guest
+            
             if ($this->session->userdata('user') == NULL) {
                 $ret=$ret."<div class=\"card\" style=\"margin-top:20px\">
                <div class=\"card-header\">
@@ -79,6 +83,10 @@ class Review_model  extends CI_Model{
                             ".$row->downCount."
                         </td>
                     </tr>
+                    <tr>
+                        <td><i>".$temp_date."</i></td>
+                    </tr>
+                    
                   </table>
                </div>
                <div class=\"card-body\">
@@ -120,6 +128,9 @@ class Review_model  extends CI_Model{
                                 ".$row->downCount."
                             </td>
                          </tr>
+                         <tr>
+                            <td><i>".$temp_date."</i></td>
+                         </tr>
                       </table>
                    </div>
                    <div class=\"card-body\">
@@ -155,6 +166,10 @@ class Review_model  extends CI_Model{
             {
                 $rew_img="";
             }
+            
+            $temp_d = new DateTime($row->date);
+            $temp_date=$temp_d->format('d-m-Y');
+            
             if ($this->session->userdata('user') == NULL) {
                 $ret=$ret." <div class=\"card\" style=\"margin-top:20px;overflow:auto;\">
                             <div class=\"card-header\">
@@ -177,6 +192,9 @@ class Review_model  extends CI_Model{
                                     <td width=\"5%\" align=\"center\" style=\"padding-bottom: 0px; text-align:left\">
                                         ".$row->downCount."
                                     </td>
+                                  </tr>
+                                  <tr>
+                                    <td><i>".$temp_date."</i></td>
                                   </tr>
                                </table>
                             </div>
@@ -219,6 +237,9 @@ class Review_model  extends CI_Model{
                                             <input type=\"submit\" value=\"Delete Review\" class=\"float-right btn btn-outline-danger\">
                                         </form>
                                      </td>
+                                    </tr>
+                                    <tr>
+                                        <td><i>".$temp_date."</i></td>
                                     </tr>
                                </table>
                             </div>
@@ -265,6 +286,9 @@ class Review_model  extends CI_Model{
                                         ".$row->downCount."
                                     </td>
                                   </tr>
+                                  <tr>
+                                    <td><i>".$temp_date."</i></td>
+                                  </tr>
                                </table>
                             </div>
                             <div class=\"card-body\" >
@@ -300,7 +324,8 @@ class Review_model  extends CI_Model{
             {
                 $rew_img="";
             }
-            
+            $temp_d = new DateTime($row->date);
+            $temp_date=$temp_d->format('d-m-Y');
             
             //User validation
             if (($this->session->userdata('user')) != NULL) {
@@ -345,6 +370,9 @@ class Review_model  extends CI_Model{
                                             <input type=\"submit\" value=\"Delete Review\" class=\"float-right btn btn-outline-danger\">
                                         </form>
                                      </td>
+                                    </tr>
+                                    <tr>
+                                        <td><i>".$temp_date."</i></td>
                                     </tr>
                                </table>
                             </div>
