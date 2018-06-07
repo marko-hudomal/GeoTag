@@ -41,7 +41,7 @@ class Guest extends CI_Controller {
             <script type="text/javascript">var jArray =<?php echo json_encode($phpArray); ?>;</script>
 <?php
         $data['page'] = 'index.php';
-        $data['status'] = ($this->session->userdata('user') != NULL);
+        $data['is_guest'] = ($this->session->userdata('user') == NULL);
         if ($message)
             $data['message'] = $message;
            
@@ -177,9 +177,9 @@ class Guest extends CI_Controller {
 <?php
         }
         $data['last_reviews_html'] = $this->review_model->get_html_last_n_reviews();
-        $data['status'] = 'guest';
+        
         $info['page'] = $page;
-        $data['status'] = ($this->session->userdata('user') != NULL);
+        $data['is_guest'] = ($this->session->userdata('user') == NULL);
         
         $this->load->view("templates/guest_header.php", $info);
         $this->load->view($page.".php",$data);

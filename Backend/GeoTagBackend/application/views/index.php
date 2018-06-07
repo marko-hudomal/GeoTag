@@ -124,7 +124,7 @@
 
                                             </form>
 
-                                            <a href="<?php echo base_url() ?>index.php/guest/load/guest_home" class="btn btn-info">Enter <?php if ($status == FALSE) echo "as guest"; else echo "back"; ?> &nbsp;<img src="<?php echo base_url(); ?>img/in-guest.png" width="15px" style="opacity:0.5"></a>
+                                            <a href="<?php echo base_url() ?>index.php/guest/load/guest_home" class="btn btn-info">Enter <?php if ($is_guest == TRUE) echo "as guest"; else echo "back"; ?> &nbsp;<img src="<?php echo base_url(); ?>img/in-guest.png" width="15px" style="opacity:0.5"></a>
 
                                         </div>
                                     </div>
