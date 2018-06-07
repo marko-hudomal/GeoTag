@@ -104,8 +104,8 @@ class Super_user extends CI_Controller {
     // @return void
     public function add_destination(){
        
-        $this->form_validation->set_rules("destination", "Username", "trim|required|min_length[2]|max_length[40]");
-        $this->form_validation->set_rules("country", "Password", "trim|required|min_length[2]|max_length[40]");
+        $this->form_validation->set_rules("destination", "Destination", "trim|required|min_length[2]|max_length[40]");
+        $this->form_validation->set_rules("country", "Country", "trim|required|min_length[2]|max_length[40]");
         if ($this->form_validation->run()) {
 
             $data['name'] = $this->input->post('destination');
