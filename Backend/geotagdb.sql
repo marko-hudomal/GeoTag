@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jun 08, 2018 at 02:11 PM
+-- Generation Time: Jun 08, 2018 at 03:05 PM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 7.0.26
 
@@ -143,7 +143,7 @@ INSERT INTO `request` (`idReq`, `type`, `username`, `idRev`, `idDest`) VALUES
 
 CREATE TABLE `review` (
   `idRev` int(11) NOT NULL,
-  `content` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
+  `content` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `upCount` int(11) NOT NULL,
   `downCount` int(11) NOT NULL,
   `date` datetime NOT NULL,
@@ -168,7 +168,7 @@ INSERT INTO `review` (`idRev`, `content`, `upCount`, `downCount`, `date`, `usern
 (78, 'One of the best summer party destinations, there are parties every day and night.\r\nI recommend this destinations for everyone who is seeking for parties and summer fun.\r\nThere is awesome aqua park too', 4, 1, '2018-06-08 00:00:00', 'arnold', 98, 37),
 (79, 'Cool place!', 6, 1, '2018-06-08 00:00:00', 'jaksaj', 100, 38),
 (80, 'Visit <strong>Red Star Belgrade Stadium</strong>! A lot of trophies, pictures, equipments from a last century. Football lovers must come here an enjoy.', 0, 1, '2018-06-08 00:00:00', 'hudi', 101, 28),
-(82, 'I would never recommend anyone to visit Belgrade as it is the dirtiest city ever! Garbage everywhere.\r\n<br>\r\nAlso, people smoke everywhere in restorants. One cannot eat a meal anywhere as everyone smo', 0, 6, '2018-06-08 00:00:00', 'zoltan56', 103, 28);
+(82, 'I would never recommend anyone to visit Belgrade as it is the dirtiest city ever! Garbage everywhere.', 0, 6, '2018-06-08 00:00:00', 'zoltan56', 103, 28);
 
 -- --------------------------------------------------------
 
@@ -375,7 +375,7 @@ ALTER TABLE `request`
 -- AUTO_INCREMENT for table `review`
 --
 ALTER TABLE `review`
-  MODIFY `idRev` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
+  MODIFY `idRev` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=84;
 
 --
 -- Constraints for dumped tables

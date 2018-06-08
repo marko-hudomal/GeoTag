@@ -1,4 +1,4 @@
-Hudi:	- iskomentarisati sve pisane metode i napisati @author u fajlovima
+Hudi:	//iskomentarisati sve pisane metode i napisati @author u fajlovima [done]
 	//pripremis teren za matketove votove,[done]
 	//odobravanje rikvestova[done]
 	//korisnik moze da obrise svoj rivju[done] + zabrana glasanja za samog sebe[done]
@@ -6,13 +6,13 @@ Hudi:	- iskomentarisati sve pisane metode i napisati @author u fajlovima
 	//+User, disabluje mu se glasanje za svoj vote u reviewu[done]
 	//VIDITE DA LI VAM SE SVIDJA: *Progress bar na profilu[done]
 
-Matke:	- iskomentarisati sve pisane metode i napisati @author u fajlovima
-	- Added place u statistici treba da bude po broju prihvacenih requestova. SuperUser u nasem slucaju moze da ispamuje sa milion destinacija invalidnih koje ce admin da odbije, ali mu stoji u statistici Added places:10000..
+Matke:	//iskomentarisati sve pisane metode i napisati @author u fajlovima [done]
+	//Added place u statistici treba da bude po broju prihvacenih requestova. SuperUser u nasem slucaju moze da ispamuje sa milion destinacija invalidnih koje ce admin da odbije, ali mu stoji u statistici Added places:10000.. [done]
 	//unapredjivanje u superuser,[done]
 	//brisanje korisnika[done]
 	//doda dugme za brisanje korisnika i unapredjenje korisnika kada ga gleda admin[od Hudija] i dugme za promenu slike destinacije kada gleda superuser/admin [od Hudija] (Ili ako ne mozes rasporedi se sa cirom)[done]
 
-Jakov:	- iskomentarisati sve pisane metode i napisati @author u fajlovima
+Jakov:	//iskomentarisati sve pisane metode i napisati @author u fajlovima
 	//apdejtovanje statistike za svako dodavanje destinacije rivjua itd... [done]
 	//pravljenje linkova preko pinova [done]
 	//azuriranje slike i pola za other profile [done]
@@ -20,7 +20,7 @@ Jakov:	- iskomentarisati sve pisane metode i napisati @author u fajlovima
 	//generisanje negative review request-ova [done]
 	
 
-Dejan:	- iskomentarisati sve pisane metode i napisati @author u fajlovima
+Dejan:	//iskomentarisati sve pisane metode i napisati @author u fajlovima [done]
 	//pretraga korisnika [done]
 	//dodavanje destinaciju u request [done]
 
