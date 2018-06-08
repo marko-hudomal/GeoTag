@@ -1,0 +1,313 @@
+.destination-vote {
+	
+	padding-left: 0px;
+	padding-right: 15px;
+	padding-top: 2px;
+	padding-bottom: 0px;
+	width: 50px;
+}
+
+.scrollable {
+    height: 250px;
+	width: 70%;
+    overflow-y: auto;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  padding: 0;
+  margin: 0;
+}
+
+/*GOOGLE MAPE*/
+
+#map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+/*GOOGLE MAPE*/
+
+.btn-link{
+  border:none;
+  outline:none;
+  background:none;
+  color:#0000EE;
+  padding:0;
+  text-decoration:none;
+  font-family:inherit;
+  font-size:inherit;
+}
+/*FOOTER------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+footer {
+  font-size:10pt;
+  opacity: 0.6;
+}
+/*NAVBAR------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+.collapse.navbar-collapse{
+  font-weight: 600 !important;
+}
+.collapse.navbar-collapse :hover{
+  /*color:#d1a27b !important;*/
+  text-decoration: none;
+}
+
+.rounded_circle{
+    border-radius: 15%;
+    box-shadow: 1px 1px 3px rgba(43,29,14, .4);
+}
+.rounded_circle_header{
+    border-radius: 30%;
+}
+.center {
+  text-align: center;
+}
+
+section {
+  height: 100vh;
+}
+
+/* NAVIGATION */
+nav {
+  padding: 50px 0;
+  box-shadow: 0px 5px 0px #d1a27b;/*Produzetak ispod navbara*/
+}
+nav ul {
+  list-style: none;
+  text-align: center;
+}
+nav ul li {
+  display: inline-block;
+}
+nav ul li a  {
+  border-width: 2px;
+  display: block;
+  padding: 15px;
+  text-decoration: none;
+  color: white;
+  /*font-weight: 500 !important;*/ 
+  font-size:12pt;
+  margin: 0 10px;
+}
+
+nav ul li a,
+nav ul li a:after,
+nav ul li a:before {
+  transition: all .5s;
+}
+nav ul li a:hover {
+  color: white;
+}
+
+
+/* stroke */
+nav.stroke ul li a,
+nav.fill ul li a {
+  position: relative;
+}
+nav.stroke ul li a:after,
+nav.fill ul li a:after {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 1;
+  margin: auto;
+  width: 0%;
+  content: '.';
+  color: transparent;
+  background: #ffcc99;/*Linija ispod slova!!*/
+  height: 1px;
+}
+nav.stroke ul li a:hover:after {
+  width: 100%;
+}
+
+nav.fill ul li a {
+  /*transition: all 2s;*/
+}
+
+nav.fill ul li a:after {
+  text-align: left;
+  content: '.';
+  margin: 0;
+  opacity: 0;
+}
+nav.fill ul li a:hover {
+  color: #fff;
+  z-index: 1;
+}
+nav.fill ul li a:hover:after {
+  z-index: -10;
+  animation: fill 1s forwards;
+  -webkit-animation: fill 1s forwards;
+  -moz-animation: fill 1s forwards;
+  opacity: 1;
+}
+
+/* Circle */
+nav.circle ul li a {
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+nav.circle ul li a:after {
+  display: block;
+  position: absolute;
+  margin: 0;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  content: '.';
+  color: transparent;
+  width: 1px;
+  height: 1px;
+  border-radius: 50%;
+  background: transparent;
+}
+nav.circle ul li a:hover:after {
+  -webkit-animation: circle 1.0s ease-in forwards;
+}
+
+/* SHIFT */
+nav.shift ul li a {
+  position:relative;
+  z-index: 1;
+}
+nav.shift ul li a:hover {
+  color: #91640F;
+}
+nav.shift ul li a:after {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto;
+  width: 100%;
+  height: 1px;
+  content: '.';
+  color: transparent;
+  background: #F1C40F;
+  visibility: none;
+  opacity: 0;
+  z-index: -1;
+}
+nav.shift ul li a:hover:after {
+  opacity: 1;
+  visibility: visible;
+  height: 100%;
+}
+
+
+
+/* Keyframes */
+@-webkit-keyframes fill {
+  0% {
+    width: 0%;
+    height: 1px;
+  }
+  50% {
+    width: 100%;
+    height: 1px;
+  }
+  100% {
+    width: 100%;
+    height: 100%;
+    background: #333;
+  }
+}
+
+/* Keyframes */
+@-webkit-keyframes circle {
+  0% {
+    width: 1px;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+    height: 1px;
+    z-index: -1;
+    background: #eee;
+    border-radius: 100%;
+  }
+  100% {
+    background: #aaa;
+    height: 5000%;
+    width: 5000%;
+    z-index: -1;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    border-radius: 0;
+  }
+}
+
+/*NAVBAR-------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+
+
+/*SEARCH BOX-------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+
+.search
+{
+  border: 2px solid #d1a27b;
+  overflow: auto;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+}
+
+.search input[type="text"]
+{
+  border: 0px;
+  width: 80%;
+  padding: 10px 10px;
+}
+
+.search input[type="text"]:focus
+{
+  outline: 0;
+}
+
+.search input[type="submit"]
+{
+  border: 0px;
+  background: none;
+  background-size:cover;
+  background-image: url('../img/header.jpg');
+  /*background-color: #15423f;*/
+  color: #fff;
+  float: right;
+  padding: 10px;
+  width:20%;
+  border-radius-top-right: 5px;
+  -moz-border-radius-top-right: 5px;
+  -webkit-border-radius-top-right: 5px;
+  border-radius-bottom-right: 5px;
+  -moz-border-radius-bottom-right: 5px;
+  -webkit-border-radius-bottom-right: 5px;
+        cursor:pointer;
+}
+
+/* ===========================
+   ====== Medua Query for Search Box ====== 
+   =========================== */
+
+@media only screen and (min-width : 150px) and (max-width : 780px)
+{
+  
+  .search
+  {
+    width: 95%;
+    margin: 0 auto;
+  }
+
+}
