@@ -118,7 +118,10 @@ class User_model extends CI_Model {
         if ($row != null)
             return $row->img;
         else {
-            return "avatar.png";
+            if($this->session->userdata('user')->gender == "male")
+                return "avatar.png";
+            else
+                return "avatar3.png";
         }
     }
     

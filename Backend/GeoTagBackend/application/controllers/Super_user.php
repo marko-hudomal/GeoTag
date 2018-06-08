@@ -93,8 +93,10 @@ class Super_user extends CI_Controller {
             
         $path = $this->User_model->get_img_name($this->session->userdata('user')->idImg);
 
-        if ( $path == "avatar.png")
-            return base_url()."img/avatar.png";
+        if ($path == "avatar.png" || $path == "avatar3.png" ){
+           
+            return base_url() . "img/".$path;
+        }
         else{
             return base_url()."uploads/".$path;
         } 
