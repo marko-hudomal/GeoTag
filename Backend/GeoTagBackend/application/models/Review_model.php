@@ -7,10 +7,10 @@
  */
 
 // promotion requirement constants
-define("UP_VOTE_PROMO", 10);
+define("UP_VOTE_PROMO", 5);
 define("DOWN_VOTE_PROMO_PERCENT", 0.2);
 define("NEG_REV_PER", 2);
-define("NEG_REV_LIMIT", 15);
+define("NEG_REV_LIMIT", 5);
 
 class Review_model  extends CI_Model{
     
