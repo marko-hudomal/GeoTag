@@ -125,6 +125,24 @@ class User_model extends CI_Model {
         }
     }
     
+     // get img name by its id if null return default avatar
+    // @param string $id
+    // @return string
+    public function get_img_name_other($id, $username) {
+        $this->db->where('idImg', $id);
+        $row = $this->db->get('image')->row();
+
+        if ($row != null)
+            return $row->img;
+        else {
+            if($this->get_gender($username) == "male")
+                return "avatar.png";
+            else
+                return "avatar3.png";
+        }
+    }
+    
+    
     // get user img name by username
     // @param string $username
     // @return string
