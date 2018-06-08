@@ -151,9 +151,9 @@ class Admin extends CI_Controller {
 
         $path = $this->User_model->get_img_name($this->session->userdata('user')->idImg);
         
-        if ($path == "avatar.png"){
+        if ($path == "avatar.png" || $path == "avatar3.png" ){
            
-            return base_url() . "img/avatar.png";
+            return base_url() . "img/".$path;
         }
             
         else {
@@ -480,11 +480,10 @@ class Admin extends CI_Controller {
             $data['gender'] = $gender;
             
             $img_id = $this->User_model->get_img_id($other);
-            $img_name = $this->User_model->get_img_name($img_id);
+            $img_name = $this->User_model->get_img_name_other($img_id,$other);
             
-            
-            if ($img_name == "avatar.png")
-                $profile_pic = base_url() . "img/avatar.png";
+            if ($img_name == "avatar.png" || $img_name == "avatar3.png")
+                $profile_pic = base_url() . "img/".$img_name;
             else {
                 $profile_pic =  base_url() . "uploads/" . $img_name;
             }
