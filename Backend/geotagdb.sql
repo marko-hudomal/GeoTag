@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jun 08, 2018 at 02:07 PM
+-- Generation Time: Jun 08, 2018 at 02:11 PM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 7.0.26
 
@@ -132,7 +132,8 @@ INSERT INTO `request` (`idReq`, `type`, `username`, `idRev`, `idDest`) VALUES
 (24, 'destination confirm', 'arnold', NULL, 37),
 (25, 'destination confirm', 'jakovj', NULL, 38),
 (26, 'destination added', 'hudi', NULL, 39),
-(28, 'user promotion', 'jaksaj', NULL, NULL);
+(28, 'user promotion', 'jaksaj', NULL, NULL),
+(29, 'negative review', 'zoltan56', 82, NULL);
 
 -- --------------------------------------------------------
 
@@ -167,7 +168,7 @@ INSERT INTO `review` (`idRev`, `content`, `upCount`, `downCount`, `date`, `usern
 (78, 'One of the best summer party destinations, there are parties every day and night.\r\nI recommend this destinations for everyone who is seeking for parties and summer fun.\r\nThere is awesome aqua park too', 4, 1, '2018-06-08 00:00:00', 'arnold', 98, 37),
 (79, 'Cool place!', 6, 1, '2018-06-08 00:00:00', 'jaksaj', 100, 38),
 (80, 'Visit <strong>Red Star Belgrade Stadium</strong>! A lot of trophies, pictures, equipments from a last century. Football lovers must come here an enjoy.', 0, 1, '2018-06-08 00:00:00', 'hudi', 101, 28),
-(82, 'I would never recommend anyone to visit Belgrade as it is the dirtiest city ever! Garbage everywhere.\r\n<br>\r\nAlso, people smoke everywhere in restorants. One cannot eat a meal anywhere as everyone smo', 0, 5, '2018-06-08 00:00:00', 'zoltan56', 103, 28);
+(82, 'I would never recommend anyone to visit Belgrade as it is the dirtiest city ever! Garbage everywhere.\r\n<br>\r\nAlso, people smoke everywhere in restorants. One cannot eat a meal anywhere as everyone smo', 0, 6, '2018-06-08 00:00:00', 'zoltan56', 103, 28);
 
 -- --------------------------------------------------------
 
@@ -251,6 +252,7 @@ INSERT INTO `vote` (`username`, `idRev`, `type`) VALUES
 ('arnold', 72, 1),
 ('arnold', 73, 1),
 ('arnold', 75, 1),
+('arnold', 82, -1),
 ('ciric_d', 67, 1),
 ('ciric_d', 69, -1),
 ('ciric_d', 70, -1),
@@ -367,7 +369,7 @@ ALTER TABLE `image`
 -- AUTO_INCREMENT for table `request`
 --
 ALTER TABLE `request`
-  MODIFY `idReq` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `idReq` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `review`
