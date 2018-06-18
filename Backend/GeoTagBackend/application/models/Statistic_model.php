@@ -103,7 +103,7 @@ class Statistic_model extends CI_Model{
         
         $row->posReviews=0;
         foreach ($reviews as $rev){                             //loop for sum of reviews in last 7 days
-            $interval = date_diff(date_create($row->date),date_create($r->date),true);
+            $interval = date_diff(date_create($row->date),date_create($rev->date),true);
             
             $diff=(int)($interval->format("%d"));           
                 
