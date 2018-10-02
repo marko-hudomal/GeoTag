@@ -1,6 +1,6 @@
 # GeoTag
 
-## Getting Started
+## Info
 
 Software Engineering Pirnciples course project
 
