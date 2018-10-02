@@ -2,7 +2,7 @@
 
 ## Info
 
-Software Engineering Pirnciples course project
+Software Engineering Principles course project
 
 Website available on: https://geotagdp.000webhostapp.com
 
